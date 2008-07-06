@@ -294,7 +294,7 @@ msgstr ""
 msgid "ill_formed_bozo"
 msgstr ""
 "Document is not well-formed <abbr>XML</abbr>\n"
-"Failed to load XML. <a href='?im_a=bozo&amp;url=%s'>Re-parse as <abbr>HTML</abbr></a>."
+"Failed to load XML. <a href='%s'>Re-parse as <abbr>HTML</abbr></a>."
 
 msgid "ill_formed"
 msgstr ""
