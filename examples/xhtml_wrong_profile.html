@@ -1,0 +1,14 @@
+<!-- @expect unknown_head_profile, no_vcards -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/haha">
+    <title>Wrong profile</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  
+  <body>
+      <!-- @expect hcard_class -->
+      <div class="hcard">
+          hcard! not vcard
+     </div> 
+  </body>
+</html>

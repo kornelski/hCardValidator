@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://purl.org/uF/2008/03/">
+    <title>Valid 7 hcard-examples</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+   <!-- @expect mutliple_idless_vcards -->
+      <!-- @expect company -->
+      <div class="vcard">
+        <span class="fn org">Powell's Pool</span>
+        <span class="adr">
+          <span class="extended-address">Sutton Park</span>
+          <span class="locality">Birmingham</span>
+          <span class="country-name">England</span>
+        </span>
+      </div>
+
+      <!-- @expect place_address no_n -->
+      <div class="vcard">
+       <div class="adr">
+        <div class="fn extended-address">Phone Boxes by the Sealife Centre</div>
+         <span class="street-address">Marine Parade</span><br />
+         <span class="locality">Brighton &amp; Hove</span>,
+         <span class="region">England</span>
+         <span class="postal-code">BN2 1TB</span><br />
+         <span class="country">United Kingdom</span><br />
+         <span class="tel">01273 606674</span>
+        </div>
+        <!-- @expect pre_elements -->
+       <div class="note"><pre>Just a meeting place,<br /><br /> in case the venue changes.</pre></div>
+       
+      </div>
+      
+      <div class="vcard">
+        <!-- @expect place_address, org_fn_ignored, no_n -->
+       <div class="adr">
+        <div class="org fn">
+         <div class="organization-name">Sprinkler Fitters U.A. Local 483</div>
+         <div class="organization-unit extended-address">Apprenticeship Training Center</div>
+        </div>
+        <div class="street-address">2531 Barrington Court</div>
+        <span class="locality">Hayward</span>, 
+        <abbr title="California" class="region">CA</abbr>
+        <span class="postal-code">94545</span>
+       </div>
+      </div>
+      
+      <ul>
+       <li class="vcard">
+                 <!-- @expect company -->
+        <a class="fn org url" href="http://microformats.org/">microformats.org</a>
+       </li>
+       <li class="vcard">
+                 <!-- @expect company -->
+        <a class="fn org url" href="http://technorati.com/">Technorati</a>
+       </li>
+       <li class="vcard">
+                 <!-- @expect company -->
+        <a class="fn org url" href="http://www.w3.org/">World Wide Web Consortium</a>
+        (<span class="nickname">W3C</span>)
+       </li>
+      </ul>
+      
+
+      <p class="vcard">
+      <a href="http://mywebsite.com/" class="url fn n">
+          <span class="given-name">John</span>
+          <span class="other-names">Q.</span>
+          <span class="family-name">Public</span>
+      </a>
+      </p>
+  </body>
+</html>

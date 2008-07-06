@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Include test</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>
+      <div class="vcard">
+          <a href="#self" id="self" class='include'></a><!-- @expect include_used include_self include_empty_a no_n -->
+          
+         <div id="top"><p>  <a href="#top" class='include'></a></p></div><!-- @expect include_self include_empty_a -->
+         
+	<div class="fn">mr. 
+         <a href="#deep1" class='include'></a><!-- @expect include_empty_a -->
+         <div id="deep1"><b>  <a href="#deep2" class='include'></a></b></div><!-- @expect include_empty_a -->
+         <div id="deep2"><i>  <a href="#deep3" class='include'></a></i></div><!-- @expect include_empty_a -->
+         <div id="deep3"><b>  <object data="#deep4" class='include'></object></b></div>
+         <div id="deep4"><i>  <a href="#deep5" class='include'></a></i></div><!-- @expect include_empty_a include_deep -->
+         <div id="deep5"><i>  <a href="#deep6" class='include'></a></i></div><!-- @expect include_empty_a include_deep -->
+         <div id="deep6"><em>  include </em></div>                             
+          </div>
+      <div class="tel">
+          <abbr title="fax" class="type">F:</abbr>
+          <span id="tel">0401950302 <a href="#othertel" class="include"></a></span><!-- @expect include_empty_a include_deep tel_letters -->
+      </div>
+      <div class="tel">
+          <abbr title="pref" class="type"><em>P:</em></abbr>
+          <p id="othertel">other<a href="#tel" class="include"></a>          </p><!-- @expect include_empty_a include_deep tel_letters -->
+      </div>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: porneL <pornel@pornel.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "n"
+msgstr "Name"
+
+msgid "name"
+msgstr "Card name"
+
+msgid "fn"
+msgstr "Formatted name"
+
+msgid "email"
+msgstr "e-mail"
+
+msgid "url"
+msgstr "URL"
+
+msgid "nickname"
+msgstr "Nickname"
+
+msgid "agent"
+msgstr "Agent"
+
+msgid "geo"
+msgstr "GEO"
+
+msgid "honorific-prefix"
+msgstr "Honorific Prefix"
+
+msgid "honorific-suffix"
+msgstr "Honorific Suffix"
+
+msgid "given-name"
+msgstr "Given Name"
+
+msgid "additional-name"
+msgstr "Additional Name"
+
+msgid "title"
+msgstr "Title"
+
+msgid "family-name"
+msgstr "Family Name"
+
+msgid "adr"
+msgstr "Address"
+
+msgid "street-address"
+msgstr "Street"
+
+msgid "region"
+msgstr "State or Province"
+
+msgid "locality"
+msgstr "City"
+
+msgid "postal-code"
+msgstr "Postcode"
+
+msgid "country-name"
+msgstr "Country"
+
+msgid "org"
+msgstr "Organization"
+
+msgid "organization-name"
+msgstr "Org. Name"
+
+msgid "organization-unit"
+msgstr "Org. Unit"
+
+msgid "tel"
+msgstr "Telephone"
+
+msgid "fax"
+msgstr "Fax"
+
+msgid "source"
+msgstr "Card source"
+
+msgid "photo"
+msgstr "Photo URL"
+
+msgid "bday"
+msgstr "Birthday"
+
+msgid "extended-address"
+msgstr "Extended Address"
+
+msgid "class"
+msgstr "Classification"
+
+msgid "note"
+msgstr "Note"
+
+msgid "tz"
+msgstr "Timezone"
+
+msgid "sort-string"
+msgstr "Sort String"
+
+msgid "uid"
+msgstr "UID"
+
+msgid "category"
+msgstr "Category"
+
+msgid "rev"
+msgstr "Card Revision"
+
+msgid "role"
+msgstr "Role"
+
+msgid "label"
+msgstr "Address Label"
+
+msgid "logo"
+msgstr "Logo URL"
+
+msgid "sound"
+msgstr "Sound URL"
+
+msgid "mailer"
+msgstr "e-mail Client"

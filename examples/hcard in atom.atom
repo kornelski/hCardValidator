@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!-- @expect not_xhtml -->
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:x="http://www.w3.org/1999/xhtml">
+	<title>Atom Robots</title>
+	<subtitle>from outer semantic space!</subtitle>
+	<link href="http://example.com/"/>
+	<id>http://pornel.net/atom/2008/hcard-example</id>
+	<updated>2008-06-15T12:00:01+01:00</updated>
+	<entry>
+    	<id>http://pornel.net/atom/2008/hcard-example/1</id>
+    	<updated>2008-06-15T12:00:01+01:00</updated>
+    	<link href="http://example.com/"/>
+		<title>hCard</title>
+		<content type="xhtml"><x:div class="vcard"><x:span class="fn nickname">Killer Robot</x:span></x:div></content>
+	</entry>
+</feed>

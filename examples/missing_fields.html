@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Missing fields</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <div class="vcard" id="a"> 
+        <div class="fn"></div> <!-- @expect empty_prop no_fn -->
+        <div class="n"><span class="family-name">Me</span></div>
+    </div>
+     
+    <div class="vcard">
+        <div class="fn">Name 1</div> <!-- @expect multi_fn -->
+        <div class="fn">Name 2</div>
+    </div>
+
+    <div class="vcard" id="b"> 
+        <div class="fn">  <!-- @expect multi_n -->
+            <div class="n"><span class="family-name">Me</span></div>
+        or
+            <div class="n"><span class="family-name">Me</span></div>
+        </div>
+    </div>
+
+    <div class="vcard" id="b">
+        <div class="fn">test
+            <div class="n"><span class="family-name"></span></div> <!-- @expect empty_subprop -->
+        </div>
+    </div>
+
+  </body>
+</html>

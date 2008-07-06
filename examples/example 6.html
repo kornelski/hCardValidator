@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 6 tricky bday</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <div class="vcard">
+      <p class="fn">Joe B.</p>
+      <a class="e&#109;ail" rel="nofollow" href="&#109;ailto:john.smith&#064;example.com">john.smith&#064;example.com</a>
+      <!-- @expect abbr_in_value date_syntax -->
+         <div class="bday">
+         <dt>Birthday</dt>
+         <dd>
+             <abbr class="value" title="1985-10-27T00:00:00Z">October 27, 1985</abbr>
+         </dd>
+         </div>
+    </div>
+  </body>
+</html>

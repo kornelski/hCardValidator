@@ -1,0 +1,101 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 9 rfc2426</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <!-- @expect mutliple_idless_vcards -->
+    <div class="agent vcard">        <!-- @expect  -->
+      <span class="role">Programmer</span>
+     <a class="email fn" href="mailto:jfriday@host.com">Joe Friday</a>
+     <div class="tel">+1-919-555-7878</div>
+     <div class="title">Area Administrator, Assistant</div>
+     <span class="org">
+      <span class="organization-name">ABC, Inc.</span>, 
+      <span class="organization-unit">North American Division</span>,
+      <span class="organization-unit">Marketing</span>,
+     </span>
+
+     <span class="category">INTERNET</span>, 
+     <span class="category">IETF</span>, 
+     <span class="category">INDUSTRY</span>, 
+     <span class="category">INFORMATION TECHNOLOGY</span>
+     
+     <p class="note">This fax number is operational 0800 to 1715 EST, Mon-Fri.</p>
+     
+     <abbr class="rev" title="1995-10-31T22:27:10Z">Updated: 10/31 10:27p</abbr>
+    </div>
+    
+    
+    <div class="vcard">      
+      <span class="fn">Mr. John Q. Public, Esq.</span>
+      <span class="nickname">Robbie</span>
+      <abbr class="bday" title="1996-04-15">April 15, 1996</abbr>
+      <div class="adr">
+       <abbr class="type" title="dom">US</abbr>
+       <span class="type">home</span> address, for
+       <abbr class="type" title="postal">mail</abbr> and
+       <abbr class="type" title="parcel">shipments</abbr>:
+       <div class="street-address">123 Main Street</div>
+       <span class="locality">Any Town</span>, <span class="region">CA</span>, 
+       <span class="postal-code">91921-1234</span>
+      </div>
+      <span class="tel">
+       <abbr class="type" title="pref">my</abbr> 
+       <span class="type">work</span> 
+       <abbr class="type" title="voice">phone</abbr>, with 
+       <abbr class="type" title="msg">voicemail</abbr>:
+       <span class="value">+1-213-555-1234</span>
+      </span>
+      
+      <abbr class="rev" title="1997-11-15">Updated: November 15</abbr>
+      
+      <a class="email" href="mailto:jane_doe@abc.com">
+       <abbr class="type" title="pref">preferred</abbr> 
+       email for jane_doe
+      </a>
+      <p>Jane Doe uses <span class="mailer">PigeonMail 2.1</span> for email.</p>
+      <span class="tz">-05:00</span>
+    </div>
+    
+    <div class="vcard">        <!-- @expect no_fn no_n -->
+      <span class="agent vcard">
+                <!-- @expect nested_vcard -->
+       <a class="email fn" href="mailto:sthomas@host.com">Susan Thomas</a>,
+       <span class="tel">+1-919-555-1234</span>
+      </span>
+      
+      <img class="logo" src="http://www.abc.com/pub/logos/abccorp.jpg" alt="my logo" />
+      <span class="title">Director, Research and Development</span>
+      <a class="email" href="mailto:jqpublic@xyz.dom1.com">email jqpublic</a>
+      <span class="nickname">Jim</span>, 
+      <span class="nickname">Jimmie</span>
+      <span class="n">
+       <span class="honorific-prefix">Mr.</span>
+       <span class="given-name">John</span>
+       <span class="additional-name">Quinlan</span>
+       <span class="family-name">Public</span>, 
+       <span class="honorific-suffix">Esq.</span>
+       <abbr class="bday" title="1953-10-15T23:10:00Z">Oct 15, 1953</abbr>
+       <div class="label"><!-- @expect block_in_inline -->
+        <abbr class="type" title="dom">local delivery</abbr>
+        <abbr class="type" title="home">to my home</abbr>
+        <abbr class="type" title="postal">of mail</abbr>
+        <abbr class="type" title="parcel">and packages:</abbr>
+       <pre>
+       Mr.John Q. Public, Esq.
+       Mail Drop: TNE QB
+       123 Main Street
+       Any Town, CA  91921-1234
+       U.S.A.
+       </pre>
+       </div>
+      </span>
+      
+      <img class="photo" src="data:image/jpeg;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvcN
+      AQEEBQAwdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENvbW11bm
+      ljYXRpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0" alt="" /><!-- @expect photo_data_invalid -->
+    </div>
+  
+  </body>
+</html>

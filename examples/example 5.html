@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 5 imgs</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <div class="vcard"><!-- @expect nested_photo, company -->
+    
+      <img class="fn org" src="http://www.example.com/img" alt="CommerceNet" />
+      <div class="adr">
+        <span class="type">Work</span>:
+        <img class="street-address" alt="169 University Avenue" src="street" />
+        <span class="locality"><del>Alto Palo</del><ins>Palo Alto</ins></span>,  <!-- @expect del_value -->
+        <abbr class="region" title="California"><img alt="CA" src="ca" /></abbr>  
+        <span class="postal-code">94301</span>
+        <div class="country-name">USA</div>
+      </div>
+      
+      <div class="photo"><img src="photo.gif" alt="my photo" /></div>
+
+      <img class="photo" src="photo2.gif" alt="my photo2" />
+      <object class="photo" data="photo3.gif">my photo3</object>
+      <a class="photo" href="photo4.gif">my photo4</a>
+      
+      <div class="tel">
+       <img class="type" alt="Work" src="wrk" /> +1-650-289-4040
+      </div>
+      <div>Email: 
+       <span class="email">info@commerce.net</span>
+      </div>
+    </div>
+  </body>
+</html>

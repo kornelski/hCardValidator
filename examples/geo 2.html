@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Geo 2</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+
+    <div class=" vcard vcard " id="card1">
+      <!-- @expect geo_value -->
+      <span class="geo">
+           <span class="latitude fn nickname">invalid</span>
+           <span class="longitude">-121.082932</span>
+      </span>
+    </div>
+    <div class=" vcard vcard ">
+       <span class="geo">   
+           <!-- @expect longitude_missing -->        
+           <abbr class="latitude" title="37.386013"><b class="fn nickname">over</b></abbr>                     
+      </span>
+    </div>
+    <div class=" vcard vcard " id="card2">
+        <span class="geo">
+                 <!-- @expect latitude_missing no_fn no_n --> 
+              <span class="longitude">-122.082932</span>
+         </span>
+    </div>
+    
+    
+    <div class=" vcard vcard " id="card3">
+        <!-- @expect geo_abbr_syntax -->
+       <abbr class="geo" title="37.386013,-123.082932"><i class="fn nickname">bla</i></abbr>
+    </div>
+  </body>
+</html>

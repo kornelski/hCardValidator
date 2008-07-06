@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 11 hcard-examples</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+      <!-- @expect mutliple_idless_vcards -->
+        <div class="vcard">
+          <span class="fn n">
+             <a class="url" href="http://t37.net">
+               <span class="given-name">Fréderic</span> 
+               <span class="family-name">de Villamil</span> 
+             </a>
+          </span>
+          <span class="nickname">neuro</span>
+          <a class="email" href="mailto:neuroNOSPAM@t37.net">
+             <span class="type">pref</span><span>erred email</span>
+          </a>
+          <span class="org">Omatis</span>
+          <span class="adr">
+             <abbr class="type" title="dom">France</abbr>
+             <span class="type">home</span> address
+             <abbr class="type" title="postal">mail</abbr> and
+             <abbr class="type" title="parcel">shipments</abbr>:
+             <span class="street-address">12 rue Danton</span>
+             <span class="locality">Le Kremlin-Bicetre</span>
+             <span class="postal-code">94270</span>
+             <span class="country-name">France</span>
+          </span>
+          <div class="geo"><pre>
+             <abbr class="latitude" title="48.816667">N 48° 81.6667</abbr>
+             <abbr class="longitude" title="2.366667">E 2° 36.6667</abbr>
+          </pre></div>
+        </div>
+
+        <p>
+         
+          <cite class="vcard">
+           <a class="fn url" rel="friend colleague met" href="http://meyerweb.com/">
+            Eric Meyer
+           </a>
+          </cite> wrote a post 
+          (<cite>
+            <a href="http://meyerweb.com/eric/thoughts/2005/12/16/tax-relief/">
+             Tax Relief
+            </a>
+           </cite>) 
+          about an unintentionally humorous letter he received from the
+          <span class="vcard">
+                    <!-- @expect company -->
+           <a class="fn org url" href="http://irs.gov/">Internal Revenue Service</a>
+          </span>.
+        </p>
+
+        <div class="vcard">
+                  <!-- @expect company -->
+         <div class="org">
+          <div class="organization-name fn">Sprinkler Fitters U.A. Local 483</div> 
+          <div class="organization-unit">Apprenticeship Training Center</div>
+         </div>
+        </div>
+  
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Geo 1</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <!-- @expect mutliple_idless_vcards -->
+    <div class=" vcard vcard ">    
+       <span class="geo">
+           <b class="fn">Geo test</b>
+           <span class="latitude">37.186013</span>
+           <span class="longitude">-122.082932</span>
+      </span>
+    </div>
+    <div class=" vcard vcard ">
+        <!-- @expect abbr_in_value abbr_in_value-->
+       <span class="geo">
+           <a href="map" class="url fn">
+           <abbr class="latitude" title="37.286013">over</abbr>
+           <span title="meh"><abbr class="longitude" title="-122.082932">there</abbr></span>
+          </a>
+      </span>
+    </div>
+    
+    <div class=" vcard vcard ">
+       <abbr class="geo fn nickname" title="37.386013;-122.082932">bla</abbr>
+    </div>
+    
+  </body>
+</html>

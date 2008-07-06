@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+    <title>Valid 1</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <div class="vcard"> <!-- @expect company -->
+      <a class="fn org url" href="http://www.commerce.net/">Test óóó!</a>
+      <div class="adr">
+        <span class="type">Work</span>:
+        <div class="street-address">169 University Avenue</div>
+        <span class="locality">Palo Alto</span>,  
+        <abbr class="region" title="California">CA</abbr>  
+        <span class="postal-code">94301</span>
+        <div class="country-name">USA</div>
+      </div>
+      <div class="tel">
+       <span class="type">Work</span> +1-650-289-4040
+      </div>
+      <div class="tel">
+        <span class="type">Fax</span> +1-650-289-4041
+      </div>
+      <div>Email: 
+       <span class="email">info@commerce.net</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 2 org</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>
+    <div id="contact" class="otherclass vcard noise">
+       <h2>Contact Me</h2>
+       <h3 class="fn">Jane Doe</h3>
+       <p>You can contact me via email to <!-- @expect mailto_no_class -->
+        <a href="mailto:jane@example.com">jane@example.com</a>,
+
+        or reach me at the following address:</p>
+       <p>255 Some Street,<br />
+         Some Town,<br />
+         Some Place</p>
+
+        <a class="uid" href="bla"></a>
+
+        <!-- @expect organization_class -->
+        <b class="organisation">spelling!</b>
+
+        <!-- @expect uniqid_class -->
+        <a class="uniqid" href="bla"></a>
+    </div>
+
+    <!-- @expect vcard_address -->
+    <address class="vcard">
+     <a class="fn url" href="http://tantek.com/">Tantek Çelik</a>
+    </address>
+  </body>
+  
+</html>

@@ -1,0 +1,126 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 8 rfc2426</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <!-- @expect mutliple_idless_vcards -->
+        <div class="vcard" id="first">        <!-- @expect no_fn -->
+          <span class="class">CONFIDENTIAL</span>
+          <abbr class="tz"
+           title="-05:00; EST; Raleigh/North America;This example has a single value, not a structure text value.">
+           EST
+          </abbr>
+          <img class="photo" src="http://www.abc.com/pub/photos/jqpublic.gif" alt="" />
+          <span class="n">
+           <span class="honorific-prefix">Dr.</span>
+           <span class="given-name">John</span>
+           <span class="additional-name">Philip</span>
+           <span class="additional-name">Paul</span>
+           <span class="family-name">Stevenson</span>,
+           <span class="honorific-suffix">Jr.</span>,
+           <span class="honorific-suffix">M.D.</span>,
+           <span class="honorific-suffix">A.C.P.</span>
+          </span>
+          <a class="email" href="mailto:jdoe@isp.net">email jdoe</a>
+          <abbr class="bday" title="1987-09-27T08:30:00-06:00">Sept 9, 1987</abbr>
+          <!-- @expect pre_elements -->
+          <pre class="note">Just<br /><br /><strong>testing</strong>.</pre>
+        </div>
+      
+        <div class="vcard">
+        <a class="url fn" href="http://home.earthlink.net/~fdawson">Frank Dawson</a>
+        <div class="org">Lotus Development Corporation</div>
+        <div class="adr">
+         <span class="type">work</span> address 
+        (<abbr class="type" title="postal">mail</abbr> and
+         <abbr class="type" title="parcel">packages</abbr>):
+         <div class="street-address">6544 Battleford Drive</div>
+         <span class="locality">Raleigh</span>
+         <span class="region">NC</span>
+         <span class="postal-code">27613-3502</span>
+         <div class="country-name">U.S.A.</div>
+        </div>
+        <div class="tel">
+         <span class="value">+1-919-676-9515</span> 
+        (<abbr class="type" title="WORK">w</abbr>,
+         <abbr class="type" title="VOICE">v</abbr><abbr class="type" title="MSG">m</abbr>)
+        </div>
+        <div class="tel">
+         <span class="value">+1-919-676-9564</span>
+        (<abbr class="type" title="WORK">w</abbr><abbr class="type" title="FAX">f</abbr>)
+        </div>
+        <a class="email" href="mailto:Frank_Dawson@Lotus.com">
+         <span class="type">pref</span><span>erred email</span>
+        </a>,
+        <a class="email" href="mailto:fdawson@earthlink.net">
+         alternate email
+        </a>
+        </div>
+        <div class="vcard">
+        <a class="email fn" href="mailto:howes@netscape.com">Tim Howes</a>
+        <div class="org">Netscape Communications Corp.</div>
+        <div class="adr">
+         <span class="type">work</span> address:
+         <div class="street-address">501 E. Middlefield Rd.</div>
+         <span class="locality">Mountain View</span>, 
+         <span class="region">CA</span>
+         <span class="postal-code">94043</span>
+         <div class="country-name">U.S.A.</div>
+        </div>
+        <div class="tel">
+         <span class="value">+1-415-937-3419</span> 
+        (<abbr class="type" title="WORK">w</abbr>,
+         <abbr class="type" title="VOICE">v</abbr><abbr class="type" title="MSG">m</abbr>)
+        </div>
+        <div class="tel">
+         <span class="value">+1-415-528-4164</span>
+        (<abbr class="type" title="WORK">w</abbr><abbr class="type" title="FAX">f</abbr>)
+        </div>
+        </div>
+
+    <div class="vcard">        
+      <span class="n">
+       <span class="honorific-prefix">Sir</span>
+       <span class="fn">
+        <span class="given-name">Rene</span>
+        <span class="family-name">
+         van der <span class="sort-string">Harten</span>
+        </span>
+       </span>
+       (<span class="additional-name">J.</span>),
+       <span class="honorific-suffix">R.D.O.N.</span>
+      </span>
+    </div>
+    
+    <div class="vcard">        
+      <object class="key" type="application/octet-stream"
+       data="data:application/octet-stream;base64,MIICajCCAdOgAwIBAgICBEUwDQYJKoZIhvcNAQEEBQA
+       wdzELMAkGA1UEBhMCVVMxLDAqBgNVBAoTI05ldHNjYXBlIENbW11bmljYX
+       Rpb25zIENvcnBvcmF0aW9uMRwwGgYDVQQLExNJbmZvcm1hdGlvbiBTeXN0
+       ZW1zMRwwGgYDVQQDExNyb290Y2EubmV0c2NhcGUuY29tMB4XDTk3MDYwNj
+       E5NDc1OVoXDTk3MTIwMzE5NDc1OVowgYkxCzAJBgNVBAYTAlVTMSYwJAYD
+       VQQKEx1OZXRzY2FwZSBDb21tdW5pY2F0aW9ucyBDb3JwLjEYMBYGA1UEAx
+       MPVGltb3RoeSBBIEhvd2VzMSEwHwYJKoZIhvcNAQkBFhJob3dlc0BuZXRz
+       Y2FwZS5jb20xFTATBgoJkiaJk/IsZAEBEwVob3dlczBcMA0GCSqGSIb3DQ
+       EBAQUAA0sAMEgCQQC0JZf6wkg8pLMXHHCUvMfL5H6zjSk4vTTXZpYyrdN2
+       dXcoX49LKiOmgeJSzoiFKHtLOIboyludF90CgqcxtwKnAgMBAAGjNjA0MB
+       EGCWCGSAGG+EIBAQQEAwIAoDAfBgNVHSMEGDAWgBT84FToB/GV3jr3mcau
+       +hUMbsQukjANBgkqhkiG9w0BAQQFAAOBgQBexv7o7mi3PLXadkmNP9LcIP
+       mx93HGp0Kgyx1jIVMyNgsemeAwBM+MSlhMfcpbTrONwNjZYW8vJDSoi//y
+       rZlVt9bJbs7MNYZVsyF1unsqaln4/vy6Uawfg8VUMk1U7jt8LYpo4YULU7
+       UZHPYVUaSgVttImOHZIKi4hlPXBOhcUQ==">
+      Key
+      </object>
+      
+      <span class="class">PUBLIC</span>
+      <a class="url" href="http://www.swbyps.restaurant.french/~chezchic.html">Chez Chic</a>
+      <span class="uid">19950401-080045-40000F192713-0052</span>
+      <span class="fn n">
+       <span class="additional-name">Robert</span>
+       <span class="family-name sort-string">Pau</span>
+       <span class="given-name">Shou Chang</span>
+      </span>
+      </div>      
+  </body>
+</html>

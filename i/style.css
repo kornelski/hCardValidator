@@ -1,0 +1,115 @@
+/* crappy browsers */
+label {display:-moz-inline-box;-moz-user-select: none;}
+* html label {width:8em;}
+pre {white-space:-moz-pre-wrap;}
+
+/* and acidy ones */
+html {background:#eee; color:black; margin:0; font: 1em "Myriad Web","Myriad Pro","Calibri","Arial",sans-serif}
+h1 {font-family: "Solex Medium","Myriad Web","Myriad Pro","Calibri","Arial",sans-serif;line-height:2}
+h1 > small {font-size:0.4em; font-weight:normal;vertical-align:top;color:#aaa}
+
+h1 + p.invalid {margin:3em 0 1em;}
+
+body {
+  background:#fff;
+  color:black;
+  max-width:80em;
+  padding:1em 1.5em;
+  margin:0 auto;
+  border: 1px solid #ccc; border-top: 0}
+label {display:inline-block; min-width:8em; text-align:right; margin-right:1em;}
+textarea {vertical-align:top;min-width:60%;}
+input[type=url], textarea {min-width:60%; box-sizing:border-box }
+input[type=text] {min-width:25%;}
+input {line-height:1;}
+form {min-width:23em;}
+form > div {margin: 1em 0;}
+form > p {margin-left: 9em;}
+abbr {text-transform: lowercase;
+	font-variant:small-caps;
+	font-style: normal;
+	border-bottom: 0;
+	letter-spacing:0.1ex;
+	font-size:110%;line-height:1}
+code,samp,pre {font: 0.91em "Consolas","Monaco","Lucida Console","Andale Mono",monospace;white-space:pre-wrap;}
+samp {color:#333;}
+h3 > code,h3 > samp {font-size: 0.95em;font-weight:bold}
+
+code var {color:#444;font-style:normal; border:1px dotted #ccc;padding:2px 1px 0;}
+
+h1 {padding-left: 45px; background: url(/i/logo.png) 0 0 no-repeat; line-height:1.5;}
+h1 > b {color:#666;}
+
+form p.error {color:red;}
+form p.success {color:green;}
+
+#result .error {background:#fee;}
+#result .warn {background:#ffd;}
+#result .info {background:#efe;}
+#result h3, #result h4 {font-size:1.2em;margin: 0;}
+#result li p {margin: 0.2em 0 0 26px;}
+#result img {float:left; margin: 0 10px 0 0; opacity:0.8;}
+#result ul,#result ol {margin:0;padding:0;list-style:none;}
+#result li {margin:0.5em 0;padding:0.5em;}
+#result table ul {padding:0;margin: 0 0 0 1em; list-style:disc;}
+#result table li {padding:0;margin: 0;}
+
+.valid,.invalid { font-size:1.5em; min-height:40px; line-height:2em; padding-left:60px;}
+.valid {background: url(/i/valid.png) 0 50% no-repeat;}
+.invalid {background: url(/i/invalid.png) 0 50% no-repeat;}
+
+table {border-collapse:collapse;margin:0.3em 0}
+td,th {vertical-align:top; padding: 5px 0.5em 0}
+th {text-align:right;padding-top:4px}
+td pre {font:inherit; margin:0; max-width:100%; overflow:auto;}
+
+tbody.email > tr > th {white-space:nowrap;}
+
+th[rowspan] { text-align:left; border-right:1px dotted #ddd;border-top:1px solid #ddd;}
+th[colspan] { min-width:5em; border-top:1px solid #ddd;}
+th[rowspan] + th  { border-top:1px solid #ddd;}
+tbody:first-child tr:first-child th {border-top:0;}
+
+#source {overflow: auto;}
+#source > div {float:left; width:48%; margin-right:2%; min-width:400px}
+#source pre {font-size:11px;}
+
+#tabs > ul , .tablist {
+  margin:0 -1.5em;padding:4px 0 0 1.5em;overflow:hidden;
+  list-style:none;border-bottom:1px solid #aaa;
+  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAQCAYAAAArij59AAAAMElEQVR4Xs2OSQoAAAgCI/r/k235QB4kSPA26FiSUCAG2uLdY2Ac9IX3FwGAOmgLBU2/V88wo7smAAAAAElFTkSuQmCC) repeat-x 0 100%;
+}
+
+#tabs > ul > li {
+  margin:1px 8px 0 0;padding:2px 10px 0;
+  color:#444;background:#f5f5f5;line-height:1.8;float:left;
+  cursor:pointer;border:1px solid #aaa;
+  border-bottom:1px solid #eee !important; 
+  border-top-right-radius: 7px; border-top-left-radius: 7px;
+  -webkit-border-top-right-radius: 7px; -webkit-border-top-left-radius: 7px;
+  -moz-border-radius-topright: 7px; -moz-border-radius-topleft: 7px;
+  -moz-outline-radius-topright: 6px; -moz-outline-radius-topleft: 6px;
+  outline-offset:-3px; 
+  -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  -moz-user-select: none;
+}
+#tabs > ul > li:focus {border-color:black;color:black; padding-top:3px;margin-top:0;}
+*:-o-prefocus {outline:none !important;background:red !important;}
+#tabs > ul > li.active, #tabs > ul > li:active {
+  color:black;background:white;padding-top:3px;margin-top:0;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+.hidden {display:none;}
+.active > h3 {display:none;}
+
+@media screen and (max-width:950px)
+{
+  #source pre {font-size: 10px;}
+  #source div {float:none; width:auto;}
+}
+
+#footnotes {font-size:0.9em;}
+hr {border:0;border-top:1px solid #ddd; margin: 2em 0 1em}
+a[href='#footnotes']{text-decoration:none;}
+
+a.button {border:1px outset #aaa;background:#ccc; padding:0.2em 0.5em;color:black;text-shadow: 0 1px 0 white;text-decoration:none}

@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Test</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <!-- @expect company org_has_n  nested_vcard -->
+    <div class="vcard" id="c1">
+     <abbr class="fn" title="Andy Clarke"></abbr>
+      <a class="nickname" href="http://www.stuffandnonsense.co.uk/malarkey">Malarkey</a>
+      <div class="email"><span class="value">andy@example.com</span>
+          <div class="vcard" id="joe1">
+               <div class="n">
+                   <div class="family-name">
+                       <div class="nickname">
+                           <div class="fn">
+                               <a href="http://example.com" class="url">
+                                   <span class="org"><span class="value">Joe1</span></span>
+           </a></div></div></div></div></div>
+       </div>
+      <div class="vcard" id="c2">
+          
+      <!-- @expect  nested_vcard abbr_in_value company org_has_n -->
+       <div class="n fn"><b class="value"><span class="family-name">Melton</span> <abbr 
+class="given-name" 
+title="Juliette"></abbr></b>
+        <a class="url nickname" rel="friend" href="http://juliettemelton.com/">Julie</a>
+         <div class="vcard" id="joe2">
+             <div class="n">
+                 <div class="family-name">
+                     <div class="nickname">
+                         <div class="fn">
+                             <a href="http://example.com" class="url">
+                                 <span class="org">Joe2</span>
+         </a></div></div></div></div></div>
+       </div>
+      </div>
+     </div>
+        
+        
+    
+  </body>
+</html>

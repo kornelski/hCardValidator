@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile='http://www.w3.org/2006/03/hcard'>
+    <title i18n:translate="'title'">hCard Validator</title>
+    <link rel="stylesheet" href="/i/style.css" />
+    <link rel="icon" href="/i/favicon.png" />
+  </head>
+  <body>
+    <h1 i18n:translate="'h1'">hCard micro<b>format</b> Validator <small>(beta, of course)</small></h1>
+    <p i18n:translate="'intro'">This is an unofficial validator<a href="#footnotes">¹</a>/conformance checker of the <a href="http://microformats.org/wiki/hcard">hCard microformat</a>.</p>
+
+    <h2 i18n:translate="">Input</h2>
+    <div id="tabs">
+      <form action="/#result" method="get">
+        <h3><abbr>URL</abbr></h3>
+        <p i18n:translate="'urlintro'">Check entire <abbr>XHTML</abbr> or <abbr>HTML</abbr> page by entering its <abbr>HTTP</abbr> <abbr>URL</abbr>.</p>
+        <div><label for="url" i18n:translate="">Address:</label><input type="url" name="url" id="url" tal:attributes="value url | get/url | nothing" /></div>
+        <p><input type="submit" value="Validate URL"  i18n:attributes="value"/></p>
+      </form>
+      <form action="/#result" method="post">
+        <h3 i18n:translate="">Fragment</h3>
+        <p i18n:translate="'fragmentintro'">Paste <strong>well-formed <abbr>XHTML</abbr></strong> fragment or complete document containing hCard.</p>
+        <div><label for="fragment" i18n:translate=""><abbr>XHTML</abbr> fragment</label>
+          <textarea name="fragment" id="fragment" cols="80" rows="15" tal:content="fragment | post/fragment | nothing" />
+        </div>
+        <p><input type="submit" value="Validate fragment"  i18n:attributes="value"/></p>
+      </form>
+      <form action="/#result" method="post" enctype="multipart/form-data">
+        <h3 i18n:translate="">Upload</h3>
+        <p i18n:translate="'uploadintro'">Upload <abbr>HTML</abbr> or <abbr>XHTML</abbr> file to validate it. For this to work <strong>your browser must be setting <abbr>MIME</abbr> types properly</strong>.</p>
+        <div><label for="file" i18n:translate="">Upload file</label><input id="file" type="file" name="file" accept="application/xhtml+xml,text/html,application/xml,text/xml" /></div>
+        <p><input type="submit" value="Validate file" i18n:attributes="value" /></p>
+      </form>
+      <form action="/#result" method="get">
+        <h3 i18n:translate="">Example</h3>
+        <p i18n:translate="'exampleintro'">If <a href="http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard">searching</a> for <a href="http://microformats.org/wiki/hcard-examples-in-wild-reviewed">hCards in the wild</a> is tiring, check one of the test-cases:</p>
+        <div><label for="example" i18n:translate="">Example file</label>
+          <select name="example" id="example" onchange="this.form.fragment.value=''">            
+            <option tal:repeat="file php:glob('examples/*.htm*')" tal:content="php:basename(file)" value="${file}" tal:attributes="selected php:file == filename" />
+          </select>
+
+  	      <a tal:condition="not:filename" href="/examples/" i18n:translate="">Browse examples</a>
+  	      <a tal:condition="filename" href="/${filename}" i18n:translate="">View</a>
+        </div>
+        <p><input type="submit" value="Validate example" i18n:attributes="value" /></p>
+      </form>
+      <div>
+          <h3 i18n:translate="">API &amp; Other</h3>
+          <h4 i18n:translate="'byreferrer'">Any page by <code>Referer</code></h4>
+          <p><code>&lt;a href=&quot;http://${host}/refe<strong>rr</strong>er/&quot;&gt;Validate hCards&lt;/a&gt;</code></p>
+          <h4 i18n:translate="">Bookmarklet</h4>
+		  <p><a class="button" href="javascript:window.location='http://hcard.geekhood.net/?url='+escape(window.location)" onclick="alert('Please drag it to your bookmarks bar');return false;" rel="bookmark">hCard?</a></p>
+          <h4 i18n:translate=""><abbr>REST</abbr>ful <abbr>JSON</abbr> <abbr>API</abbr></h4>
+          <p>Send <code>GET</code> request to <code>http://${host}/?url=<var>URL to validate</var>&amp;output=json</code>.</p>
+          <p>Output will be roughly compatible with the <a href="http://wiki.whatwg.org/wiki/Validator.nu_JSON_Output">Validator.nu <abbr>JSON</abbr> <abbr>API</abbr></a>. Likely to change in the future.</p>
+          <p i18n:translate="'pleaseuseforvalidation'">Please use this <abbr>API</abbr> for validation, not just as an converter/extraction tool.</p>
+          <hr />
+      </div>      
+      <form action="/" method="post">
+        <h3 i18n:translate="">Send Feedback</h3>
+            <p tal:condition="exists:feedback_ok" tal:content="structure feedback_ok" id="feedback" class="success" />
+            <tal:block tal:condition="not:exists:feedback_ok">
+            <tal:block tal:condition="not:exists:feedback_error">
+                <p i18n:translate="">You can <tal:block metal:use-macro="email" tal:define="label 'send feedback via e-mail'" /> or the form below.</p>
+                <p>If you're reporting a bug or have a suggestion, don't forget to include example hCard code.</p>                
+            </tal:block>    
+            </tal:block>
+            <p tal:condition="exists:feedback_error" class="error" tal:content="structure feedback_error" />
+            <div><label for="feedbackname" i18n:translate="">Your name</label><input type="text" id="feedbackname" name="feedbackname" value="${post/feedbackname | nothing}" /></div>
+            <div><label for="feedback" i18n:translate="">Your comment</label><textarea id="feedback" name="feedback" cols="70" rows="10" tal:content="post/feedback | nothing" /></div>
+            <p><input type="submit" value="Send feedback" i18n:attributes="value" /></p>
+
+                
+      </form>
+    </div>
+    <script type="text/javascript">/*<![CDATA[*/
+      var tabs = document.getElementById('tabs');
+      var i,h3s = tabs.getElementsByTagName('h3');
+      var li,ul = document.createElement('ul'); ul.className = 'tablist';
+      ul.setAttribute('role','tablist');
+      var currentTab;
+
+      function switchToTab(tab,e)
+      {
+        while(tab)
+        {
+          if (tab.hcard_validator_handle) break;
+          tab = tab.parentNode;
+        }
+        if (!tab) return;
+
+        if (currentTab)
+        {
+          currentTab.className = 'hidden';
+          currentTab.setAttribute('aria-hidden','true');
+          currentTab.hcard_validator_handle.className = '';
+        }
+        currentTab = tab;
+        tab.className = 'active';
+        currentTab.setAttribute('aria-hidden','false');
+        tab.hcard_validator_handle.className = 'active';
+
+        if (e && e.type && (''+e.type).toLowerCase() == 'keydown')
+        {
+            setTimeout(function(){tab.elements[0].focus();},1); // Opera 9.5 has broken (and probably insecure) leak of events on focus()
+        }
+      }
+
+      for(i=0; i < h3s.length; i++)
+      {
+        ul.appendChild(li=document.createElement('li'));
+        li.setAttribute('tabindex',0);
+        li.setAttribute('role','tab');
+        li.appendChild(h3s[i].firstChild.cloneNode(true));
+        li.onclick = (function(tab,handle){
+          tab.className = 'hidden';
+          tab.setAttribute('role','tabpanel');
+          tab.hcard_validator_handle = handle;
+          return function(e)
+          {
+            switchToTab(tab,e);
+            return false;
+          }
+        })(h3s[i].parentNode,li);
+
+        li.onkeydown = function(e)
+        {
+          if (e.keyCode == 32 || e.keyCode == 13) return this.onclick(e);
+        }
+      }
+      tabs.insertBefore(ul,tabs.firstChild);
+      switchToTab(document.getElementById(${structure php:json_encode(activetab)}) || h3s[0]);
+
+    /*]]>*/</script>
+
+    <div id="result" tal:condition="exists:result">
+      <h2 i18n:translate="">Result</h2>
+
+      <p class="valid" tal:condition="result/isValid" i18n:translate="'valid'">
+          Congratulations! No errors found.
+      </p>
+      <p class="invalid" tal:condition="not:result/isValid" i18n:translate="'invalid'">
+          This document contains errors.
+      </p>
+
+      <ul tal:condition="result/errors">
+        <li tal:repeat="e result/errors" class="${e/type} ${e/class}">
+            <h3><img src="/i/${e/type}.png" alt="${php:ucfirst(e['type'])}:"/> ${structure e/message}</h3>
+            <p tal:condition="e/more" tal:content="structure e/more" />
+            <p tal:condition="e/location" tal:content="structure e/location" />
+            <p tal:condition="e/href"><a href="${e/href}">More info</a></p>
+        </li>
+      </ul>
+
+      <ol tal:condition="result/vcards">
+        <li tal:repeat="v result/vcards">
+          <h3>hCard #${repeat/v/number}</h3>
+            <p tal:condition="not:v/result/errors">No issues found.</p>
+            <ul tal:condition="v/result/errors">
+              <li tal:repeat="e v/result/errors" class="${e/type} ${e/class}">
+                  <h4><img src="/i/${e/type}.png" alt="${php:ucfirst(e['type'])}:"/> ${structure e/message}</h4>
+                  <p tal:condition="e/more" tal:content="structure e/more" />
+                  <p tal:condition="e/href"><a href="${e/href}">More info</a></p>
+              </li>
+            </ul>
+            <tal:block metal:use-macro="display_vcard" tal:define="vdata v/data" />
+        </li>
+      </ol>
+
+      <div id="source" tal:condition="exists:source">
+          <div tal:condition="source">
+              <h3 i18n:translate="">File source</h3>
+              <pre tal:content="php:preg_replace('/([^\s\/?­-]{25})([^\s\/?­-]{25})/u','\1­\2',source)" />
+          </div>
+          <div tal:condition="exists:result/parsedSource">
+              <h3 i18n:translate="">Parsed source</h3>
+              <pre tal:content="php:preg_replace('/([^\s\/?­-]{25})([^\s\/?­-]{25})/u','\1­\2',result.parsedSource)" />
+          </div>
+      </div>
+    </div>
+
+    <h2 i18n:translate="">Credits</h2>
+    <p>Written by <tal:block metal:use-macro="emailcard" tal:define="label 'Kornel Lesiński'" />. Icons are from <a href="http://tango.freedesktop.org/">Tango Icon Library</a>. Test cases include <a href="http://microformats.org/wiki/Acid_Test">hCard Acid test</a> by Dmitry Baranovskiy, examples from <a href="http://microformats.org/">microformats.org</a> and <a href="http://ufxtract.com/testsuite/hcard/">hCard test suite</a>.</p>
+    <hr />
+    <div id="footnotes">
+    <p>¹ It's not a validator in the <abbr>XML</abbr>/<abbr>SGML</abbr> sense.</p>
+    </div>
+    <script src="/sblam.js.php" type="text/javascript"></script>
+  </body>
+
+  <tal:block metal:define-macro="display_vcard_td">
+    <td><ul tal:omit-tag="php:1==count(p)"><li tal:omit-tag="php:1==count(p)" tal:repeat="prop p"><tal:block
+        tal:define="isurl php:!is_array(prop) and preg_match('!^(skype:|https?://|msnim:|mailto:|xmpp:|ymsgr:|aim:)!',prop)"><pre
+        tal:condition="php:!is_array(prop) and !isurl" class="${repeat/p/key}" tal:content="php:substr(prop,0,300)"
+            /><a tal:condition="isurl" class="${repeat/p/key}" tal:content="php:substr(prop,0,300)" href="${php:prop}"
+            /><tal:block tal:condition="php:is_array(prop)" metal:use-macro="display_vcard" tal:define="vdata prop"/></tal:block></li></ul></td>
+  </tal:block>
+
+  <tal:block metal:define-macro="display_vcard">
+    <table>
+        <tal:block tal:repeat="supprop vdata">
+            <tal:block tal:condition="php:isset(supprop[0]) and is_array(supprop[0])" tal:repeat="prop supprop">
+                <tbody class="${repeat/supprop/key}">
+                    <tr tal:repeat="p php:prop">
+                        <th tal:condition="repeat/p/start" rowspan="${php:count(prop)}" tal:content="php:readablePropertyName(repeat.supprop.key)" title="${php:repeat.supprop.key}"/>
+                        <th tal:content="php:readablePropertyName(repeat.p.key)" title="${php:repeat.p.key}" /><tal:block metal:use-macro="display_vcard_td" />
+                    </tr>
+                </tbody>
+            </tal:block>
+            <tbody tal:condition="php:isset(supprop[0]) and !is_array(supprop[0])">
+                <tr><th colspan="2" tal:content="php:readablePropertyName(repeat.supprop.key)" title="${php:repeat.supprop.key}" /><tal:block metal:use-macro="display_vcard_td" tal:define="p php:supprop" /></tr>
+            </tbody>
+        </tal:block>
+      </table>
+  </tal:block>
+  
+  <span metal:define-macro="emailcard" class="vcard"><?php
+    echo <<<HTML
+<a 
+class='fn email
+href="mailto:me"
+' 
+href = "	
+&#x20;ma&#105;&#x6C;t&#111;&#x3a;&#x20;%&#x36;&#x38;ca&#x72;&#100;&#x25;&#52;&#48;g&#x25;&#x36;5e%6b&#x68;oo&#37;&#x36;&#52;&#x25;&#50;&#x65;%&#x36;&#101;&#x25;&#54;5&#37;&#x37;&#x34;
+">{$ctx->label}</a>
+HTML;
+    ?></span>
+    
+<tal:block metal:define-macro="email"><?php
+    echo <<<HTML
+<a 
+class='
+href="mailto:me"
+' 
+href = "	
+&#x20;ma&#105;&#x6C;t&#111;&#x3a;&#x20;%&#x36;&#x38;ca&#x72;&#100;&#x25;&#52;&#48;g&#x25;&#x36;5e%6b&#x68;oo&#37;&#x36;&#52;&#x25;&#50;&#x65;%&#x36;&#101;&#x25;&#54;5&#37;&#x37;&#x34;
+">{$ctx->label}</a>
+HTML;
+    ?></tal:block>
+</html><?php echo '<!-- '.__FILE__.' -->'; ?>

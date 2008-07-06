@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Include test</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body><!-- @expect include_used no_n no_fn include_empty_a -->
+      <div class="vcard">
+      <div class="tel">
+          <abbr title="fax" class="type">F:</abbr>
+          <span id="tel">0401950302</span>
+      </div>
+      <div class="tel">
+          <abbr title="pref" class="type"><em>P:</em></abbr>
+          <a href="#tel" class="include"></a>
+      </div>
+      </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Valid 4</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <!-- @expect mutliple_idless_vcards -->
+      
+    <cite class="vcard somethingelse">
+     <abbr class="fn" title="Andy Clarke">
+      <a class="nickname" href="http://www.stuffandnonsense.co.uk/malarkey">Malarkey</a>
+     </abbr>
+    </cite>
+       
+    
+          
+    <div class="vcard">
+     <abbr class="fn" title="Juliette Melton">
+         
+         <!-- @expect unit_class -->
+         <span class="org">Some org <span class="unit">bla</span></span>
+         
+      <a class="url nickname" rel="friend" href="http://juliettemelton.com/">Julie</a>
+     </abbr>
+     <span class="tel">
+         <!-- @expect img_in_value tel_letters -->
+       <span class="type">Fax</span> <img src="fax" alt="+1-" />650-289-4041
+       
+       <!-- @expect abbr_in_value date_syntax -->
+       <abbr title="January" class="bday">Jan</abbr>
+     </span>
+
+     <!-- @expect photo_as_value -->
+     <h1 class="photo">photo.gif</h1>
+    </div>
+  </body>
+</html>

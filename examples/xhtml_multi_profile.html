@@ -1,0 +1,14 @@
+<!-- @expect unknown_head_profile multiple_head_profiles no_vcards -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://gmpg.org/xfn/11 http://dublincore.org/documents/dcq-html/">
+    <title>Wrong profile</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  
+  <body>
+      <!-- @expect hcard_class -->
+      <div class="hcard">
+          hcard! not vcard
+     </div> 
+  </body>
+</html>

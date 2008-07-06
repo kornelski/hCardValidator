@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head profile="http://www.w3.org/2006/03/hcard">
+    <title>Missing fields test</title>
+    <link rel="stylesheet" href="/i/test.css" />
+  </head>
+  <body>    
+    <div class="vcard" id="a"> 
+        <div class="fn">given-name  family-name</div>
+    </div>
+    <div class="vcard"> 
+        <p class="fn">They call me <span class="value">Bond, James</span> Bond.</p>
+    </div>
+    <div class="vcard" id="a"> 
+        <div class="fn">family-name, X </div>
+    </div>
+    <div class="vcard" id="a"> 
+        <div class="fn">family-name  X.</div>
+    </div>
+  </body>
+</html>
