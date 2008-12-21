@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2008-06-18 23:33+0100\n"
+"Last-Translator: porneL <>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# :file: /www/hcard/tpl/main.html
+msgid "title"
+msgstr "hCard Validator"
+
+msgid "h1"
+msgstr "hCard micro<b>format</b> Validator <small>(beta, of course)</small>"
+
+msgid "intro"
+msgstr "This is an unofficial validator<a href=\"#footnotes\">¹</a>/conformance checker of the <a href=\"http://microformats.org/wiki/hcard\">hCard microformat</a>."
+
+msgid "Input"
+msgstr "Input"
+
+msgid "urlintro"
+msgstr "Check entire <abbr>XHTML</abbr> or <abbr>HTML</abbr> page by entering its <abbr>HTTP</abbr> <abbr>URL</abbr>."
+
+msgid "Address:"
+msgstr "Address:"
+
+msgid "Validate URL"
+msgstr "Validate URL"
+
+msgid "Fragment"
+msgstr "Fragment"
+
+msgid "fragmentintro"
+msgstr "Paste <strong>well-formed <abbr>XHTML</abbr></strong> fragment or complete document containing hCard."
+
+msgid "Validate fragment"
+msgstr "Validate fragment"
+
+msgid "Upload"
+msgstr "Upload"
+
+msgid "uploadintro"
+msgstr "Upload <abbr>HTML</abbr> or <abbr>XHTML</abbr> file to validate it. For this to work <strong>your browser must be setting <abbr>MIME</abbr> types properly</strong>."
+
+msgid "Upload file"
+msgstr "Upload file"
+
+msgid "Validate file"
+msgstr "Validate file"
+
+msgid "Example"
+msgstr "Example"
+
+msgid "exampleintro"
+msgstr "If <a href=\"http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard\">searching</a> for <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\">hCards in the wild</a> is tiring, check one of the test-cases:"
+
+msgid "Example file"
+msgstr "Example file"
+
+msgid "Browse examples"
+msgstr "Browse examples"
+
+msgid "View"
+msgstr "View"
+
+msgid "Validate example"
+msgstr "Validate example"
+
+msgid "XHTML fragment"
+msgstr "<abbr>XHTML</abbr> fragment"
+
+msgid "api_and_other"
+msgstr "API & Other"
+
+msgid "byreferrer"
+msgstr "Any page by <code>Referer</code>"
+
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
+
+msgid "restful"
+msgstr "<abbr>REST</abbr>ful <abbr>JSON</abbr> <abbr>API</abbr>"
+
+msgid "apidescription"
+msgstr "<p>Send <code>GET</code> request to ${url}.</p>"
+"<p>Output will be roughly compatible with the ${validatornu}. Likely to change in the future.</p>"
+
+msgid "pleaseuseforvalidation"
+msgstr "Please use this <abbr>API</abbr> for validation, not just as an converter/extraction tool."
+
+msgid "Send Feedback"
+msgstr "Send Feedback"
+
+msgid "You can ${email} or the form below."
+msgstr "You can ${email} or the form below."
+
+msgid "feedbacknote"
+msgstr "If you're reporting a bug or have a suggestion, don't forget to include example hCard code."
+
+msgid "Your name"
+msgstr "Your name"
+
+msgid "Your comment"
+msgstr "Your comment"
+
+msgid "Send feedback"
+msgstr "Send feedback"
+
+msgid "Result"
+msgstr "Result"
+
+msgid "valid"
+msgstr "Congratulations! No errors found."
+
+msgid "invalid"
+msgstr "This document contains errors."
+
+msgid "vcardnoerrors"
+msgstr "No issues found."
+
+msgid "More info"
+msgstr "More info"
+
+msgid "File source"
+msgstr "File source"
+
+msgid "Parsed source"
+msgstr "Parsed source"
+
+msgid "Credits"
+msgstr "Credits"
+
+msgid "fullcredits"
+msgstr "Written by ${writtenby}. Icons are from ${tango}. Test cases include ${acid} by Dmitry Baranovskiy, examples from ${uforg} and ${testsuite}."
+
+msgid "footnote"
+msgstr "It's not a validator in the <abbr>XML</abbr>/<abbr>SGML</abbr> sense."
+
+msgid "sourceavailable"
+msgstr "<a href=\"http://code.google.com/p/hcardvalidator/\">Source code is available</a> under the <a href=\"http://www.opensource.org/licenses/bsd-license.php\" rel=\"license\">BSD license</a>."
