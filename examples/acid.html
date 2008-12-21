@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- @expect no_head_profile mutliple_idless_vcards include_used -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="/i/test.css" />
+    <title>µf test</title>
+</head>
+<body>
+    <h1>War and Peace</h1>
+    <div>
+            <p id="event-summary1" class="summary">
+                ‘Well, Prince, so Genoa and Lucca are now just family estates of the Buonapartes. But I warn you, if you don’t tell me that this means war, if you still try to defend the infamies and horrors perpetrated by that Antichrist—I really believe he is Antichrist—I will have nothing more to do with you and you are no longer my friend, no longer my “faithful slave,” as you call yourself! But how do you do? I see I have frightened you—sit down and tell me all the news.’
+                <!-- @expect include_empty_a -->
+                <a href="#event-summary3" class="include"></a>
+            </p>
+            <!-- @expect vevent_class, nested_vcard -->
+            <p class="vevent vcard">
+                It was in <abbr title="1805-07" class="dtstart dtend">July, 1805</abbr>, and the speaker was the well–known <span class="agent vcard"><span class="fn n"><span class="given-name"><a href="#anna" class="url">Anna</a></span> <span class="additional-name">Pavlovna</span> <span class="family-name">Scherer</span></span>, <span class="title">maid of honor</span></span> and favorite of the <span class="fn n"><span class="honorific-prefix">Empress</span> <span class="given-name">Marya</span> <span class="additional-name">Fedorovna</span></span>. With these words she greeted <span class="vcard"> <span class="fn n"><span class="honorific-prefix title">Prince</span> <span class="given-name">Vasili</span> <span class="family-name">Kuragin</span></span></span>, a man of high rank and importance, who was the first to arrive at her reception. Anna Pavlovna had had a cough for some days. She was, as she said, suffering from la grippe; grippe being then a new word in <abbr id="piter" title="59.939;30.316" class="geo location">St. Petersburg</abbr>, used only by the elite.                 <!-- @expect geo_precision geo_precision -->
+                <!-- @expect include_empty_a -->
+                <a href="#event-summary1" class="include"></a>
+
+                <!-- @expect include_empty_a -->
+                <a href="#event-summary2" class="include"></a>
+            </p>
+            <p id="event-summary3" class="status">
+                All her invitations <del>without exception, written in French, and delivered by a scarlet-liveried footman that morning, ran as follows:</del>
+            </p>
+            <p id="event-summary2" class="summary">
+                ‘If you have nothing better to do, Count [or Prince], and if the prospect of spending an evening with a poor invalid is not too terrible, I shall be very charmed to see you tonight between 7 and 10—Annette Scherer.’
+            </p>
+
+            <p class="vcard">
+                <span class="fn org"><!-- @expect split_value split_value company -->
+                ‘Heavens! what a virulent attack!’ replied the prince, not in the least disconcerted by this reception. He had just entered, wearing an e<span class="value">m</span>bro<span class="value">i</span>dered <span class="value">c</span>ou<span class="value">r</span>t unif<span class="value">o</span>rm, knee breeches, and shoes, and had stars on his breast and a serene expression on his <span class="value">f</span>lat face. He sp<span class="value">o</span>ke in that <span class="value">r</span>efined French in which our grandfathers not only spoke but thought, and with the gentle, patronizing intonation natural to a <span class="value">ma</span>n of impor<span class="value">t</span>ance who had grown old in society and at court. He went up to Anna Pavlovna, ki<span class="value">s</span>sed her hand, presenting to her his bald, scented, and shining head, and complacently seated himself on the sofa.
+                </span>
+
+            </p>
+            <p>
+                ‘First of all, dear friend, tell me how you are. Set your friend’s mind at rest,’ said he without altering his tone, beneath the
+                <a href="/tags/politeness" rel="tag">politeness</a> and affected sympathy of which <a href="tags/indifference"
+                rel="tag">indifference</a> and even irony could be discerned.
+            </p>
+        </div>
+    <div class="vcard">
+        <p class="fn">
+            <span class="n value">
+                <span class="honorific-prefix">Dr</span> <!-- @expect img_in_value img_in_value --><img src="images/logo.png" height="16" alt="Jekyll" class="family-name"/>
+            </span>
+            aka
+            <span class="n"><!-- @expect multi_n -->
+                <span class="honorific-prefix">Mr</span> <span class="family-name">Hyde</span>
+            </span>
+        </p>
+        <div class="tel">
+            <abbr title="fax" class="type">F:</abbr>
+            0401950302
+        </div>
+        <div class="tel">
+            <abbr title="pref" class="type"><em>P:</em></abbr>
+            <!-- @expect empty_subprop  --><!-- seems to expect longdesc to be used which is insane -->
+            <object data="#tel" class="include"></object>
+        </div>
+        <div class="tel">
+            <abbr title="home" class="type">T:</abbr>
+            <ul class="value">
+                <li>1234567890</li>
+                <li id="tel"><!-- @expect img_in_value --><img src="images/logo.png" height="16" alt="logo" longdesc="0987654321"/></li>
+            </ul>
+        </div>
+    </div>
+    <table summary="Timetable">
+        <thead>
+            <tr>
+                <td>&#160;</td>
+                <!-- @expect include_empty_a -->
+                <th id="location-1" axis="location"><a href="#piter" class="include"></a>New York</th>
+                <th id="location-2" axis="location" class="location">Sydney <em>is</em> <div class="summary">Good</div></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th id="time-1" axis="time" class="time"><abbr title="2008-03-27T08:00:00" class="dtstart"><span class="hours">8</span><span class="separator">:</span><span class="minutes">00</span><span class="hidden postfix"> am</span></abbr>&#8211;<abbr title="2008-03-27T09:00:00" class="dtend"><span class="hours">9</span><span class="separator">:</span><span class="minutes">00</span><span class="postfix"> am</span></abbr></th>
+                <td class="vevent" headers="time-1 location-1"><div class="summary">Vodka</div></td>
+                <td class="vevent" headers="time-1 location-2"><div class="summary">Food</div></td>
+
+            </tr>
+            <tr>
+                <th id="time-2" axis="time" class="time"><abbr title="2008-03-27T09:00:00" class="dtstart"><span class="hours">9</span><span class="separator">:</span><span class="minutes">00</span><span class="hidden postfix"> am</span></abbr>&#8211;<abbr title="2008-03-27T10:00:00" class="dtend"><span class="hours">10</span><span class="separator">:</span><span class="minutes">00</span><span class="postfix"> am</span></abbr></th>
+                <td class="vevent" headers="time-2 location-1"><div class="summary">Food</div></td>
+
+                <td class="vevent" headers="time-2 location-2"><div class="summary">Beer</div></td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-616618-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2008-06-18 23:33+0100\n"
+"Last-Translator: porneL <>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# :file: /www/hcard/tpl/main.html
+msgid "title"
+msgstr "Walidator hCard"
+
+msgid "h1"
+msgstr "Walidator mikro<b>formatu</b> hCard <small>(beta, oczywiście)</small>"
+
+msgid "intro"
+msgstr "To jest nieoficjalny walidator<a href=\"#footnotes\">¹</a> do wizytówek osadzonych na stronach za pomocą <a href=\"http://microformats.org/wiki/hcard\">mikroformatu hCard</a>."
+
+msgid "Input"
+msgstr "Dane wejściowe"
+
+msgid "urlintro"
+msgstr "Podaj adres <abbr>HTTP</abbr> strony do sprawdzenia (<abbr>XHTML</abbr> i <abbr>HTML</abbr> są akceptowane)."
+
+msgid "Address:"
+msgstr "Adres:"
+
+msgid "Validate URL"
+msgstr "Sprawdź URL"
+
+msgid "Fragment"
+msgstr "Fragment"
+
+msgid "XHTML fragment"
+msgstr "Fragment <abbr>XHTML</abbr>"
+
+msgid "fragmentintro"
+msgstr "Wklej fragment <strong>poprawnego składniowo <abbr>XHTML</abbr></strong> lub cały dokument zawierający wizytówki."
+
+msgid "Validate fragment"
+msgstr "Sprawdź fragment"
+
+msgid "Upload"
+msgstr "Wgrany plik"
+
+msgid "uploadintro"
+msgstr "Wgraj plik do sprawdzenia w formacie <abbr>HTML</abbr> lub <abbr>XHTML</abbr>. Ta funkcja wymaga, aby twoja przeglądarka wysyłała <strong>poprawny typ <abbr>MIME</abbr></strong>."
+
+msgid "Upload file"
+msgstr "Wgraj plik"
+
+msgid "Validate file"
+msgstr "Sprawdź plik"
+
+msgid "Example"
+msgstr "Przykład"
+
+msgid "exampleintro"
+msgstr "Jeżeli <a href=\"http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard\">szukanie</a> wizytówek <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\">na stronach</a> jest zbyt męczące, wypróbuj walidator na przykładowym pliku:"
+
+msgid "Example file"
+msgstr "Przykładowy plik"
+
+msgid "Browse examples"
+msgstr "Przeglądaj przykłady"
+
+msgid "View"
+msgstr "Zobacz"
+
+msgid "Validate example"
+msgstr "Sprawdź przykład"
+
+msgid "api_and_other"
+msgstr "API i inne"
+
+msgid "byreferrer"
+msgstr "Dowolna strona na podstawie nagłówka <code>Referer</code>"
+
+msgid "Bookmarklet"
+msgstr "Skryptozakładka"
+
+msgid "restful"
+msgstr "<abbr>REST</abbr>owe <abbr>API</abbr> wysyłające <abbr>JSON</abbr>"
+
+msgid "URL to validate"
+msgstr "URL do sprawdzenia"
+
+msgid "apidescription"
+msgstr "<p>Wyślij zapytanie <code>GET</code> pod adres ${url}.</p>"
+"<p>Wynik będzie w formacie z grubsza zgodnym z ${validatornu}. <abbr>API</abbr> może zmienić się w przyszłości.</p>"
+
+msgid "Validate hCards"
+msgstr "Sprawdź poprawność hCard"
+
+msgid "pleaseuseforvalidation"
+msgstr "Proszę używać <abbr>API</abbr> tylko do walidacji, a nie jako narzędzie do wyciągania wizytówek ze stron."
+
+msgid "Send Feedback"
+msgstr "Wyślij komentarz"
+
+msgid "send feedback via e-mail"
+msgstr "wysłać komentarz przez e-mail"
+
+msgid "feedbacknote"
+msgstr "Jeśli zgłaszasz błąd lub masz sugestię, nie zapomnij dołączyć przykładowego kodu."
+
+msgid "You can ${email} or the form below."
+msgstr "Możesz ${email} lub użyć formularza poniżej."
+
+msgid "Your name"
+msgstr "Twoje imię"
+
+msgid "Your comment"
+msgstr "Komentarz"
+
+msgid "Send feedback"
+msgstr "Wyślij komentarz"
+
+msgid "Result"
+msgstr "Wynik"
+
+msgid "hCard #${n}"
+msgstr "hCard numer ${n}"
+
+msgid "valid"
+msgstr "Gratulacje! Nie znaleziono błędów."
+
+msgid "invalid"
+msgstr "Ten dokument zawiera błędy."
+
+msgid "vcardnoerrors"
+msgstr "Bez problemów."
+
+msgid "More info"
+msgstr "Więcej informacji"
+
+msgid "File source"
+msgstr "Źródło pliku"
+
+msgid "Parsed source"
+msgstr "Zinterpretowane źródło"
+
+msgid "Credits"
+msgstr "Twórcy"
+
+msgid "fullcredits"
+msgstr "<p>Autorem walidatora jest ${writtenby}. Ikony pochodzą z ${tango}. Testowe pliki zawierają ${acid} Dmitriego Baranowskiego, a przykłady pochodzą z ${uforg} oraz ${testsuite}.</p>"
+
+msgid "footnote"
+msgstr "To nie jest walidacja w znaczeniu użytym w <abbr>XML</abbr>/<abbr>SGML</abbr>."
+
+msgid "sourceavailable"
+msgstr "<a href=\"http://code.google.com/p/hcardvalidator/\">Kod źródłowy jest dostępny</a> na licencji <a href=\"http://www.opensource.org/licenses/bsd-license.php\" rel=\"license\">BSD</a>."
+
+msgid "(translations welcome!)"
+msgstr "(tłumaczenia mile widziane!)"
+
+msgid "Please write your feedback"
+msgstr "Proszę wpisać komentarz"
+
+msgid "Sending failed, sorry! Please <a href='%s'>e-mail your message instead</a>."
+msgstr "Nie udało się wysłać wiadomości! Proszę <a href='%s'>wyślij ją przez e-mail</a>."
+
+msgid "The message has been sent, thank you!"
+msgstr "Wiadomość została wysłana, dzięki!"

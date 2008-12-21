@@ -1,0 +1,148 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Falka <kstawarz@aviary.pl>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "n"
+msgstr "Imię"
+
+msgid "name"
+msgstr "Nazwa wizytówki"
+
+msgid "fn"
+msgstr "Pisownia imienia"
+
+msgid "email"
+msgstr "E-mail"
+
+msgid "url"
+msgstr "URL"
+
+msgid "nickname"
+msgstr "Pseudonim"
+
+msgid "agent"
+msgstr "Agent"
+
+msgid "geo"
+msgstr "Pozycja geo."
+
+msgid "honorific-prefix"
+msgstr "Tytuł (przedrostek)"
+
+msgid "honorific-suffix"
+msgstr "Tytuł (przyrostek)"
+
+msgid "given-name"
+msgstr "Imię"
+
+msgid "additional-name"
+msgstr "Dodatkowe imię"
+
+msgid "title"
+msgstr "Tytuł"
+
+msgid "family-name"
+msgstr "Nazwisko"
+
+msgid "adr"
+msgstr "Adres"
+
+msgid "street-address"
+msgstr "Ulica"
+
+msgid "region"
+msgstr "Stan lub prowincja"
+
+msgid "locality"
+msgstr "Miasto"
+
+msgid "postal-code"
+msgstr "Kod pocztowy"
+
+msgid "country-name"
+msgstr "Państwo"
+
+msgid "org"
+msgstr "Organizacja"
+
+msgid "organization-name"
+msgstr "Nazwa organizacji"
+
+msgid "organization-unit"
+msgstr "Jednostka organizacji"
+
+msgid "tel"
+msgstr "Telefon"
+
+msgid "fax"
+msgstr "Fax"
+
+msgid "source"
+msgstr "Źródło wizytówki"
+
+msgid "photo"
+msgstr "URL zdjęcia"
+
+msgid "bday"
+msgstr "Data urodzenia"
+
+msgid "extended-address"
+msgstr "Rozszerzony adres"
+
+msgid "class"
+msgstr "Klasyfikacja"
+
+msgid "note"
+msgstr "Notatki"
+
+msgid "tz"
+msgstr "Strefa czasowa"
+
+msgid "sort-string"
+msgstr "Wzorzec sortowania"
+
+msgid "uid"
+msgstr "Unikalny ID wizytówki"
+
+msgid "category"
+msgstr "Kategoria"
+
+msgid "rev"
+msgstr "Wersja wizytówki"
+
+msgid "role"
+msgstr "Zajęcie"
+
+msgid "label"
+msgstr "Etykieta adresowa"
+
+msgid "logo"
+msgstr "URL loga"
+
+msgid "sound"
+msgstr "URL dźwięku"
+
+msgid "mailer"
+msgstr "Program pocztowy"
+
+msgid "latitute"
+msgstr "szerokość"
+
+msgid "longitude"
+msgstr "długość"
+
+msgid "type"
+msgstr "typ"
+
+msgid "value"
+msgstr "wartość"
+
+msgid "post-office-box"
+msgstr "Skrytka pocztowa"

@@ -1,0 +1,565 @@
+msgid ""
+msgstr ""
+"Project-Id-Version:\n"
+"POT-Creation-Date:\n"
+"PO-Revision-Date:\n"
+"Last-Translator: porneL <pornel@pornel.net>\n"
+"Language-Team:\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; \
+         plural=n==1 ? 0 : \
+                n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
+
+msgid "x_tagsoup"
+msgstr ""
+"Wysyłanie <abbr>XHTML</abbr> jako <abbr>HTML</abbr> jest szkodliwe\n"
+"Otrzymano dokument z typem <abbr>MIME</abbr> <code>text/<strong>html</strong></code> zawierający kod, który prawdopodobnie miał być <abbr>XHTML</abbr>-em."
+
+msgid "bozo_mode"
+msgstr "Walidator pracuje w trybie „zupki z tagów”\n"
+"Dokument został potraktowany jak nieprawidłowy <abbr>HTML</abbr>, żeby poradzić sobie z pseudo-<abbr>XHTML</abbr>."
+
+msgid "agent_not_vcard"
+msgstr ""
+"Właściwość <code>agent</code> nie zawiera wizytówki\n"
+"W vCard właściwość <code>agent</code> ma zawierać całą wizytówkę. Użyj zagnieżdżonego mikroformatu hCard albo linku do pliku vCard."
+
+msgid "mailto_no_class"
+msgstr ""
+"hCard zawiera linki <code>mailto:</code>, które nie zostały oznaczone klasą <code>email</code>\n"
+"Te linki zostaną zignorowane."
+
+msgid "no_n"
+msgstr ""
+"hCard musi mieć własciwość <code>n</code>\n"
+"Może być ustawiona za pomocą elementu z klasą <code>n</code> lub ustawiona automatycznie na podstawie właściwości <code>fn</code>, gdy <code>fn</code> zawiera jedno lub dwa <a href=\"http://microformats.org/wiki/hcard-FAQ#What_is_a_word_in_implied_optimizations\">słowa</a> lub jest identyczna z nazwą organizacji."
+
+msgid "honorific_name"
+msgstr ""
+"Tytuł lub przyrostek „<samp>%s</samp>” został znaleziony we właściwości <code>%s</code>\n"
+"Tytuły należy umieszczać we właściwości <code>honorific-prefix</code>, a przyrostki w <code>honorific-suffix</code>.\n"
+"Spróbuj narzędzia <a href=\"%s\">hCard <code>n</code> best-guess</a>."
+
+msgid "implied_nickname"
+msgstr ""
+"Właściwość <code>nickname</code> została utworzona na podstawie <code>fn</code>\n"
+"Jeśli <code>fn</code> nie zawiera pseudonimu, musisz dodać właściwość <code>n</code>. Jeśli to jest pseudonim, to możesz ustawić taką samą wartość dla <code>fn</code> i <code>nickname</code>, żeby nie było wątpliwości."
+
+msgid "email_non_mailto"
+msgstr ""
+"Link we właściwości <code>email</code> nie używa schematu <abbr>URL</abbr> <code>mailto:</code>\n"
+"Używaj właściwości <code>email</code> tylko do prawdziwych adresów e-mail (np. <code>mailto:jan@example.com</code>). Wszystkie inne linki oznaczaj klasą <code>url</code>."
+
+msgid "jabber_protocol"
+msgstr ""
+"Schemat <abbr>URL</abbr> „<samp>%s</samp>” nie jest odpowiedni do jabberowych linków\n"
+"Należy stosować standardowy schemat <code>xmpp:</code>."
+
+msgid "email_http"
+msgstr ""
+"Właściwość <code>email</code> używa schematu <abbr>URL</abbr> <code>http://</code>\n"
+"Używaj właściwości <code>email</code> tylko do prawdziwych adresów e-mail (np. <code>mailto:jan@example.com</code>). Wszystkie inne linki, również do formularzy kontaktowych, oznaczaj klasą <code>url</code>."
+
+msgid "email_domain"
+msgstr ""
+"Domena „<samp>%s</samp>” użyta w adresie e-mail nie istnieje\n"
+"Upewnij się, że adres e-mail jest poprawny."
+
+msgid "email_no_protocol"
+msgstr ""
+"Wartośc właściwości <code>email</code> nie określa schematu <abbr>URL</abbr>-a\n"
+"Musisz dodać <code>mailto:</code> do adresu (np. <code>mailto:jan@example.com</code>)."
+
+msgid "email_value"
+msgstr ""
+"Wartość właściwości <code>email</code> „<samp>%s</samp>” nie wygląda na adres e-mail\n"
+"Adres powinien być w postaci <code>mailto:jan@example.com?Subject=opcjonalny%20temat%20wiadomo%C5%9Bci</code>."
+"Jeśli używasz anty-spamowych łamigłówek, skorzystaj z właściwości <code>notes</code> albo zamiast nich użyj <a href=\"/encode/\">zakodowanego adresu</a>."
+
+msgid "org_has_n"
+msgstr ""
+"Wizytówka reprezentująca firmę lub organizację ma właściwość <code>n</code>\n"
+"Należy używać <code>n</code> tylko w wizytówkach reprezentujących osoby fizyczne."
+
+msgid "org_fn_ignored"
+msgstr ""
+"Użyto kombinacji <code>org+fn</code>, ale z różnymi nazwami\n"
+"Chociaż hCard używa <code>org</code> i <code>fn</code> razem, właściwość <code>organization-name</code> nie identyczna z <code>fn</code>, przez co wizytówka może nie zostać uznana za reprezentującą organizację/firmę."
+
+msgid "no_fn"
+msgstr ""
+"hCard musi mieć właściwość <code>fn</code>\n"
+"Właściwość <code>fn</code> powinna zawierać preferowaną pisownię imienia/nazwy orgranizacji. Można użyć <code>fn</code> i <code>n</code> na tym samym elemencie."
+
+msgid "include_used"
+msgstr ""
+"Użyto dołączania (ang. <i>include pattern</i>)\n"
+"Taki sposób umieszczania mikroformatów jest dość trudny do obsłużenia i może nie działać ze wszystkimi parserami."
+
+msgid "include_empty_a"
+msgstr ""
+"Link użyty do dołączenia musi zawierać tekst\n"
+"Jest to potrzebne dla użytkowników korzystająych z czytników ekranu i obsługujących przeglądarkę za pomocą klawiatury."
+
+msgid "del_value"
+msgstr "Parsery mogą nie honorować elementu <code>&lt;del&gt;</code>"
+
+msgid "include_not_found"
+msgstr ""
+"Nie znaleziono elementu do dołączenia\n"
+"W dokumencie znajduje się link z klasą <code>include</code> odwołujący się do nieistniejącego elementu."
+
+msgid "vevent_class"
+msgstr ""
+"hCalendar nie jest obsługiwany\n"
+"Walidator znalazł mikroformat kalendarza, ale nie potrafi sprawdzić jego poprawności."
+
+msgid "include_self"
+msgstr ""
+"Dołączenia tworzą nieskończoną pętlę\n"
+"Linki z klasą <code>include</code> nie mogą odnosić się do samych siebie, ani do swoich przodków w drzewie <abbr>DOM</abbr>."
+
+msgid "include_frag"
+msgstr ""
+"Adres w linku użytym do dołączenia nie jest identyfikatorem fragmentu\n"
+"Linki dołączające muszą odnosić się do elementu w obrębie tego samego dokumentu, używając identyfikatora <a href='http://www.w3.org/TR/html401/intro/intro.html#h-2.1.2'>fragmentu</a> (np. <code>#przykład</code>)."
+
+msgid "include_xdoc"
+msgstr ""
+"Dołączenia muszą odnosić się do elementu w tym samym dokumencie\n"
+"Dołączanie elementów z innych dokumentów nie jest dozwolone. W <abbr>URL</abbr> używaj samego <a href='http://www.w3.org/TR/html401/intro/intro.html#h-2.1.2'>identyfikatora fragmentu</a>, bez ścieżki do pliku."
+
+msgid "include_deep"
+msgstr ""
+"Dołączenia są głęboko zagnieżdżone\n"
+"Prawdopodobnie tworzą nieskończoną pętlę. Unikaj używania zbyt wielu dołączeń. Sprawdź, czy nie odnoszą się do siebie nawzajem."
+
+msgid "multiple_head_profiles"
+msgstr ""
+"<code>&lt;head profile=\"…\"&gt;</code> zawiera więcej niż jeden <abbr>URL</abbr>\n"
+"Specyfikacja <abbr>HTML</abbr> i <abbr>DTD</abbr> nie są zgodne co do tego, czy to jest dozwolone. Możesz uniknąć problemu zastępując wszystkie <abbr>URL</abbr>-e jednym ogólnym <code>http://purl.org/uF/2008/03/</code>."
+
+msgid "mutliple_idless_vcards"
+msgstr ""
+"Dokument zawiera kilka wizytówek, ale nie wszystkie mają atrybut <code>id</code>\n"
+"Dodanie unikalnych <code>id</code> do każdej z nich pozwoli wskazać indywidualne wizytówki w dokumencie, co jest przydatne do wyciągania ich ze strony."
+
+msgid "no_vcards"
+msgstr ""
+"Nie znaleziono żadnych wizytówek\n"
+"Dokument musi zawierać przynajmniej jeden element z <code>class=\"vcard\"</code>."
+
+msgid "root_xmlns"
+msgstr ""
+"Korzeń dokumentu nie jest w przestrzeni nazw <abbr>XHTML</abbr>\n"
+"Musisz dodać <code>xmlns=\"http://www.w3.org/1999/xhtml\"</code> do elementu <code>&lt;html&gt;</code>."
+
+msgid "not_xhtml"
+msgstr ""
+"Korzeń dokumentu nie jest w przestrzeni nazw <abbr>XHTML</abbr>\n"
+"Walidator szuka wizytówek tylko w przestrzeni nazw <code>http://www.w3.org/1999/xhtml</code> i nie odczytuje domyślnej przestrzeni nazw z <abbr>DTD</abbr>."
+
+msgid "no_head"
+msgstr ""
+"Nie znaleziono <code>&lt;head&gt;</code>\n"
+"Upewnij się, że dokument jest poprawny."
+
+msgid "no_body"
+msgstr ""
+"Nie znaleziono <code>&lt;body&gt;</code>\n"
+"Upewnij się, dokument jest poprawny."
+
+msgid "no_head_profile"
+msgstr ""
+"<code>&lt;head&gt;</code> nie ma atrybutu <code>profile</code>\n"
+"Specyfikacja zaleca dodanie atrybutu <code>profile=\"http://www.w3.org/2006/03/hcard\"</code>, żeby jednoznacznie oznaczyć dokumenty używające hCard."
+
+msgid "unknown_head_profile"
+msgstr ""
+"<code>&lt;head&gt;</code> używa nieznanego profilu\n"
+"Waldiator nie wczytuje <abbr>XMDP</abbr> i nie jest w stanie sprawdzić, czy profil „<samp>%s</samp>” zawiera odniesienie do mikroformatu hCard."
+
+msgid "wrong_head_profile"
+msgstr ""
+"<code>&lt;head&gt;</code> używa profilu „<samp>%s</samp>”, który nie jest związany z profilem <code>\"http://www.w3.org/2006/03/hcard\"</code>\n"
+"Może to zostać zinterpretowane jako sygnał, że dokument <strong>nie</strong> wykorzystuje mikroformatu hCard."
+
+msgid "block_in_inline"
+msgstr ""
+"Znaleziono <code>&lt;div&gt;</code> wewnątrz <code>&lt;%s&gt;</code>\n"
+"<abbr>XHTML</abbr>/<abbr>HTML</abbr> zabrania umieszczania elementów blokowych w wewnątrz elementów liniowych. Użyj <a href=\"http://validator.w3.org\">Walidatora W3C</a>, aby sprawdzić poprawność dokumentu."
+
+msgid "type_value"
+msgstr ""
+"Element posiada jednocześnie klasy <code>type</code> i <code>value</code>\n"
+"Ta konstrukcja może mylić parsery. Używaj tylko <code>type</code> lub umieść wewnątrz dodatkowy element z <code>value</code>."
+
+msgid "br_value"
+msgstr ""
+"Wartość umieszczona w pustym elemencie\n"
+"Elementy takie jak <code>&lt;br&gt;</code> i <code>&lt;hr&gt;</code> muszą być puste. Użyj innego elementu (np. <code>&lt;span&gt;</code> ) i ew. umieść <code>&lt;br&gt;</code> wewnątrz niego. Do zachowania podziału linii możesz również użyć elementu <code>&lt;pre&gt;</code>. "
+
+msgid "abbr_no_title"
+msgstr ""
+"Znaleziono element <code>&lt;abbr&gt;</code> bez atrybutu <code>title</code>\n"
+"Ta konstrukcja może mylić parsery. Umieść wartość w <code>&lt;abbr title=\"…\"&gt;</code> lub użyj innego elementu zamiast <code>&lt;abbr&gt;</code>."
+
+msgid "title_and_value"
+msgstr ""
+"<code>&lt;abbr&gt;</code> ma atrybut <code>title</code> i jednocześnie zawiera elementy z klasą <code>value</code>\n"
+"<code>title</code> ma pierwszeństwo."
+
+msgid "acronym"
+msgstr ""
+"<code>&lt;acronym&gt;</code> nie jest traktowane w specjalny sposób, jak <code>&lt;abbr&gt;</code>\n"
+"Atrybut <code>title</code> zostanie zignorowany."
+
+msgid "split_value"
+msgstr ""
+"Wartość jest podzielona na części\n"
+"Wszystkie części zostaną połączone i uznane za <em>pojedynczą</em> wartość. Jeśli chcesz określić kilka różnych wartości, musisz dla każdej z nich powtórzyć cały element z klasą określającą nazwę właściwości."
+
+msgid "abbr_in_value"
+msgstr ""
+"<code>&lt;abbr&gt;</code> wewnątrz wartości\n"
+"Atrybut <code>title</code> zostanie zignorowany."
+
+msgid "img_in_value"
+msgstr ""
+"Obraz z <code>alt</code> wewnątrz wartości\n"
+"Atrybut <code>alt</code> może zostać zignorowany, chyba że dodasz klasę bezpośrednio elementowi <code>&lt;img&gt;</code>."
+
+msgid "pre_elements"
+msgstr ""
+"Elementy wewnątrz <code>&lt;pre&gt;</code>\n"
+"Ta konstrukcja może mylić parsery."
+
+msgid "vcard_address"
+msgstr ""
+"Wizytówka w elemencie <code>&lt;address&gt;</code>\n"
+"Zostanie zinterpretowana jako wizytówka osoby odpowiedzialnej za stronę (np. właściciel, webmaster)."
+
+msgid "agent_nested_vcard"
+msgstr ""
+"hCard wewnątrz właściwości <code>agent</code>\n"
+"Ta wizytówka zostanie zignorowana. Musisz użyć <code>class=\"agent vcard\"</code> na jednym elemencie."
+
+msgid "nested_vcard"
+msgstr ""
+"Zagnieżdżone wizytówki są słabo obsługiwane\n"
+"Odpowiednie wsparcie zagnieżdżonych hCardów wymaga znajomości zaawansowanych sztuczek w <abbr>XSLT</abbr>. W niektórych przypadkach walidator może pomylić ze sobą elementy tych wizytówek."
+
+msgid "adr_address"
+msgstr ""
+"Element <code>&lt;address&gt;</code> użyty do mikroformatu <code>adr</code>\n"
+"Specyfikacja <abbr>HTML</abbr> określa, że <code>&lt;address&gt;</code> ma zawierać dane kontaktowe właściciela/twórcy strony. Ten element nie nadaje się do mikroformatu <code>adr</code>."
+
+msgid "place_address"
+msgstr ""
+"Ta wizytówka reprezentuje miejsce, a nie osobę (eksperymentalne)\n"
+"Oznacza się to przez umieszczenie <code>extended-address</code> w <code>fn</code>."
+
+msgid "nested_rel"
+msgstr ""
+"<code>&lt;a rel=\"tag\"&gt;</code> wewnątrz kategorii\n"
+"Umieść klasę <code>category</code> bezpośrednio na <code>&lt;a&gt;</code>."
+
+msgid "multiple_emails"
+msgstr ""
+"Wiele e-maili w jednym elemencie z klasą <code>email</code>\n"
+"Użyj klasy <code>email</code> na każdym z elementów <code>&lt;a&gt;</code>."
+
+msgid "a_in_email"
+msgstr ""
+"Link umieszczony wewnątrz <code>email</code>\n"
+"Zamiast tego użyj <code>&lt;a class=\"email\"&gt;</code>."
+
+msgid "geo_value"
+msgstr ""
+"Wartość <code>%s</code> ma nieprawidłową składnię\n"
+"„<samp>%s</samp>” nie jest ułamkiem dziesiętnym."
+
+msgid "geo_value_range"
+msgstr ""
+"Wartość <code>%s</code> jest poza zakresem\n"
+"<code>latitude</code> musi być między -90 a 90. <code>longitude</code> musi być między -180 i 360."
+
+msgid "geo_precision"
+msgstr ""
+"Pozycja w <code>%s</code> powinna być określona do 6 miejsc po przecinku\n"
+"Pozwoli to na określenie pozycji z dokładnością do metra."
+
+msgid "ill_formed_bozo"
+msgstr ""
+"Dokument nie jest prawidłowym <abbr>XML</abbr>\n"
+"Nie udało się wczytać dokumentu ze względu na błędy składniowe. <a href='%s'>Wymuś traktowanie dokumentu jako <abbr>HTML</abbr></a>."
+
+msgid "ill_formed"
+msgstr ""
+"Dokument nie jest prawidłowym <abbr>XML</abbr>\n"
+"Nie udało się wczytać dokumentu ze względu na błędy składniowe."
+
+msgid "multi_n"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>n</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>n</code>."
+
+msgid "multi_fn"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>fn</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>fn</code>."
+
+msgid "geo_abbr_syntax"
+msgstr ""
+"Błąd składniowy w atrybucie <code>title</code> właściwości <code>geo</code>\n"
+"Wartość atrybutu „<samp>%s</samp>” nie zawiera długości i szerokości geograficznej oddzielonych średnikiem (<code>;</code>)."
+
+msgid "latitude_missing"
+msgstr ""
+"Nie znaleziono szerokości geograficznej (<code>latitude</code>)\n"
+"Mikroformat <code>geo</code> wymaga podania zarówno szerokości i długości geograficznej (sprawdź pisownię)."
+
+msgid "longitude_missing"
+msgstr ""
+"Nie znaleziono długości geograficznej (<code>longitude</code>)\n"
+"Mikroformat <code>geo</code> wymaga podania zarówno szerokości i długości geograficznej (sprawdź pisownię)."
+
+msgid "company"
+msgstr ""
+"Ta wizytówka reprezentuje organizację lub firmę\n"
+"<code>org</code> i <code>fn</code> użyte na tym samym elemencie oznaczają, że wizytówka <em>nie</em> reprezentuje osoby."
+
+msgid "unit_class"
+msgstr ""
+"<code>org</code> właściwości zawiera element z <code>organization-unit</code>\n"
+"To będzie ignorowana. hCard używa <code>organization-unit</code> klasy."
+
+msgid "org_unit_extended_adr"
+msgstr ""
+"Adres jednostki organizacji bez <code>extended-address</code>\n"
+"Dodanie <code>extended-address</code> do <code>organization-unit</code> będzie oznaczać, że to na pewno jest adres tej jednostki."
+
+msgid "nested_photo"
+msgstr ""
+"Grafika umieszczona wewnątrz właściwości <code>photo</code>\n"
+"Atrybut <code>src</code> tej grafiki zostanie ignorowany. Należy dodać klasę <code>photo</code> bezpośrednio elementowi <code>&lt;img&gt;</code>."
+
+msgid "photo_as_value"
+msgstr ""
+"Grafika nie używa <code>&lt;img&gt;</code>, <code>&lt;a&gt;</code> ani <code>&lt;object&gt;</code>\n"
+"Do osadzania grafik najlepiej użyć jednego ze standardowych elementów."
+
+msgid "uniqid_class"
+msgstr ""
+"hCard zawiera klasę „<samp>uniqid</samp>”\n"
+"Tylko klasa <code>uid</code> jest używana do unikalnych identyfikatorów."
+
+msgid "nick_class"
+msgstr ""
+"hCard zawiera klasę „<samp>%s</samp>”\n"
+"Tylko klasa <code>nickname</code> jest używana do pseudonimów."
+
+msgid "honorific_class"
+msgstr ""
+"hCard zawiera klasę „<samp>%s</samp>”\n"
+"Tylko klasy <code>honorific-prefix</code> i <code>honorific-suffix</code> są rozpoznawane."
+
+msgid "lastname_class"
+msgstr ""
+"hCard zawiera klasę „<samp>%s</samp>”\n"
+"Tylko klasa <code>family-name</code> jest używana do oznaczania nazwisk."
+
+msgid "birthday_class"
+msgstr ""
+"hCard zawiera klasę „<samp>%s</samp>”\n"
+"Tylko klasa <code>bday</code> jest używana do oznaczania daty urodzin."
+
+msgid "uri_class"
+msgstr ""
+"hCard zawiera klasę „<samp>uri</samp>”\n"
+"Tylko klasa <code>url</code> (z małym „L”) jest rozpoznawana."
+
+msgid "nested_uid"
+msgstr ""
+"<code>&lt;a&gt;</code> wewnątrz właściwości <code>uid</code>\n"
+"Dodaj klasę bezpośrednio do <code>&lt;a&gt;</code>."
+
+msgid "openid"
+msgstr "Ten <abbr>URL</abbr> ma klasę <code>uid</code>, dzięki czemu może być uznany za OpenID"
+
+msgid "empty_subprop"
+msgstr ""
+"Właściwość <code>%s</code> wewnątrz <code>%s</code> jest pusta\n"
+"Sprawdź składnię. Usuń właściwość z dokumentu, jeżeli nie ma (niepustej) wartości."
+
+msgid "empty_prop"
+msgstr ""
+"Właściwość <code>%s</code> jest pusta\n"
+"Sprawdź składnię. Usuń właściwość z dokumentu, jeżeli nie ma (niepustej) wartości."
+
+msgid "no_href"
+msgstr ""
+"Element <code>&lt;a&gt;</code> bez atrybutu <code>href</code>\n"
+"Używaj <code>&lt;a&gt;</code> tylko do linków. „Kotwice” można robić za pomocą dowolnego elementu z atrybutem <code>id</code>."
+
+msgid "email_as_url"
+msgstr ""
+"Klasa <code>url</code> użyta do <abbr>URL</abbr>-i <code>mailto:</code>\n"
+"Zmień klasę <code>url</code> na <code>email</code>."
+
+msgid "multiple_urls"
+msgstr ""
+"Wiele linków w jednej właściwości <code>url</code>\n"
+"Dodaj klasę <code>url</code> do każdego linku z osobna."
+
+msgid "a_in_url"
+msgstr ""
+"<code>&lt;a&gt;</code> zagnieżdżony wewnątrz <code>url</code>\n"
+"Użyj <code>&lt;a class=\"url\"&gt;</code> zamiast tego."
+
+msgid "url_as_value"
+msgstr ""
+"<abbr>URL</abbr> nie jest w linku\n"
+"Do <abbr>URL</abbr>-i używaj konstrukcji <code>&lt;a class=\"url\" href=\"…\"&gt;</code>."
+
+msgid "relative_url"
+msgstr ""
+"<code>url</code> właściwości używa względnej <abbr>URL</abbr>\n"
+"Można dokonać parsera życiu łatwiej za pomocą bezwzględnych <abbr>URL</abbr>."
+
+msgid "tel_letters"
+msgstr ""
+"Numer telefonu „<samp>%s</samp>” zawiera litery\n"
+"Nie wolno dodawać żadnych etykiet, ani zapisywać numerów za pomocą liter. Możesz użyć elementu <code>&lt;abbr&gt;</code>, żeby wyświetlić numer w innej postaci, niż umieszczony w wizytówce."
+
+msgid "email_type"
+msgstr ""
+"Nieprawidłowy typ adresu e-mail: „<samp>%s</samp>”\n"
+"Dozwolone typy: <code>pref</code> (preferowany), <code>internet</code> (internetowy) (oraz <code>X400</code>, dla szaleńców)."
+
+msgid "tel_type"
+msgstr ""
+"Błędny typ numeru telefonu: „<samp>%s</samp>”\n"
+"Musi być jednym z: <code>home</code>, <code>work</code>, <code>pref</code>, <code>fax</code>, <code>cell</code>, <code>voice</code>, <code>video</code>, <code>pager</code>, <code>car</code>, <code>msg</code>, <code>modem</code>, <code>bbs</code>, <code>isdn</code>, <code>pcs</code>."
+
+msgid "future_date"
+msgstr ""
+"<code>%s</code> ma datę w przyszłości"
+
+msgid "date_syntax"
+msgstr ""
+"Nieprawidłowa składnia daty w <code>%s</code>\n"
+"„<samp>%s</samp>” nie jest prawidłową datą w formacie <abbr>ISO 8601</abbr>. Używaj formatu <code><var>rrrr</var>-<var>mm</var>-<var>dd</var></code> lub <code><var>rrrr</var>-<var>mm</var>-<var>dd</var>T<var>gg</var>:<var>mm</var>:<var>ss</var>Z</code>."
+
+msgid "tz_value"
+msgstr ""
+"Wartość <code>tz</code> nie jest strefą czasową w formacie <abbr>ISO 8601</abbr>\n"
+"Znaleziono „<samp>%s</samp>”. Watość powinna być różnicą względem strefy <abbr>UTC</abbr> w formacie <code>+00:00</code>."
+
+msgid "include_pattern"
+msgstr ""
+"Dołączanie (ang. <i>include pattern</i>) nie jest obsługiwane\n"
+"Specyfikacja zezwala na używanie dołączeń, ale walidator sobie z nimi nie radzi."
+
+msgid "name_class"
+msgstr ""
+"hCard zawiera klasę <code>name</code>\n"
+"Nazwa <em>wizytówki</em> jest brana z tytułu strony (elementu <code>&lt;title&gt;</code>). Imię osoby reprezentowanej przez wizytówkę określa się za pomocą <code>n</code>/<code>given-name</code> lub <code>fn</code>."
+
+msgid "profile_class"
+msgstr ""
+"hCard zawiera klasę <code>profil</code>\n"
+"Ta klasa jest ignorowana w hCard."
+
+msgid "source_class"
+msgstr ""
+"hCard zawiera klasę <code>source</code>\n"
+"Ta klasa jest ignorowana w hCard. Adres strony jest zawsze przyjmowany jako wartość właściwości <code>source</code>."
+
+msgid "prodid_class"
+msgstr ""
+"hCard zawiera klasę <code>prodid</code>\n"
+"Ta klasa jest ignorowana w hCard."
+
+msgid "version_class"
+msgstr ""
+"hCard zawiera klasę <code>version</code>\n"
+"Ta klasa jest ignorowana w hCard. Wersję wizytówki oznacz za pomocą <code>rev</code>."
+
+msgid "hcard_class"
+msgstr ""
+"Znaleziono element z klasą <code>hcard</code>\n"
+"Mikroformat hCard używa tylko klasy <code>vcard</code>."
+
+msgid "organization_class"
+msgstr "Znaleziono klasę „<samp>organization</samp>”\n"
+"Ta klasa jest ignorowana w hCard. Do opisu organizacji służą klasy <code>org</code>, <code>organization-name</code> i <code>organization-unit</code>."
+
+msgid "organisation_spelling"
+msgstr "Znaleziono klasę <code>organi<strong>s</strong>ation</code>\n"
+"hCard używa pisowni „organization” przez „Z”."
+
+msgid "too_many_errors"
+msgid_plural "too_many_errors"
+msgstr[0] ""
+"Zbyt wiele błędów\n"
+"%s podobny błąd <code>XML</code> został pominięty."
+msgstr[1] ""
+"Zbyt wiele błędów\n"
+"%s podobne błędy <code>XML</code> zostały pominięte."
+msgstr[2] ""
+"Zbyt wiele błędów\n"
+"%s podobnych błędów <code>XML</code> zostało pominiętych."
+
+msgid "illegal_url"
+msgstr ""
+"Niedozwolony <abbr>URL</abbr>\n"
+"Wybacz moje paranoiczne podejście do bezpieczeństwa, ale ten <abbr>URL</abbr> nie wygląda na wystarczająco niewinny (podaj adres <abbr>HTTP</abbr> bez niestandardowego portu i uwierzytelniania)."
+
+msgid "dns_error"
+msgstr ""
+"Nie można odnaleźć domeny <code>%s</code>\n"
+"Błąd <abbr>DNS</abbr>."
+
+msgid "request_failed"
+msgstr ""
+"Nie udało się połączyć z <code>%s</code>"
+
+msgid "file_not_found"
+msgstr ""
+"Nie znaleziono pliku <code>%s</code> na serwerze <code>%s</code>\n"
+"Sprawdź, czy <abbr>URL</abbr> jest poprawny i czy strona nadal istnieje."
+
+msgid "invalid_redirect"
+msgstr "Nieprawidłowe przekierowanie <abbr>HTTP</abbr>"
+
+msgid "http_error"
+msgstr ""
+"Błąd <abbr>HTTP</abbr> <code>%s</code>\n"
+"Nie udało się załadować tej strony."
+
+msgid "maximum_file_size"
+msgstr "Wskazany plik przekracza maksymalny dopuszczany rozmiar %sKB"
+
+msgid "invalid_url"
+msgstr ""
+"Nieprawidłowy <abbr>URL</abbr>\n"
+"Niestety ten <abbr>URL</abbr> nie wygląda na wystarczająco niewinny."
+
+msgid "orphan_adr_subprop"
+msgstr ""
+"Znaleziono element z klasą „<samp>%s</samp>” poza <code>adr</code>\n"
+"Ten element zostanie zignorowany. Wszystkie elementy adresu musisz umieścić w elemencie z klasą <code>adr</code>."
+
+msgid "adr_type"
+msgstr ""
+"Nieprawidłowy typ adresu „<samp>%s</samp>”\n"
+"Dozwolone typy (możesz użyć kilku na raz): <code>home</code> (domowy), <code>work</code> (praca), <code>pref</code> (preferowany), <code>dom</code> (krajowy), <code>intl</code> (międzynarodowy), <code>postal</code> (możliwy odbiór listów), <code>parcel</code> (możliwy odbiór przesyłek)."
+
+msgid "single_line_label"
+msgstr ""
+"Etykieta adresowa jest cała w jednej linii\n"
+"Żeby zachować podział na linie musisz użyć elementu <code>&lt;pre></code> lub <code>&lt;br/></code>."
+

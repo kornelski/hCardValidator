@@ -1,7 +1,16 @@
 <?php header("Content-Type:text/html;charset=UTF-8"); ?>
 <h1>Selftest</h1><?php
 
-require_once "common.php";
+require_once "class/loader.php";
+require_once "class/validationresult.php";
+require_once "class/vcard.php";
+require_once "class/hcardvalidator.php";
+require_once "class/controller.php";
+require_once "phptal/PHPTAL.php";
+require_once "phptal/PHPTAL/GetTextTranslator.php";
+
+$c = new Controller();
+$c->init(true);
 
 class AutoTest
 {
@@ -89,7 +98,7 @@ class AutoTest
         $filesnum = 0;        
         try
         {
-           /* $files = glob("tests/uf/*");
+            $files = glob("tests/uf/*");
             foreach($files as $file)
             {        
                 $this->testFile($file,array('no_head_profile'=>1));
@@ -102,7 +111,7 @@ class AutoTest
                 $this->testFile($file,array(basename($file,'.html')=>1));
                 $filesnum++; 
             }
-            */
+            
             $files = glob("examples/*");
             foreach($files as $file)
             {        

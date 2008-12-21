@@ -5,12 +5,13 @@ pre {white-space:-moz-pre-wrap;}
 
 /* and acidy ones */
 html {background:#eee; color:black; margin:0; font: 1em "Myriad Web","Myriad Pro","Calibri","Arial",sans-serif}
-h1 {font-family: "Solex Medium","Myriad Web","Myriad Pro","Calibri","Arial",sans-serif;line-height:2}
+h1 {font-family: "Solex Medium","Myriad Web","Myriad Pro","Calibri","Arial",sans-serif;line-height:2; font-size:2em; margin:0.75em 0}
 h1 > small {font-size:0.4em; font-weight:normal;vertical-align:top;color:#aaa}
 
 h1 + p.invalid {margin:3em 0 1em;}
 
 body {
+	position:relative;
   background:#fff;
   color:black;
   max-width:80em;
@@ -113,3 +114,19 @@ hr {border:0;border-top:1px solid #ddd; margin: 2em 0 1em}
 a[href='#footnotes']{text-decoration:none;}
 
 a.button {border:1px outset #aaa;background:#ccc; padding:0.2em 0.5em;color:black;text-shadow: 0 1px 0 white;text-decoration:none}
+
+.langs {position:absolute; top:1.5em; right:1.5em; text-align:right; margin:0;padding:0;}
+
+
+@media screen and (max-width:800px) {
+  body {font-size:0.8em}
+  .langs {position:static;}
+}
+
+@media screen and (max-width:600px) {
+  body {padding-left:2px;padding-right:2px;}
+}
+
+@media screen and (max-device-width:600px) {
+  body {padding-left:2px;padding-right:2px;}
+}

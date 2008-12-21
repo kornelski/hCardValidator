@@ -12,6 +12,10 @@
 </form>
 <?php
 
+/**
+ * obfuscates e-mail address
+ * @param url - if true, will not put HTML comments in it (result will suitable for use in href)
+ */
 function enkoduj($m,$url=true)
 {
  $o='';
@@ -19,9 +23,9 @@ function enkoduj($m,$url=true)
  {
    for($i=0;$i<strlen($m);$i++)
    {
-     $o .= (mt_rand(0,100) > 60 || !ctype_alnum($m{$i}))?sprintf('%%%02x',ord($m{$i})):$m{$i};
+     $o .= (mt_rand(0,100) > 60 || !ctype_alnum($m{$i}))?sprintf('%%%02x',ord($m{$i})):$m{$i}; // apply url-encoding at random just to be more confusing
    }
-   $m = 'mailto: '.$o.'?'; $o='';
+   $m = 'mailto: '.$o.'?'; $o=''; // query string is allowed in mailto:, even if empty
  }
  for($i=0;$i<strlen($m);$i++)
  {
@@ -29,18 +33,19 @@ function enkoduj($m,$url=true)
 mailto:abuse@hotmail.com
 </a>
 -->&shy;';
-   $o .= (mt_rand(0,100) > 40 || $m{$i}==' ' || $m{$i}=='.' || $m{$i}==':')?sprintf((mt_rand(0,100) > 66)?'&#%d;':'&#x%'.((mt_rand()&4)?'X':'x').';',ord($m{$i})):$m{$i};
+   $o .= (mt_rand(0,100) > 40 || $m{$i}==' ' || $m{$i}=='.' || $m{$i}==':')?sprintf((mt_rand(0,100) > 66)?'&#%d;':'&#x%'.((mt_rand()&4)?'X':'x').';',ord($m{$i})):$m{$i}; // mix of decimal and hexadecimal entities
  }
  return $o;
 }
 
 if (isset($_GET['addr']))
 {
-$addr = trim(strip_tags($_GET['addr']));
+$addr = trim(strip_tags($_GET['addr'])); // paranoid
 
+// that's class attribute containing newlines and attribute-like syntax. should be enough to confuse regex-based extractors
 $out = '<a 
 class=\'email
-href="mailto:me"
+ href="mailto:me"
 \' 
 href 
 = \''."\t".'
