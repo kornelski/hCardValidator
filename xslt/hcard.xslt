@@ -14,7 +14,7 @@
       <x:call-template name="check-xhtml" />
       
       <x:if test="count(//h:*[not(@id) and contains(concat(' ',normalize-space(@class),' '),' vcard ')]) &gt; 1">
-        <v:info id="mutliple_idless_vcards" href="http://microformats.org/wiki/hcard-parsing#URL_handling" />
+        <v:info id="multiple_idless_vcards" href="http://microformats.org/wiki/hcard-parsing#URL_handling" />
       </x:if>
       
     	<x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' hcard ') and not(contains(concat(' ',normalize-space(@class),' '),' vcard '))]">

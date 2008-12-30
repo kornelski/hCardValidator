@@ -109,7 +109,7 @@ msgid "sort-string"
 msgstr "Wzorzec sortowania"
 
 msgid "uid"
-msgstr "Unikalny ID wizytówki"
+msgstr "Unikalny ID"
 
 msgid "category"
 msgstr "Kategoria"
@@ -132,7 +132,7 @@ msgstr "URL dźwięku"
 msgid "mailer"
 msgstr "Program pocztowy"
 
-msgid "latitute"
+msgid "latitude"
 msgstr "szerokość"
 
 msgid "longitude"

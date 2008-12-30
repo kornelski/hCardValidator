@@ -22,7 +22,7 @@ class Controller
     /** Set up local XML Catalog (env variable read by libxml) to avoid hitting W3C website whenever document with DOCTYPE is validated */
     private function initCatalog()
     {
-        $catalogfile = dirname(__FILE__).'/xmlcatalog.xml';
+        $catalogfile = dirname(dirname(__FILE__)).'/xmlcatalog.xml';
         putenv('XML_CATALOG_FILES='.$catalogfile);
         $_ENV['XML_CATALOG_FILES'] = $catalogfile;
     }
@@ -183,6 +183,7 @@ class Controller
                 $ar = self::escapeXML($ar);
             }
             array_unshift($args,$txt);
+//            echo print_r($args);
             $txt = call_user_func_array('sprintf',$args);
         }
         return $txt;

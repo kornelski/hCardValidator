@@ -1,5 +1,5 @@
 <?php header("Content-Type:text/html;charset=UTF-8"); ?>
-<h1>Selftest</h1><?php
+<h1>Selftest <?php echo time() ?></h1><?php
 
 require_once "class/loader.php";
 require_once "class/validationresult.php";
@@ -43,6 +43,8 @@ class AutoTest
     
         foreach($expected as $notfound => $x)
         {
+            if (!$x) continue;
+            
             echo "<p>Expected error <strong>$notfound not found".($x > 1 ? " ×$x":"")."</strong></p>";
             foreach($result->vcards as $vcard)
             {
@@ -62,11 +64,17 @@ class AutoTest
         foreach($result->errors as $k => $e)
         {
             if (isset($expected[ $e['class'] ])) 
-            {
-                $expected[ $e['class'] ]--;
-                if (!$expected[ $e['class'] ]) unset($expected[ $e['class'] ]); 
-                $result->errors[$k]['expected'] = true;
-                echo '<span style="color:#ccc;font-size:0.6em">'.$e['class'].'</span> ';
+            {                
+                if ($expected[ $e['class'] ]) 
+                {                   
+                    $result->errors[$k]['expected'] = true;
+                    echo '<span style="color:#ccc;font-size:0.6em">'.$e['class'].' #'.$expected[ $e['class'] ].'</span> ';
+                     $expected[ $e['class'] ]--;
+                }
+                else if (isset($expected[ $e['class'] ]))
+                {
+                    echo '<span>'.$e['class'].' - occured too many times</span> ';                    
+                }
             }
         }
         
@@ -75,7 +83,11 @@ class AutoTest
             if (empty($e['expected'])) 
             {
                 $hadUnexpectedErrors = true;
-                echo '<p><strong>'.ucwords($e['type']).' ['.$e['class'].']</strong>: '.$e['message']." ".$e['location']."</p>";
+                
+                $args = $e['args'];
+                array_unshift($args,str_replace('%s','<var style="color:#060">%s</var>',$e['message']));
+                
+                echo '<p><strong>'.ucwords($e['type']).' ['.$e['class'].']</strong>: '.call_user_func_array('sprintf',$args)." ".$e['location']."</p>";
             }
         }
     

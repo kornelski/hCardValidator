@@ -14,7 +14,7 @@ require_once "phptal/PHPTAL/GetTextTranslator.php";
 try
 {
     $c = new Controller();
-    $c->init(true);//$_SERVER['HTTP_HOST'] == 'hcard');
+    $c->init($_SERVER['HTTP_HOST'] == 'hcard');
     $c->run();
 }
 catch(Exception $e)

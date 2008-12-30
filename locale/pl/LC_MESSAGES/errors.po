@@ -75,8 +75,8 @@ msgstr ""
 msgid "email_value"
 msgstr ""
 "Wartość właściwości <code>email</code> „<samp>%s</samp>” nie wygląda na adres e-mail\n"
-"Adres powinien być w postaci <code>mailto:jan@example.com?Subject=opcjonalny%20temat%20wiadomo%C5%9Bci</code>."
-"Jeśli używasz anty-spamowych łamigłówek, skorzystaj z właściwości <code>notes</code> albo zamiast nich użyj <a href=\"/encode/\">zakodowanego adresu</a>."
+"Adres powinien być w postaci <code>mailto:jan@example.com?Subject=opcjonalny%%20temat%%20wiadomo%%C5%%9Bci</code>. "
+"Jeśli używasz antyspamowych łamigłówek, skorzystaj z właściwości <code>notes</code> albo zamiast nich użyj <a href=\"/encode/\">zakodowanego adresu</a>."
 
 msgid "org_has_n"
 msgstr ""
@@ -141,7 +141,7 @@ msgstr ""
 "<code>&lt;head profile=\"…\"&gt;</code> zawiera więcej niż jeden <abbr>URL</abbr>\n"
 "Specyfikacja <abbr>HTML</abbr> i <abbr>DTD</abbr> nie są zgodne co do tego, czy to jest dozwolone. Możesz uniknąć problemu zastępując wszystkie <abbr>URL</abbr>-e jednym ogólnym <code>http://purl.org/uF/2008/03/</code>."
 
-msgid "mutliple_idless_vcards"
+msgid "multiple_idless_vcards"
 msgstr ""
 "Dokument zawiera kilka wizytówek, ale nie wszystkie mają atrybut <code>id</code>\n"
 "Dodanie unikalnych <code>id</code> do każdej z nich pozwoli wskazać indywidualne wizytówki w dokumencie, co jest przydatne do wyciągania ich ze strony."
@@ -310,6 +310,46 @@ msgid "multi_fn"
 msgstr ""
 "Znaleziono więcej niż jedną właściwość <code>fn</code>\n"
 "hCard może mieć <em>tylko jeden</em> element z klasą <code>fn</code>."
+
+msgid "multi_geo"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>geo</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>geo</code>."
+
+msgid "multi_tz"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>tz</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>tz</code>."
+
+msgid "multi_bday"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>bday</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>bday</code>."
+
+msgid "multi_class"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>class</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>class</code>."
+
+msgid "multi_rev"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>rev</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>rev</code>."
+
+msgid "multi_uid"
+msgstr ""
+"Znaleziono więcej niż jedną właściwość <code>uid</code>\n"
+"hCard może mieć <em>tylko jeden</em> element z klasą <code>uid</code>."
+
+msgid "repeated_uid"
+msgstr ""
+"Unikalny identyfikator „<samp>%s</samp>” został użyty do różnych wizytówek\n"
+"<code>uid</code> określa <em>globalnie unikalny</em> identyfikator danej osoby lub miejsca."
+
+msgid "url_as_img"
+msgstr ""
+"Znaleziono klasę <code>url</code> na elemencie <code>&lt;%s&gt;</code>\n"
+"Klasa <code>photo</code> lub <code>logo</code> może być bardziej odpowiednia."
 
 msgid "geo_abbr_syntax"
 msgstr ""
@@ -562,4 +602,37 @@ msgid "single_line_label"
 msgstr ""
 "Etykieta adresowa jest cała w jednej linii\n"
 "Żeby zachować podział na linie musisz użyć elementu <code>&lt;pre></code> lub <code>&lt;br/></code>."
+
+
+msgid "libxml_68"
+msgstr "Znaleziono znak „<samp>&amp;</samp>”, który nie rozpoczyna encji\n"
+"Używaj encji <code>&amp;amp;</code> do zapisania znaku <code>&amp;</code> w dokumencie."
+
+msgid "libxml_23"
+msgstr "Znaleziono znak „<samp>&amp;</samp>”, który rozpoczyna encję niezakończoną znakiem „<code>;</code>”\n"
+"Musisz dodać znak „<code>;</code>” na końcu nazwy encji. Jeśli to nie miała być encja, to zamień znak <code>&amp;</code> na encję <code>&amp;amp;</code>."
+
+msgid "entity_not_defined"
+msgstr "Nie ma encji o nazwie „<samp>&amp;%s;</samp>”\n"
+"Jeśli to nie miała być encja, zamień znak <code>&amp;</code> na encję <code>&amp;amp;</code>. Walidator czyta tylko pliki <abbr>DTD</abbr> dla <abbr>XHTML</abbr>/1.<var>x</var>, więc encje nazwane z innych typów dokumentów nie będą rozpoznawane."
+
+msgid "ending_mismatch"
+msgstr "Zamiast tagu zamykającego element <code>&lt;%s&gt;</code> (rozpoczętego w linii %s) znaleziono „<samp>&lt;/%s&gt;</samp>”"
+
+msgid "libxml_65"
+msgstr "Nieprawidłowa składnia atrybutu"
+
+msgid "no_end_of_start_tag"
+msgstr "Nie udało się znaleźć końca tagu otwierającego element „<samp>&lt;%s …&gt;</samp>” (w linii %s)\n"
+"Składnia atrybutów może być nieprawidłowa."
+
+msgid "expected_character"
+msgstr "Spodziewano się znaku „<code>%s</code>”"
+
+msgid "not_valid_utf8"
+msgstr "Dokument używa kodowania, które nie jest prawidłowym UTF-8\n"
+"Nieprawidłowy ciąg bajtów: „<samp>%s</samp>”"
+
+msgid "libxml_39"
+msgstr "Wartość atrybutu powinna być w cudzysłowie"
 

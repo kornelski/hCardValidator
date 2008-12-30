@@ -139,7 +139,7 @@ msgstr ""
 "<code>&lt;head profile=\"…\"&gt;</code> has multiple profile <abbr>URL</abbr>s\n"
 "<abbr>HTML</abbr> specification and <abbr>DTD</abbr> are contradicting each other about this case. Use a single <code>http://purl.org/uF/2008/03/</code> profile instead."
 
-msgid "mutliple_idless_vcards"
+msgid "multiple_idless_vcards"
 msgstr ""
 "There are multiple vCards and not all have <code>id</code> attribute\n"
 "Adding unique <code>id</code> to each will allow to point to any vCard in the document, which is useful for vCard extractors."
@@ -555,3 +555,35 @@ msgid "single_line_label"
 msgstr ""
 "Address <code>label</code> has only one line\n"
 "You must use <code>&lt;pre></code> to preserve line breaks or insert them explicitly using <code>&lt;br/></code>."
+
+msgid "libxml_68"
+msgstr "Found “<samp>&amp;</samp>” character which does not start an entity\n"
+"Every <code>&amp;</code> must be escaped as <code>&amp;amp;</code>."
+
+msgid "libxml_23"
+msgstr "Found “<samp>&amp;</samp>” character which starts entity not ended with “<code>;</code>”\n"
+"You must add “<code>;</code>” at the end of entity name. If it wasn't supposed to be an entity, escape <code>&amp;</code> as <code>&amp;amp;</code>."
+
+msgid "entity_not_defined"
+msgstr "There is no entity “<samp>&amp;%s;</samp>”\n"
+"If it wasn't supposed to be an entity, escape <code>&amp;</code> as <code>&amp;amp;</code>. Validator reads only <abbr>XHTML</abbr>/1.<var>x</var> <abbr>DTD</abbr>s, so named entities in other types of documents will not be available."
+
+msgid "ending_mismatch"
+msgstr "Expected end of <code>&lt;%s&gt;</code> (started in line %s), but found “<samp>&lt;/%s&gt;</samp>” instead"
+
+msgid "libxml_65"
+msgstr "Invalid syntax of attribute"
+
+msgid "no_end_of_start_tag"
+msgstr "Could not find end of start tag opening element „<samp>&lt;%s …&gt;</samp>” (in line %s)\n"
+"Invalid syntax of attributes may have caused this."
+
+msgid "expected_character"
+msgstr "Expected character „<code>%s</code>”"
+
+msgid "not_valid_utf8"
+msgstr "Dokument is not using valid UTF-8 encoding\n"
+"Invalid byte sequence: „<samp>%s</samp>”"
+
+msgid "libxml_39"
+msgstr "Value of the attribute should be in quotes"

@@ -285,17 +285,19 @@ class hCardValidator
 
             foreach($vcard->query('uid/value') as $uid)
             {
-                if (!isset($uids[$uid])) $uids[$uid] = 1; else $uids[$uid]++; // FIXME: allow uid for the same person!
+                $fn = $vcard->fn ? $vcard->fn[0] : NULL; if (!$fn) $fn = 'No name '.$uid;
+
+                if (isset($uids[$uid]))
+                {
+                    if ($uids[$uid] != $fn) $vcard->result->add("warn","repeated_uid","Uid <samp>%s</samp> used more than once\nIt's supposed to be <em>globally unique</em> identifier corresponding to the individual or resource",array($uid));
+                }
+                
+                $uids[$uid] = $fn;
             }
 
 			// each vcard has it's own ValidationResult object (for vcard-specific problems)
 			// and validation failure needs to be propagated upstream
             if (!$vcard->result->isValid) $result->isValid = false;
-        }
-
-        foreach($uids as $uid => $count)
-        {
-            if ($count > 1) $result->add("warn","repeated_uid","Uid <samp>%s</samp> used more than once\nIt's supposed to be <em>globally unique</em> identifier corresponding to the individual or resource",array($uid));
         }
 
         return $result;
@@ -389,7 +391,7 @@ class hCardValidator
 	 */
     private function validateVCardGEO(vCard $vcard)
     {
-        if (count($vcard->geo) > 1) $vcard->result->add("error","mutli_geo","Multiple geo values",array(),"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
+        if (count($vcard->geo) > 1) $vcard->result->add("error","multi_geo","Multiple geo values",array(),"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
 
         if (isset($vcard->data['geo'])) foreach($vcard->data['geo'] as &$geo) // by reference!
         {
@@ -655,7 +657,7 @@ class hCardValidator
             $this->checkPastISODate($vcard,'bday',$bday);
         }
 
-        if (count($vcard->rev) > 1) $vcard->result->add("error","mutli_rev","Multiple rev values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->rev) > 1) $vcard->result->add("error","multi_rev","Multiple rev values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
         foreach($vcard->rev as $rev)
         {
             $this->checkPastISODate($vcard,'rev',$rev);
@@ -739,16 +741,17 @@ class hCardValidator
         $this->validateVCardDateTime($vcard);
 
 
-        if (count($vcard->class) > 1) $vcard->result->add("error","mutli_class","Multiple class values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
-        if (count($vcard->uid) > 1) $vcard->result->add("error","mutli_uid","Multiple uid values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->class) > 1) $vcard->result->add("error","multi_class","Multiple class values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->uid) > 1) $vcard->result->add("error","multi_uid","Multiple uid values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
     }
 
 	/**
 	 * check what errors libxml caught since last clearLibxmlErrors and add them to ValidationResult
 	 *
 	 * @param $doc - the errorneous DOMDocument (currently unused)
+	 * @param $skipLines - pretend that this number of lines in the beginning of the document didn't exist
 	 */
-    private function addLibxmlErrors(ValidationResult $result, $doc)
+    private function addLibxmlErrors(ValidationResult $result, $doc, $skipLines=0)
     {
         $dontrepeat = array();
         $dontrepeat_codes = array();
@@ -760,7 +763,9 @@ class hCardValidator
             if (empty($dontrepeat_codes[$err->code])) $dontrepeat_codes[$err->code] = 0; // or many similar messages
             if ($dontrepeat_codes[$err->code] > 3) {$skipped++; continue;}
 
-            $result->add( $err->level == LIBXML_ERR_WARNING ? 'warn' : 'error', 'libxml_'.$err->code, "%s",array($err->message), NULL, "Line ".$err->line.', column '.$err->column );
+            list($class, $message, $args) = $this->extractLibxmlMessageArgs($err);
+
+            $result->add( $err->level == LIBXML_ERR_WARNING ? 'warn' : 'error', $class, $message, $args, NULL, "Line ".max(0,$err->line - $skipLines).', column '.$err->column );
             $dontrepeat[$err->message] = true;
             $dontrepeat_codes[$err->code]++;
         }
@@ -780,6 +785,27 @@ class hCardValidator
         libxml_clear_errors();
     }
 
+    static $libxmlmessages = array(
+        'Entity \'([^\']*)\' not defined' => 'entity_not_defined',
+        'Opening and ending tag mismatch: ([^\s]+) line ([^\s]+) and ([^\s]+)' => 'ending_mismatch',
+        'Couldn\'t find end of Start Tag ([^\s]+) line ([^\s]+)' => 'no_end_of_start_tag',
+        'expected \'([^\']*)\'' => 'expected_character',
+        'Input is not proper UTF-8, indicate encoding\s*!\s*Bytes:\s*(.*)'=>'not_valid_utf8',
+    );
+    private function extractLibxmlMessageArgs($err)
+    {
+        $msg = $err->message;
+        
+        foreach(self::$libxmlmessages as $pattern => $class)
+        {
+            if (preg_match('/^'.$pattern.'/',$msg,$m))
+            {
+                return array($class, preg_replace('/\([^)]*\)/','%s',$msg), array_slice($m,1));
+            }
+        }
+        return array('libxml_'.$err->code, "%s", array($msg));
+    }
+
 	/**
 	 * load XHTML source code in UTF-8 encoding
 	 *
@@ -793,28 +819,14 @@ class hCardValidator
 
         if (!$this->sniffXHTMLLikeTagsoup($source))
         {
-            $source = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-            <html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://www.w3.org/2006/03/hcard"><title>XHTML fragment</title></head><body>'.$source.'</body></html>';
+            $source = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head profile="http://www.w3.org/2006/03/hcard"><title>XHTML fragment</title></head><body>
+'.$source.'</body></html>';
         }
 
         @$doc->loadXML($source);
-        $this->addLibxmlErrors($result,$doc);
+        $this->addLibxmlErrors($result,$doc,1);
         return $doc;
     }
-
-/*
-    private function loadFile($filePath, ValidationResult $result)
-    {
-        $doc = new DOMDocument();
-        $this->clearLibxmlErrors();
-        $doc->resolveExternals = true;
-        $start = microtime(true);
-        @$doc->load($filePath);
-        $this->addLibxmlErrors($result,$doc);
-        $dur = microtime(true) - $start;
-        return $doc;
-    }
-*/
 
 	// cache is awesome for unit tests
     static $xsltCache = array();
