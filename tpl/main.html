@@ -198,8 +198,8 @@
   <tal:block metal:define-macro="display_vcard_td">
     <td><ul tal:omit-tag="php:1==count(p)"><li tal:omit-tag="php:1==count(p)" tal:repeat="prop p"><tal:block
         tal:define="isurl php:!is_array(prop) and preg_match('!^(skype:|https?://|msnim:|mailto:|xmpp:|ymsgr:|aim:)!',prop)"><pre
-        tal:condition="php:!is_array(prop) and !isurl" class="${repeat/p/key}" tal:content="php:substr(prop,0,300)"
-            /><a tal:condition="isurl" class="${repeat/p/key}" tal:content="php:substr(prop,0,300)" href="${php:prop}"
+        tal:condition="php:!is_array(prop) and !isurl" class="${repeat/prop/key}" tal:content="php:substr(prop,0,300)"
+            /><a tal:condition="isurl" class="${repeat/prop/key}" tal:content="php:substr(prop,0,300)" href="${php:prop}"
             /><tal:block tal:condition="php:is_array(prop)" metal:use-macro="display_vcard" tal:define="vdata prop"/></tal:block></li></ul></td>
   </tal:block>
 
