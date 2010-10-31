@@ -541,7 +541,7 @@ class hCardValidator
     }
 
 	/**
-	 * check image. supports data: URI. Does basic check with GD.
+	 * check image. supports data: URI. Does basic check with getimagesize.
 	 */
     private function checkVCardImage(vCard $vcard, $propname)
     {

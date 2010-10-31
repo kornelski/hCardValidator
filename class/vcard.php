@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ * Easy access to vCard DOM nodes extracted via XSLT.
+ *
+ * vcard->result holds vcard-specific errors.
+ */
 class vCard
 {
     public $data, $result;

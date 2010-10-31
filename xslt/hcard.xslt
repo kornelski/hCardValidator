@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <x:stylesheet version="1.0" xmlns:x="http://www.w3.org/1999/XSL/Transform" xmlns:c="http://www.w3.org/2006/03/hcard" xmlns:v="http://pornel.net/hcard-validator" xmlns='http://www.w3.org/1999/xhtml' xmlns:h='http://www.w3.org/1999/xhtml'>
-	<x:output encoding="UTF-8" method="xml" />
+  <x:output encoding="UTF-8" method="xml" />
 
-	<x:template match="/*">
-	  <v:results>
+  <x:template match="/*">
+    <v:results>
+      <!-- this is where PHP reads result from. This node can contain results and hcards nested (e.g. hcard with agent hcard with an error) -->
 
       <x:if test="not(//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])">
+        <!-- <v:error> element doesn't require content. Thanks to i18n only id and <v:arg> are used -->
         <v:error id="no_vcards" href="http://microformats.org/wiki/hcard-authoring#A_5_minute_primer_to_using_hCard" />
       </x:if>
 
@@ -17,69 +19,74 @@
         <v:info id="multiple_idless_vcards" href="http://microformats.org/wiki/hcard-parsing#URL_handling" />
       </x:if>
 
-    	<x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' hcard ') and not(contains(concat(' ',normalize-space(@class),' '),' vcard '))]">
-    	  <v:warn id="hcard_class" href="http://microformats.org/wiki/hcard-parsing#root_class_name">Element contains hcard class. hCard microformat recognizes only vcard class name.</v:warn>
-    	</x:if>
+      <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' hcard ') and not(contains(concat(' ',normalize-space(@class),' '),' vcard '))]">
+        <v:warn id="hcard_class" href="http://microformats.org/wiki/hcard-parsing#root_class_name">Element contains hcard class. hCard microformat recognizes only vcard class name.</v:warn>
+      </x:if>
 
-    	<x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vevent ')]">
-    	  <v:info id="vevent_class">hCalendar ignored</v:info>
-    	</x:if>
+      <!-- FIXME: create another validator! :) -->
+      <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vevent ')]">
+        <v:info id="vevent_class">hCalendar ignored</v:info>
+      </x:if>
 
     </v:results>
-	</x:template>
+  </x:template>
 
-	<x:template name="check-xhtml">
-	  <x:choose>
-	    <x:when test="local-name(.) = 'html' and namespace-uri(.) != 'http://www.w3.org/1999/xhtml'">
-	      <v:error id="root_xmlns" href="http://www.w3.org/TR/xhtml1/#strict">&lt;html&gt; not in XHTML namespace (add xmlns='http://www.w3.org/1999/xhtml')</v:error>
-	    </x:when>
+  <!-- called on root node -->
+  <x:template name="check-xhtml">
+    <x:choose>
+      <x:when test="local-name(.) = 'html' and namespace-uri(.) != 'http://www.w3.org/1999/xhtml'">
+        <v:error id="root_xmlns" href="http://www.w3.org/TR/xhtml1/#strict">&lt;html&gt; not in XHTML namespace (add xmlns='http://www.w3.org/1999/xhtml')</v:error>
+      </x:when>
 
-	    <x:when test="namespace-uri(.) != 'http://www.w3.org/1999/xhtml'">
-	      <v:warn id="not_xhtml" href="http://www.w3.org/TR/xhtml1/#strict">Document is in "<v:arg><x:value-of select="namespace-uri(.)" /></v:arg>" namespace rather than XHTML.</v:warn>
-	    </x:when>
+      <x:when test="namespace-uri(.) != 'http://www.w3.org/1999/xhtml'">
+        <v:warn id="not_xhtml" href="http://www.w3.org/TR/xhtml1/#strict">Document is in "<v:arg><x:value-of select="namespace-uri(.)" /></v:arg>" namespace rather than XHTML.</v:warn>
+      </x:when>
 
       <x:otherwise>
         <x:choose>
-    	    <x:when test="not(/h:html/h:head)">
-    	      <v:error id="no_head" href="http://validator.w3.org/">Can't find &lt;head&gt;</v:error>
-    	    </x:when>
+          <x:when test="not(/h:html/h:head)">
+            <v:error id="no_head" href="http://validator.w3.org/">Can't find &lt;head&gt;</v:error>
+          </x:when>
 
-    	    <x:when test="not(/h:html/h:head[string(@profile)])">
-    	      <!-- <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]">
-    	        <v:warn id="no_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; doesn't have profile='http://www.w3.org/2006/03/hcard'</v:warn>
-    	      </x:if>   -->
-    	    </x:when>
+          <x:when test="not(/h:html/h:head[string(@profile)])">
+            <!-- <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]">
+              <v:warn id="no_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; doesn't have profile='http://www.w3.org/2006/03/hcard'</v:warn>
+            </x:if>   -->
+          </x:when>
 
           <x:otherwise>
-      	    <x:if test="/h:html/h:head[contains(normalize-space(@profile),' ')]">
-      	      <v:warn id="multiple_head_profiles" href="http://microformats.org/wiki/profile-uris#Validator_warning">&lt;head profile=""&gt; uses multiple profile URIs. HTML specification is self-contradictory about this case. Use single <code>http://purl.org/uF/2008/03/</code> profile instead.</v:warn>
-      	    </x:if>
+            <x:if test="/h:html/h:head[contains(normalize-space(@profile),' ')]">
+              <v:warn id="multiple_head_profiles" href="http://microformats.org/wiki/profile-uris#Validator_warning">&lt;head profile=""&gt; uses multiple profile URIs. HTML specification is self-contradictory about this case. Use single <code>http://purl.org/uF/2008/03/</code> profile instead.</v:warn>
+            </x:if>
 
-      	    <x:if test="not(/h:html/h:head[contains(@profile,'http://www.w3.org/2006/03/hcard') or contains(@profile,'http://purl.org/uF/2008/03/') or contains(@profile,'http://purl.org/uF/hCard/1.0/')])">
-      	      <x:choose>
-      	        <x:when test="/h:html/h:head[@profile='http://purl.org/dc/elements/1.1/' or @profile='http://purl.org/dc/terms/' or @profile='http://web.resource.org/cc/' or @profile='http://gmpg.org/xfn/1#' or @profile='http://www.gmpg.org/xfn/11' or @profile='http://gmpg.org/xfn/11']">
-      	          <v:warn id="wrong_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; uses profile <v:arg><x:value-of select="/h:html/h:head/@profile"/></v:arg> unrelated to 'http://www.w3.org/2006/03/hcard'</v:warn>
-      	        </x:when>
+            <x:if test="not(/h:html/h:head[contains(@profile,'http://www.w3.org/2006/03/hcard') or contains(@profile,'http://purl.org/uF/2008/03/') or contains(@profile,'http://purl.org/uF/hCard/1.0/')])">
+              <x:choose>
+                <x:when test="/h:html/h:head[@profile='http://purl.org/dc/elements/1.1/' or @profile='http://purl.org/dc/terms/' or @profile='http://web.resource.org/cc/' or @profile='http://gmpg.org/xfn/1#' or @profile='http://www.gmpg.org/xfn/11' or @profile='http://gmpg.org/xfn/11']">
+                  <v:warn id="wrong_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; uses profile <v:arg><x:value-of select="/h:html/h:head/@profile"/></v:arg> unrelated to 'http://www.w3.org/2006/03/hcard'</v:warn>
+                </x:when>
                 <x:otherwise>
-      	          <v:info id="unknown_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; uses profile <v:arg><x:value-of select="/h:html/h:head/@profile"/></v:arg> unrelated to 'http://www.w3.org/2006/03/hcard'</v:info>
-      	        </x:otherwise>
-      	      </x:choose>
-      	    </x:if>
-    	    </x:otherwise>
+                  <v:info id="unknown_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; uses profile <v:arg><x:value-of select="/h:html/h:head/@profile"/></v:arg> unrelated to 'http://www.w3.org/2006/03/hcard'</v:info>
+                </x:otherwise>
+              </x:choose>
+            </x:if>
+          </x:otherwise>
         </x:choose>
 
         <x:if test="not(/h:html/h:body)">
-  	      <v:error id="no_body" href="http://validator.w3.org/">Can't find &lt;body&gt;</v:error>
-  	    </x:if>
+          <v:error id="no_body" href="http://validator.w3.org/">Can't find &lt;body&gt;</v:error>
+        </x:if>
 
       </x:otherwise>
     </x:choose>
   </x:template>
 
-	<x:template name="value">
-	  <x:param name="nesting" />
+  <!-- Helper template used to read textual value of an element. Currently URL values are all special-cased. -->
+  <x:template name="value">
 
-	  <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and contains(concat(' ',normalize-space(@class),' '),' type ') and
+    <!-- be careful not to read value from nested hcard (in such case hcard itself is the value). This variable should equal to number of ancestor class=vcard elements -->
+    <x:param name="nesting" />
+
+    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and contains(concat(' ',normalize-space(@class),' '),' type ') and
       $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
       <v:warn id="type_value" href="http://microformats.org/wiki/hcard#type_with_unspecified_value">Element contains both type and value classes</v:warn>
     </x:if>
@@ -90,20 +97,20 @@
       <v:warn id="del_value" href="http://microformats.org/wiki/hcard-parsing#DEL_element_handling">hCard parsers may not ignore &lt;del&gt; content</v:warn>
     </x:if>
 
-	  <x:choose>
-	    <x:when test="(local-name(.) = 'img' or local-name(.) = 'area') and @alt">
-	      <x:value-of select="@alt" />
-	    </x:when>
+    <x:choose>
+      <x:when test="(local-name(.) = 'img' or local-name(.) = 'area') and @alt">
+        <x:value-of select="@alt" />
+      </x:when>
 
-	    <x:when test="local-name(.) = 'br' or local-name(.) = 'hr' or local-name(.) = 'img' or local-name(.) = 'input'">
-	      <v:error id="br_value" href="http://microformats.org/wiki/hcard-parsing#all_properties">Empty element &lt;<v:arg><x:value-of select="local-name(.)" /></v:arg>&gt; used for value</v:error>
-	    </x:when>
+      <x:when test="local-name(.) = 'br' or local-name(.) = 'hr' or local-name(.) = 'img' or local-name(.) = 'input'">
+        <v:error id="br_value" href="http://microformats.org/wiki/hcard-parsing#all_properties">Empty element &lt;<v:arg><x:value-of select="local-name(.)" /></v:arg>&gt; used for value</v:error>
+      </x:when>
 
-	    <x:when test="local-name(.) = 'abbr'">
-	      <x:choose>
-    	    <x:when test="not(@title)">
-    	      <v:error id="abbr_no_title" href="http://microformats.org/wiki/abbr-design-pattern">Missing title attribute on &lt;abbr&gt;</v:error>
-    	      <x:apply-templates mode="value"/>
+      <x:when test="local-name(.) = 'abbr'">
+        <x:choose>
+          <x:when test="not(@title)">
+            <v:error id="abbr_no_title" href="http://microformats.org/wiki/abbr-design-pattern">Missing title attribute on &lt;abbr&gt;</v:error>
+            <x:apply-templates mode="value"/>
           </x:when>
           <x:when test="descendant-or-self::h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and
             $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
@@ -111,12 +118,12 @@
           </x:when>
         </x:choose>
         <x:value-of select="@title" />
-  	  </x:when>
+      </x:when>
 
       <x:otherwise>
         <x:if test="local-name(.) = 'acronym' and @title">
-    	    <v:warn id="acronym" href="http://microformats.org/wiki/abbr-design-pattern">&lt;acronym&lt; doesn't have special handling like &lt;abbr&gt;</v:warn>
-    	  </x:if>
+          <v:warn id="acronym" href="http://microformats.org/wiki/abbr-design-pattern">&lt;acronym&lt; doesn't have special handling like &lt;abbr&gt;</v:warn>
+        </x:if>
 
         <x:choose>
           <x:when test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and
@@ -126,73 +133,82 @@
               $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]) &gt; 1">
               <v:info id="split_value" href="http://microformats.org/wiki/hcard-parsing#Value_excerpting">Value is split in <v:arg><x:value-of select="count(.//h:*[contains(concat(' ',normalize-space(@class),' '),' value ')])"/></v:arg> parts</v:info>
             </x:if>
-<!-- $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]) -->
 
-      	    <x:apply-templates mode="value" select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and
-      	      $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]" />
-      	  </x:when>
-      	  <x:otherwise>
-      	    <x:apply-templates mode="value"/>
-      	  </x:otherwise>
+            <x:apply-templates mode="value" select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' value ') and
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]" />
+
+          </x:when>
+
+          <x:otherwise>
+            <x:apply-templates mode="value"/>
+          </x:otherwise>
         </x:choose>
       </x:otherwise>
     </x:choose>
-	</x:template>
-
-	<x:template match="h:*[contains(concat(' ',normalize-space(@class),' '),' type ') and not(contains(concat(' ',normalize-space(@class),' '),' value '))]" mode="value">
-	  <x:comment>type skipped</x:comment>
-	</x:template>
-
-	<x:template match="h:abbr[@title]" mode="value" priority="-1">
-	  <v:warn id="abbr_in_value">&lt;abbr&gt; in value</v:warn>
-	  <x:apply-templates mode="value" />
-	</x:template>
-
-
-	<x:template match="h:br" mode="value">
-	  <x:text>&#x0a;</x:text>
-	</x:template>
-
-	<x:template match="text()" mode="value">
-	  <x:choose>
-	    <x:when test="not(.) or ancestor::h:pre"><x:copy /></x:when>
-	    <x:when test="not(normalize-space(.))"><x:text> </x:text></x:when>
-  	  <x:otherwise>
-	      <x:value-of select="substring(normalize-space(concat('X',.)),2)" />
-	      <x:if test="not(normalize-space(substring(.,string-length(.))))"><x:text> </x:text></x:if>
-	    </x:otherwise>
-	  </x:choose>
-	</x:template>
-
-	<x:template match="h:img[string(@alt) and not(contains(concat(' ',normalize-space(@class),' '),' value '))]" priority="-1" mode="value">
-	  <v:warn id="img_in_value" href="http://microformats.org/wiki/hcard-faq#Why_is_IMG_alt_not_being_picked_up">Image with alt inside value</v:warn>
-	</x:template>
-
-	<x:template match="h:del" mode="value" />
-
-	<x:template match="h:pre" mode="value">
-	  <x:if test=".//h:*[not(local-name(.)='abbr')]"><v:warn id="pre_elements">Elements inside &lt;pre&gt;</v:warn></x:if>
-	  <x:apply-templates mode="value" />
   </x:template>
 
-	<!-- check vcard. avoid vcards of agents - these are handled separately -->
-	<x:template name="vcard" match="h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ') and not(contains(concat(' ',normalize-space(@class),' '),' agent '))]">
-	  <c:vcard>
-	    <x:variable name="nesting"><x:value-of select="1 + count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])" /></x:variable>
+  <x:template match="h:*[contains(concat(' ',normalize-space(@class),' '),' type ') and not(contains(concat(' ',normalize-space(@class),' '),' value '))]" mode="value">
+    <x:comment>type skipped</x:comment>
+  </x:template>
 
-	    <x:if test="@id">
-	      <c:source>#<x:value-of select="@id" /></c:source>
-	    </x:if>
+  <x:template match="h:abbr[@title]" mode="value" priority="-1">
+    <v:warn id="abbr_in_value">&lt;abbr&gt; in value</v:warn>
+    <x:apply-templates mode="value" />
+  </x:template>
 
-	    <x:if test="local-name(.) = 'address'">
-	      <v:warn id="vcard_address" href="http://microformats.org/wiki/hcard-faq#Should_I_use_ADDRESS_for_hCards">hCard microformat in &lt;address&gt;</v:warn>
-	    </x:if>
+  <!-- simulate html2text -->
+  <x:template match="h:br" mode="value">
+    <x:text>&#x0a;</x:text>
+  </x:template>
 
-	<!--    <x:if test="/h:html/h:head/h:title">
-	      <c:name>
-	        <x:value-of select="/h:html/h:head/h:title" /><x:if test="@id"><x:text> (</x:text><x:value-of select="@id" />)</x:if>
-	      </c:name>
-	    </x:if>  -->
+  <!-- simulate html2text -->
+  <x:template match="text()" mode="value">
+    <x:choose>
+      <x:when test="not(.) or ancestor::h:pre"><x:copy /></x:when>
+      <x:when test="not(normalize-space(.))"><x:text> </x:text></x:when>
+      <x:otherwise>
+        <!-- preserves leading/trialing space, normalizes other -->
+        <x:value-of select="substring(normalize-space(concat('X',.)),2)" />
+        <x:if test="not(normalize-space(substring(.,string-length(.))))"><x:text> </x:text></x:if>
+      </x:otherwise>
+    </x:choose>
+  </x:template>
+
+  <x:template match="h:img[string(@alt) and not(contains(concat(' ',normalize-space(@class),' '),' value '))]" priority="-1" mode="value">
+    <v:warn id="img_in_value" href="http://microformats.org/wiki/hcard-faq#Why_is_IMG_alt_not_being_picked_up">Image with alt inside value</v:warn>
+  </x:template>
+
+  <!-- I might be trying too hard here -->
+  <x:template match="h:del" mode="value" />
+
+  <x:template match="h:pre" mode="value">
+    <x:if test=".//h:*[not(local-name(.)='abbr')]"><v:warn id="pre_elements">Elements inside &lt;pre&gt;</v:warn></x:if>
+    <x:apply-templates mode="value" />
+  </x:template>
+
+  <!-- check vcard. avoid vcards of agents - these are handled separately -->
+  <x:template name="vcard" match="h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ') and not(contains(concat(' ',normalize-space(@class),' '),' agent '))]">
+    <c:vcard>
+
+      <!-- This variable should equal to number of ancestor class=vcard elements, i.e.
+           $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]
+           Prevents reading of properties that belong to sub-vcards.
+      -->
+      <x:variable name="nesting"><x:value-of select="1 + count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])" /></x:variable>
+
+      <x:if test="@id">
+        <c:source>#<x:value-of select="@id" /></c:source>
+      </x:if>
+
+      <x:if test="local-name(.) = 'address'">
+        <v:warn id="vcard_address" href="http://microformats.org/wiki/hcard-faq#Should_I_use_ADDRESS_for_hCards">hCard microformat in &lt;address&gt;</v:warn>
+      </x:if>
+
+      <!--    <x:if test="/h:html/h:head/h:title">
+        <c:name>
+          <x:value-of select="/h:html/h:head/h:title" /><x:if test="@id"><x:text> (</x:text><x:value-of select="@id" />)</x:if>
+        </c:name>
+      </x:if>  -->
 
       <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]">
         <v:warn id="nested_vcard" href="http://microformats.org/wiki/hcard-parsing#nested_hCards">Nested vcard (it's allowed by the spec, but not supported properly by the validator)</v:warn>
@@ -211,25 +227,25 @@
             </x:if>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' type ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:type><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:type>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' post-office-box ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:post-office-box><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:post-office-box>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' street-address ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:street-address><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:street-address>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' extended-address ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <x:if test="ancestor-or-self::h:*[not(local-name(.) = 'abbr') and contains(concat(' ',normalize-space(@class),' '),' fn ')]">
                   <v:info id="place_address" href="http://microformats.org/wiki/hcard-brainstorming#Named_locations">This hCard describes place, not person</v:info>
                 </x:if>
@@ -238,25 +254,25 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' region ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:region><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:region>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' locality ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:locality><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:locality>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' postal-code ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:postal-code><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:postal-code>
 
             </x:for-each>
 
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' country-name ') and
-$nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
+              $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
                 <c:country-name><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:country-name>
 
             </x:for-each>
@@ -297,16 +313,16 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
           </c:agent>
       </x:for-each>
 
+
       <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' bday ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
           <c:bday><x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template></c:bday>
       </x:for-each>
 
-	    <x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' b-day ') or contains(concat(' ',normalize-space(@class),' '),' birthday ') or contains(concat(' ',normalize-space(@class),' '),' bdate ') or contains(concat(' ',normalize-space(@class),' '),' birth-date ') or contains(concat(' ',normalize-space(@class),' '),' birthdate ')) and not(contains(concat(' ',normalize-space(@class),' '),' bday ')) and
+      <x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' b-day ') or contains(concat(' ',normalize-space(@class),' '),' birthday ') or contains(concat(' ',normalize-space(@class),' '),' bdate ') or contains(concat(' ',normalize-space(@class),' '),' birth-date ') or contains(concat(' ',normalize-space(@class),' '),' birthdate ')) and not(contains(concat(' ',normalize-space(@class),' '),' bday ')) and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="birthday_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains <v:arg><x:value-of select="@class"/></v:arg> class. Use bday.</v:warn>
-    	</x:if>
-
+        <v:warn id="birthday_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains <v:arg><x:value-of select="@class"/></v:arg> class. Use bday.</v:warn>
+      </x:if>
 
 
       <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' class ') and
@@ -421,7 +437,7 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
                 <x:call-template name="value"><x:with-param name="nesting"><x:value-of select="$nesting"/></x:with-param></x:call-template>
               </x:otherwise>
             </x:choose>
-		</c:logo>
+          </c:logo>
       </x:for-each>
 
       <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' mailer ') and
@@ -438,20 +454,20 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
 
           <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' prefix ') or contains(concat(' ',normalize-space(@class),' '),' suffix ') or contains(concat(' ',normalize-space(@class),' '),' honorific ')]">
-        	  <v:warn id="honorific_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of honorific-prefix/honorific-suffix</v:warn>
-        	</x:if>
+            <v:warn id="honorific_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of honorific-prefix/honorific-suffix</v:warn>
+          </x:if>
 
-        	<x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' last-name ') or contains(concat(' ',normalize-space(@class),' '),' surname ') or contains(concat(' ',normalize-space(@class),' '),' lastname ')) and not(contains(concat(' ',normalize-space(@class),' '),' family-name '))]">
-        	  <v:warn id="lastname_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of family-name</v:warn>
-        	</x:if>
+          <x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' last-name ') or contains(concat(' ',normalize-space(@class),' '),' surname ') or contains(concat(' ',normalize-space(@class),' '),' lastname ')) and not(contains(concat(' ',normalize-space(@class),' '),' family-name '))]">
+            <v:warn id="lastname_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of family-name</v:warn>
+          </x:if>
 
-        	<x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' first-name ') or contains(concat(' ',normalize-space(@class),' '),' firstname ')]">
-        	  <v:warn id="lastname_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of given-name</v:warn>
-        	</x:if>
+          <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' first-name ') or contains(concat(' ',normalize-space(@class),' '),' firstname ')]">
+            <v:warn id="lastname_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of given-name</v:warn>
+          </x:if>
 
-        	<x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' additional-names ') or contains(concat(' ',normalize-space(@class),' '),' middle-name ')]">
-        	  <v:warn id="additional_names_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of additional-name</v:warn>
-        	</x:if>
+          <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' additional-names ') or contains(concat(' ',normalize-space(@class),' '),' middle-name ')]">
+            <v:warn id="additional_names_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">Uses <v:arg><x:value-of select="@class"/></v:arg> class instead of additional-name</v:warn>
+          </x:if>
 
           <c:n>
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' honorific-prefix ') and
@@ -506,12 +522,12 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
 
           <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' organisation-name ') or contains(concat(' ',normalize-space(@class),' '),' organisation-unit ') and
             $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-        	  <v:error id="organisation_spelling" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">hCard spells organization classes with z</v:error>
-        	</x:if>
+            <v:error id="organisation_spelling" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">hCard spells organization classes with z</v:error>
+          </x:if>
 
-    	    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' unit ') and not(contains(concat(' ',normalize-space(@class),' '),' organization-unit '))]">
-        	  <v:warn id="unit_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">org contains unit class (organization-unit is expected)</v:warn>
-        	</x:if>
+          <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' unit ') and not(contains(concat(' ',normalize-space(@class),' '),' organization-unit '))]">
+            <v:warn id="unit_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">org contains unit class (organization-unit is expected)</v:warn>
+          </x:if>
 
           <c:org>
             <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' organization-name ')]">
@@ -626,8 +642,8 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
 
 
       <x:if test=".//h:a[contains(concat(' ',normalize-space(@class),' '),' uniqid ')]">
-    	  <v:warn href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29" id="uniqid_class">hCard contains uniqid class (only uid is recognized)</v:warn>
-    	</x:if>
+        <v:warn href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29" id="uniqid_class">hCard contains uniqid class (only uid is recognized)</v:warn>
+      </x:if>
 
       <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' uid ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
@@ -655,14 +671,14 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
 
       </x:for-each>
 
-	    <x:if test=".//h:a[contains(@href,'mailto:') and not(ancestor-or-self::h:*[contains(concat(' ',normalize-space(@class),' '),' email ')]) and
+      <x:if test=".//h:a[contains(@href,'mailto:') and not(ancestor-or-self::h:*[contains(concat(' ',normalize-space(@class),' '),' email ')]) and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="mailto_no_class">hCard contains mailto: links without email class</v:warn>
-    	</x:if>
+        <v:warn id="mailto_no_class">hCard contains mailto: links without email class</v:warn>
+      </x:if>
 
-	    <x:if test=".//h:a[contains(concat(' ',normalize-space(@class),' '),' uri ')]">
-    	  <v:warn href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29" id="uri_class">hCard contains uri class (only url is recognized)</v:warn>
-    	</x:if>
+      <x:if test=".//h:a[contains(concat(' ',normalize-space(@class),' '),' uri ')]">
+        <v:warn href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29" id="uri_class">hCard contains uri class (only url is recognized)</v:warn>
+      </x:if>
 
       <x:for-each select=".//h:*[contains(concat(' ',normalize-space(@class),' '),' url ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
@@ -706,51 +722,48 @@ $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),
       </x:for-each>
 
 
-	    <x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' organization ') or contains(concat(' ',normalize-space(@class),' '),' organisation ')) and not(contains(concat(' ',normalize-space(@class),' '),' org ')) and
+      <x:if test=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' organization ') or contains(concat(' ',normalize-space(@class),' '),' organisation ')) and not(contains(concat(' ',normalize-space(@class),' '),' org ')) and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="organization_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">hCard contains organization class (hCard only recognizes org class)</v:warn>
-    	</x:if>
+        <v:warn id="organization_class" href="http://microformats.org/wiki/hcard-cheatsheet#Properties__.28Class_Names.29">hCard contains organization class (hCard only recognizes org class)</v:warn>
+      </x:if>
 
       <!-- usually include class is pre-processed and stripped -->
-	    <x:if test=".//h:a[@href and contains(concat(' ',normalize-space(@class),' '),' include ')] | .//h:object[@data and contains(concat(' ',normalize-space(@class),' '),' include ') and
+      <x:if test=".//h:a[@href and contains(concat(' ',normalize-space(@class),' '),' include ')] | .//h:object[@data and contains(concat(' ',normalize-space(@class),' '),' include ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="include_used" href="http://microformats.org/wiki/include-pattern">Include pattern not supported</v:warn>
-    	</x:if>
+        <v:warn id="include_used" href="http://microformats.org/wiki/include-pattern">Include pattern not supported</v:warn>
+      </x:if>
 
-	    <x:for-each select=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' nick-name ') or contains(concat(' ',normalize-space(@class),' '),' nick ')) and not(contains(concat(' ',normalize-space(@class),' '),' nickname ')) and
+      <x:for-each select=".//h:*[(contains(concat(' ',normalize-space(@class),' '),' nick-name ') or contains(concat(' ',normalize-space(@class),' '),' nick ')) and not(contains(concat(' ',normalize-space(@class),' '),' nickname ')) and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])][1]">
-    	  <v:warn id="nick_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains '<v:arg><x:value-of select="@class"/></v:arg>' class. Use nickname.</v:warn>
-    	</x:for-each>
+        <v:warn id="nick_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains '<v:arg><x:value-of select="@class"/></v:arg>' class. Use nickname.</v:warn>
+      </x:for-each>
 
-	    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' name ') and
+      <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' name ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="name_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains name class (vCard's name is taken from page title and people names are described with fn or n)</v:warn>
-    	</x:if>
+        <v:warn id="name_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains name class (vCard's name is taken from page title and people names are described with fn or n)</v:warn>
+      </x:if>
 
-	    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' profile ') and
+      <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' profile ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="profile_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains profile class (it's ignored in hCard)</v:warn>
-    	</x:if>
+        <v:warn id="profile_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains profile class (it's ignored in hCard)</v:warn>
+      </x:if>
 
-	    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' source ') and
+      <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' source ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="source_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains source class (vCard's source is taken from page's URL)</v:warn>
-    	</x:if>
+        <v:warn id="source_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains source class (vCard's source is taken from page's URL)</v:warn>
+      </x:if>
 
-	    <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' prodid ') and
+      <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' prodid ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="prodid_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains prodid class (it's ignored in hCard)</v:warn>
-    	</x:if>
+        <v:warn id="prodid_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains prodid class (it's ignored in hCard)</v:warn>
+      </x:if>
 
-    	<x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' version ') and
+      <x:if test=".//h:*[contains(concat(' ',normalize-space(@class),' '),' version ') and
         $nesting = count(ancestor::h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')])]">
-    	  <v:warn id="version_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains version class (it's ignored in hCard, use rev for versioning)</v:warn>
-    	</x:if>
+        <v:warn id="version_class" href="http://microformats.org/wiki/hcard#Property_Exceptions">hCard contains version class (it's ignored in hCard, use rev for versioning)</v:warn>
+      </x:if>
 
     </c:vcard>
-	</x:template>
-
-
-
+  </x:template>
 
 </x:stylesheet>
