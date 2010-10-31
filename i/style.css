@@ -32,6 +32,10 @@ abbr {text-transform: lowercase;
 	border-bottom: 0;
 	letter-spacing:0.1ex;
 	font-size:110%;line-height:1}
+
+#email-encoder input[type=email] {min-width:20em;}
+#email-encoder small {margin-left:1em; color:#aaa}
+
 code,samp,pre {font: 0.91em "Consolas","Monaco","Lucida Console","Andale Mono",monospace;white-space:pre-wrap;}
 samp {color:#333;}
 h3 > code,h3 > samp {font-size: 0.95em;font-weight:bold}
