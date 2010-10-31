@@ -40,7 +40,7 @@
       </form>
       <form action="/#result" method="get">
         <h3 i18n:translate="">Example</h3>
-        <p i18n:translate="structure 'exampleintro'">If <a href="http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard">searching</a> for <a href="http://microformats.org/wiki/hcard-examples-in-wild-reviewed">hCards in the wild</a> is tiring, check one of the test-cases:</p>
+        <p i18n:translate="structure 'exampleintro'">If searching for <a href="http://microformats.org/wiki/hcard-examples-in-wild-reviewed">hCards in the wild</a> is tiring, check one of the test-cases:</p>
         <div><label for="example" i18n:translate="">Example file</label>
           <select name="example" id="example" onchange="this.form.fragment.value=''">            
             <option tal:repeat="file php:glob('examples/*.htm*')" tal:content="php:basename(file)" value="${file}" tal:attributes="selected php:file == filename" />
