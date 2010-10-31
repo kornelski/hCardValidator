@@ -1,16 +1,16 @@
-<?php header("Content-Type:text/html;charset=UTF-8"); ?>
-<h1>Selftest <?php echo time() ?></h1><?php
+<?php
+
+/**
+ * Runs validator on test-case files in tests/ and examples/
+ */
 
 require_once "class/loader.php";
 require_once "class/validationresult.php";
 require_once "class/vcard.php";
 require_once "class/hcardvalidator.php";
 require_once "class/controller.php";
-
 require_once "PHPTAL.php";
 require_once "PHPTAL/GetTextTranslator.php";
-$c = new Controller();
-$c->init(true);
 
 class AutoTest
 {
@@ -28,16 +28,7 @@ class AutoTest
         echo '<div><h2 style="display:inline;font-size:0.8em;margin:0.5em 0;color:#bbb;font-weight:normal">'.$file.'</h2> ';
         $result = $this->validator->validateFile($file);
 
-        if (preg_match_all('/@expect:?\s*([^-\n;]+)/',file_get_contents($file),$m))
-        {
-            foreach($m[1] as $line)
-            {
-                foreach(preg_split('/[ ,]+/',$line,NULL,PREG_SPLIT_NO_EMPTY) as $errclass)
-                {
-                    if(isset($expected[$errclass])) $expected[$errclass]++; else $expected[$errclass] = 1;
-                }
-            }
-        }
+        $this->addExpectedErrorsFromFile($file, $expected);
 
         $this->checkResult($result,$expected);
 
@@ -57,6 +48,25 @@ class AutoTest
         if ($this->unexpected_errors > 15) throw new Exception("Enough errors");
     }
 
+    private function addExpectedErrorsFromFile($file, array &$expected)
+    {
+        if (preg_match_all('/@expect:?\s*([^-\n;]+)/',file_get_contents($file),$m))
+        {
+            foreach($m[1] as $line)
+            {
+                foreach(preg_split('/[ ,]+/',$line,NULL,PREG_SPLIT_NO_EMPTY) as $errclass)
+                {
+                    if(isset($expected[$errclass])) $expected[$errclass]++; else $expected[$errclass] = 1;
+                }
+            }
+        }
+    }
+
+    /**
+     * Compares errors in $result with counters in $expected and displays result
+     *
+     * @param $expected passed by reference to decrement counters in recursively checked hcards
+     */
     private function checkResult($result, array &$expected)
     {
         $hadUnexpectedErrors = false;
@@ -106,6 +116,9 @@ class AutoTest
 
     function testAll()
     {
+        header("Content-Type:text/html;charset=UTF-8");
+        ?><h1>Selftest <?php echo time() ?></h1><?php
+
         $start = microtime(true);
         $filesnum = 0;
         try
@@ -120,7 +133,10 @@ class AutoTest
             $files = glob("tests/*");
             foreach($files as $file)
             {
-                $this->testFile($file,array(basename($file,'.html')=>1));
+                // tests use filename same as error ID,
+                // so I don't need to put @expected comment in every one
+                $expected_error_name = basename($file, '.html');
+                $this->testFile($file, array($expected_error_name =>1));
                 $filesnum++;
             }
 
@@ -140,6 +156,9 @@ class AutoTest
         echo '<p>Done '.$filesnum.' files at '.round($filesnum / $total).' files/s</p>';
     }
 }
+
+$c = new Controller();
+$c->init(true);
 
 $t = new AutoTest();
 $t->testAll();
