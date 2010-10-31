@@ -92,6 +92,8 @@ tbody:first-child tr:first-child th {border-top:0;}
   -moz-outline-radius-topright: 6px; -moz-outline-radius-topleft: 6px;
   outline-offset:-3px; 
   -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
   -moz-user-select: none;
 }
 #tabs > ul > li:focus {border-color:black;color:black; padding-top:3px;margin-top:0;}
@@ -99,9 +101,13 @@ tbody:first-child tr:first-child th {border-top:0;}
 #tabs > ul > li.active, #tabs > ul > li:active {
   color:black;background:white;padding-top:3px;margin-top:0;
   -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 .hidden {display:none;}
 .active > h3 {display:none;}
+
+#tabs .api-and-other {margin-left:1em}
 
 @media screen and (max-width:950px)
 {
