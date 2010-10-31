@@ -15,7 +15,7 @@ class Controller
         error_reporting($debug ? E_ALL : 0);
 
         date_default_timezone_set('UTC');
-                
+
         if (!function_exists('bindtextdomain')) throw new Exception("Gettext not installed");
     }
 
@@ -40,7 +40,7 @@ class Controller
         {
             $this->translator->setLanguage('en_US.utf8','en_US.UTF-8','en_US','en');
         }
-        
+
         $this->translator->addDomain('main', './locale/');
         $this->translator->addDomain('props', './locale/');
         $this->translator->addDomain('errors', './locale/');
@@ -69,19 +69,19 @@ class Controller
         {
             return 'pl';
         }
-        return 'en';        
+        return 'en';
     }
 
     function run()
     {
-        $out = array(        
+        $out = array(
             'filename' => '',
             'host' => $_SERVER['HTTP_HOST'],
             'post' => $_POST,
             'get' => $_GET,
             'lang' => $this->getLanguage(),
         );
-        
+
         if (isset($_POST['feedback']))
         {
             $out['activetab'] = 'feedback';
@@ -112,9 +112,9 @@ class Controller
             $out['activetab'] = 'url';
             $out = array_merge($out, $this->main());
         }
-        
+
         if (isset($out['result'])) $this->localizeValidationResult($out['result']);
-        
+
         if (isset($out['cache_control']))
         {
             header("Cache-Control: ".$out['cache_control']);
@@ -129,31 +129,31 @@ class Controller
             $this->phptalOutput($out);
         }
     }
-    
+
     private function localizeValidationResult(ValidationResult $res)
     {
         foreach($res->errors as &$error)
         {
             $message = $this->localizedMessage($error['class'], $error['message'], $error['args']);
-            
+
             $more = NULL;
             $t = explode("\n",$message,2);
             if (count($t)==2)
             {
                 list($message,$more) = $t;
             }
-            
+
             unset($error['args']);
             $error['message'] = $message;
             $error['more'] = $more;
         }
-        
+
         foreach($res->vcards as $vcard)
         {
             $this->localizeValidationResult($vcard->result);
         }
     }
-    
+
     /**
 	 * try to translate message using $error_class as a key, use $default_message otherwise
 	 * HTML is allowed in message. Escaped in args.
@@ -164,7 +164,7 @@ class Controller
 	 * @return string
 	 */
     private function localizedMessage($error_class, $default_message, array $args = array())
-    {        
+    {
         if (false !== strpos($default_message,'%d'))
         {
             $txt = dngettext("errors",$error_class, $error_class, $args[0]);
@@ -173,7 +173,7 @@ class Controller
         {
             $txt = dgettext("errors",$error_class);
         }
-        
+
         if (!$txt || $txt === $error_class) $txt = $default_message;
 
         if (count($args))
@@ -188,28 +188,28 @@ class Controller
         }
         return $txt;
     }
-	
-    
+
+
     private function phptalOutput(array $out)
     {
         $template=new PHPTAL('tpl/main.html');
-        
+
         foreach($out as $k => $v)
         {
             $template->set($k,$v);
         }
-                
+
         $template->setTranslator($this->translator);
 
         // help IE fail in less scary way
         if (isset($_SERVER['HTTP_USER_AGENT'],$_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] == '*/*' && false !== strpos($_SERVER['HTTP_USER_AGENT'],'MSIE '))
             header("Content-Type:application/xml;charset=UTF-8");
-        else 
+        else
             header("Content-Type:application/xhtml+xml;charset=UTF-8");
-            
-        echo $template->execute();        
+
+        echo $template->execute();
     }
-    
+
     private function jsonOutput(array $out)
     {
         $api = array();
@@ -244,7 +244,7 @@ class Controller
         header("Content-Disposition:inline; filename=\"hcardvalidator.json\"");
         echo json_encode($api);
     }
-    
+
     private function errorToAPIMessage(array $err, $cardnum = NULL)
     {
         $msg = html_entity_decode(strip_tags($err['message']),ENT_QUOTES,'UTF-8');
@@ -264,30 +264,30 @@ class Controller
 
         return $message;
     }
-        
+
     /**
      * ensure that UTF-8 is valid and does not contain any characters forbidden in XML
      */
     public static function cleanUTF8($str, $charset = 'UTF-8')
     {
-        $str = @iconv($charset,'UTF-8//IGNORE',$str);        
+        $str = @iconv($charset,'UTF-8//IGNORE',$str);
         $str = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+|\xC2[\x80-\x9F]/','',$str);
         return $str;
     }
-    
+
     public static function escapeXML($str)
     {
         return htmlspecialchars(self::cleanUTF8($str));
     }
 
-    
+
     function feedback()
-    {       
+    {
         $out = array();
-        
+
         $out['feedbackname'] = isset($_POST['feedbackname']) ? self::cleanUTF8($_POST['feedbackname']) : NULL;
         $out['feedback'] = isset($_POST['feedback']) ? self::cleanUTF8($_POST['feedback']) : NULL;
-            
+
         if (!$out['feedback'])
         {
             $out['feedback_error'] = $this->translator->translate('Please write your feedback');
@@ -315,7 +315,7 @@ class Controller
         }
         return $out;
     }
-    
+
     private function fragment($source)
     {
         $out = array();
@@ -323,19 +323,19 @@ class Controller
 
         $validator = new hCardValidator();
         $out['fragment'] = self::cleanUTF8($source);
-        $out['result'] = $validator->validateXHTMLFragment($out['fragment']); 
-        return $out;      
+        $out['result'] = $validator->validateXHTMLFragment($out['fragment']);
+        return $out;
     }
-    
+
     private function file(array $FILE)
     {
         $out = array();
         $validator = new hCardValidator();
         $out['result'] = $validator->validateUpload($FILE);
-        $out['source'] = file_get_contents($FILE['tmp_name']);        
+        $out['source'] = file_get_contents($FILE['tmp_name']);
         return $out;
     }
-    
+
     private function url($url)
     {
         $out = array();
@@ -345,10 +345,10 @@ class Controller
         $result = $validator->validateURL(self::cleanUTF8($url));
         $out['url'] = isset($result->url) ? $result->url : NULL;
         $out['result'] = $result;
-        $out['source'] = isset($result->source) ? $result->source : NULL;   
-        return $out;     
+        $out['source'] = isset($result->source) ? $result->source : NULL;
+        return $out;
     }
-    
+
     private function example($examplefile)
     {
         $out = array();
@@ -373,6 +373,6 @@ class Controller
         $out = array();
         $out['cache_control'] = "max-age=".(3600*24*1);
         return $out;
-    }   
+    }
 }
 

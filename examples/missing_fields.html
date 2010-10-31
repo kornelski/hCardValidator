@@ -3,18 +3,18 @@
     <title>Missing fields</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
-    <div class="vcard" id="a"> 
+  <body>
+    <div class="vcard" id="a">
         <div class="fn"></div> <!-- @expect empty_prop no_fn -->
         <div class="n"><span class="family-name">Me</span></div>
     </div>
-     
+
     <div class="vcard">
         <div class="fn">Name 1</div> <!-- @expect multi_fn -->
         <div class="fn">Name 2</div>
     </div>
 
-    <div class="vcard" id="b"> 
+    <div class="vcard" id="b">
         <div class="fn">  <!-- @expect multi_n -->
             <div class="n"><span class="family-name">Me</span></div>
         or

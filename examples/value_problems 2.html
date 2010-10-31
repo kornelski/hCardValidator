@@ -3,26 +3,26 @@
     <title>Valid 1</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
-    <div class="vcard">      
+  <body>
+    <div class="vcard">
       <div class="adr">
           <!-- @expect no_n no_fn -->
           <!-- @expect email_as_url mailto_no_class  -->
           <a class="url" href="mailto:stuff">meh</a>
-          
+
           <!-- @expect url_as_value -->
-         <span class="url">http://foobar.com</span> 
-          
+         <span class="url">http://foobar.com</span>
+
         <!-- @expect abbr_no_title -->
         <abbr class="street-address">169 University Avenue</abbr>
-        <span class="locality">Palo Alto</span>,  
+        <span class="locality">Palo Alto</span>,
         <div class="country-name">USA</div>
       </div>
       <div class="tel">
           <!-- @expect type_value tel_letters -->
        <span class="type value">Work</span> +1-650-289-4040
       </div>
-        <div>Email: 
+        <div>Email:
 
         <!-- @expect multiple_emails email_value -->
        <span class="email">
@@ -30,7 +30,7 @@
            <a href="mailto:info@commerce.net">mail me</a>
            <a href="mailto:info@commerce.net">mail me</a>
        </span>
-       
+
         <!-- @expect multiple_urls empty_prop -->
        <span class="url">
            <a href="commerce.net">click me</a>

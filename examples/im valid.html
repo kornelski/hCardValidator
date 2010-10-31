@@ -3,30 +3,30 @@
     <title>Valid 7 hcard-examples</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
       <div class="vcard">
         <p class="fn">Chatter</p> AKA <p class="nickname">ChattyChatter</p> <!-- @expect implied_nickname -->
-        
+
         <a class="email" href="mailto:  joe@example.com?subjec=foo">IM with the AIM ShoppingBuddy</a>
         <a class="url" href="aim:goim?screenname=ShoppingBuddy">IM with the AIM ShoppingBuddy</a>
-        
+
         <a class="url" href="ymsgr:sendIM?SomeYahooFriend">IM with SomeYahooFriend</a>
-        
+
         <a class="url" href="msnim:chat?contact=joebob@hotmail.com">IM with joebob@hotmail.com</a>
-        
+
         <!-- @expect url_as_value -->
         <!-- class=value should silence nesting error (and use textnode, rather than href), but warn about url_as_value -->
         <b class="url"><a class="value" href="xmpp:username@jabberservice.com">xmpp:username@jabberservice.com</a></b>
-        
-        
+
+
         <a class="url" href="skype:echo-chinese?chat">IM with the Skype echo service (Chinese)</a>
         <a class="url" href="skype:echo-chinese?call">Skype call to Skype echo service (Chinese)</a>
         <a class="url" href="gg:123456">Gadu-Gadu</a>
-        
+
         <a class="url"
-           type="application/x-icq" 
+           type="application/x-icq"
            href="http://www.icq.com/people/cmd.php?uin=1234&amp;action=message">
          Contact with ICQ</a>
-      </div>  
+      </div>
   </body>
 </html>

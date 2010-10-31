@@ -43,11 +43,11 @@ if (isset($_GET['addr']))
 $addr = trim(strip_tags($_GET['addr'])); // paranoid
 
 // that's class attribute containing newlines and attribute-like syntax. should be enough to confuse regex-based extractors
-$out = '<a 
+$out = '<a
 class=\'email
  href="mailto:me"
-\' 
-href 
+\'
+href
 = \''."\t".'
 &#x20;'.enkoduj($addr).'
 \'>'.enkoduj($addr,false).'</a>';

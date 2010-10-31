@@ -291,7 +291,7 @@ class hCardValidator
                 {
                     if ($uids[$uid] != $fn) $vcard->result->add("warn","repeated_uid","Uid <samp>%s</samp> used more than once\nIt's supposed to be <em>globally unique</em> identifier corresponding to the individual or resource",array($uid));
                 }
-                
+
                 $uids[$uid] = $fn;
             }
 
@@ -795,7 +795,7 @@ class hCardValidator
     private function extractLibxmlMessageArgs($err)
     {
         $msg = $err->message;
-        
+
         foreach(self::$libxmlmessages as $pattern => $class)
         {
             if (preg_match('/^'.$pattern.'/',$msg,$m))

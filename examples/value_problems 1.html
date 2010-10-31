@@ -3,16 +3,16 @@
     <title>Valid 1</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
     <div class="vcard">
         <!-- @expect no_href honorific_name -->
       <a class="fn url n"><span class="family-name">Brig. Gen. Testing Jr.</span></a>
-      
+
       <div class="adr">
         <!-- @expect acronym -->
         <acronym title="bla" class="type">Work</acronym>:
         <!-- @expect title_and_value -->
-        <abbr class="region" title="California"><span class="value">CA</span></abbr>  
+        <abbr class="region" title="California"><span class="value">CA</span></abbr>
         <span class="postal-code">94301</span>
         <div class="country-name">USA</div>
       </div>
@@ -20,16 +20,16 @@
           <!-- @expect br_value empty_subprop -->
         <br class="type">Fax</br> +1-650-289-4041
       </div>
-      <div>Email: 
+      <div>Email:
           <!-- @expect a_in_email email_value -->
        <span class="email"><a href="mailto:info@commerce.net">mail me</a></span>
-       
+
        <!-- @expect multiple_urls empty_prop -->
        <div class="url"><a href="1">1</a><a href="2">2</a></div>
-       
+
        <!-- @expect a_in_url empty_prop -->
-          <div class="url"><a href="1">1</a></div>       
-       
+          <div class="url"><a href="1">1</a></div>
+
       </div>
     </div>
   </body>

@@ -3,7 +3,7 @@
     <title>Geo 2</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
 
     <div class=" vcard vcard " id="card1">
       <!-- @expect geo_value -->
@@ -13,19 +13,19 @@
       </span>
     </div>
     <div class=" vcard vcard ">
-       <span class="geo">   
-           <!-- @expect longitude_missing -->        
-           <abbr class="latitude" title="37.386013"><b class="fn nickname">over</b></abbr>                     
+       <span class="geo">
+           <!-- @expect longitude_missing -->
+           <abbr class="latitude" title="37.386013"><b class="fn nickname">over</b></abbr>
       </span>
     </div>
     <div class=" vcard vcard " id="card2">
         <span class="geo">
-                 <!-- @expect latitude_missing no_fn no_n --> 
+                 <!-- @expect latitude_missing no_fn no_n -->
               <span class="longitude">-122.082932</span>
          </span>
     </div>
-    
-    
+
+
     <div class=" vcard vcard " id="card3">
         <!-- @expect geo_abbr_syntax -->
        <abbr class="geo" title="37.386013,-123.082932"><i class="fn nickname">bla</i></abbr>

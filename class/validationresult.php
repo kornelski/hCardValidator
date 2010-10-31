@@ -79,7 +79,7 @@ class ValidationResult
 
 	/**
 	 * add new error
-	 * 
+	 *
 	 * @param $type - error, warn or info
 	 * @param $error_class - @see localizedMessage
 	 * @param $default_message - if message has more than one line, first line is used as header, rest is body.

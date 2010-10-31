@@ -3,44 +3,44 @@
     <title>Valid 3</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
     <div id="contact" class="noise vcard">
        <h2>Contact Me</h2>
        <h3 class="fn">Jane Doe</h3>
-       
-       
-       <p>You can contact me via email to 
-        <a class="email" href="mailto:jane@example.com">jane@example.com</a>, 
+
+
+       <p>You can contact me via email to
+        <a class="email" href="mailto:jane@example.com">jane@example.com</a>,
         or reach me at the following address:</p>
-        
+
         <!-- @expect adr_address -->
-       <address class="adr">           
+       <address class="adr">
            <span class="org">
                Org
-               
+
                <!-- @expect org_unit_extended_adr -->
                <span class="organization-unit">
                   unit
                </span>
-               
+
                <!-- @expect organisation_spelling -->
-               <b class="organisation-name">?</b>     
-                         
+               <b class="organisation-name">?</b>
+
            </span>
-           
+
            <!-- @expect organization_class -->
            <b class="organization"></b>
-           
-           
+
+
          <span class="street-address">255 Some Street</span>
          <!-- @expect split_value -->
          <span class="locality"><span class="value">Some</span> ignore<span class="value"> Town</span></span>
          <span class="region">Some Place</span>
        </address>
-       
+
        <!-- @expect nested_uid multi_uid -->
        <div class='uid'><a href="bla"></a></div>
-       
+
        <!-- @expect openid -->
        <a class="uid url" href="http://my.open.id">openid!</a>
     </div>

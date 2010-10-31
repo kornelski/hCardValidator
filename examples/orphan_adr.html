@@ -3,13 +3,13 @@
     <title>Orphan adr</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
     <div class="vcard">
         <!-- @expect uri_class, company -->
       <a class="fn org uri" href="http://www.commerce.net/">CommerceNet</a>
-      
+
         <span class="type">Work</span>:
-        
+
         <div class="street-address">169 University Avenue</div> <!-- @expect orphan_adr_subprop -->
         <span class="locality">Palo Alto</span>,  <!-- @expect orphan_adr_subprop -->
         <abbr class="region" title="California">CA</abbr>  <!-- @expect orphan_adr_subprop -->
@@ -22,7 +22,7 @@
       <div class="tel">
         <span class="type">Fax</span> +1-650-289-4041
       </div>
-      <div>Email: 
+      <div>Email:
        <span class="email">info@commerce.net</span>
       </div>
     </div>

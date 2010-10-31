@@ -3,29 +3,29 @@
     <title>Valid 7 hcard-examples</title>
     <link rel="stylesheet" href="/i/test.css" />
   </head>
-  <body>    
+  <body>
       <div class="vcard">
         <!-- @expect implied_nickname -->
         <p class="fn">Chatter</p>
-        
+
         <a class="email" href="aim:ShoppingBuddy">IM with the AIM ShoppingBuddy</a><!-- @expect email_non_mailto -->
-        
+
         <a class="url" href="ymsgr:SomeYahooFriend">IM with SomeYahooFriend</a>
-        
+
         <a class="url" href="msnim:joebob@hotmail.com">IM with joebob@hotmail.com</a>
-        
+
         <a class="url" href="jabber:username@jabberservice.com">IM with username@jammerservice.com</a><!-- @expect jabber_protocol -->
-        
+
         <a class="url" href="skype:echo-chinese">Nochat!</a>
         <a class="url" href="skype:echo-chinese?call">Skype call to Skype echo service (Chinese)</a>
         <a class="url" href="icq:123456">Skype call to Skype echo service (Chinese)</a>
-        
-        
+
+
         <!-- @expect email_http -->
         <a class="email"
-           type="application/x-icq" 
+           type="application/x-icq"
            href="http://www.icq.com/people/cmd.php?uin=1234&amp;action=message">
          Contact with ICQ</a>
-      </div>  
+      </div>
   </body>
 </html>

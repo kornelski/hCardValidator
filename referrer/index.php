@@ -2,7 +2,7 @@
 header('Vary: Referer');
 
 if (!empty($_SERVER['HTTP_REFERER']) && preg_match('!^https?://!',$_SERVER['HTTP_REFERER']))
-{ 
+{
     header('HTTP/1.1 302 go');
     $url = 'http://'.$_SERVER['HTTP_HOST'].'/?url='.rawurlencode($_SERVER['HTTP_REFERER']);
     header('Location: '.$url);
