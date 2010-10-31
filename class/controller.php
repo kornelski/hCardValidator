@@ -16,7 +16,10 @@ class Controller
 
         date_default_timezone_set('UTC');
 
+        if (!function_exists('iconv')) throw new Exception("Iconv not installed");
         if (!function_exists('bindtextdomain')) throw new Exception("Gettext not installed");
+        if (!function_exists('mb_strlen')) throw new Exception("mbstring not installed");
+        if (!class_exists('XSLTProcessor')) throw new Exception("XSLTProcessor not installed");
     }
 
     /** Set up local XML Catalog (env variable read by libxml) to avoid hitting W3C website whenever document with DOCTYPE is validated */
@@ -270,7 +273,9 @@ class Controller
      */
     public static function cleanUTF8($str, $charset = 'UTF-8')
     {
-        $str = @iconv($charset,'UTF-8//IGNORE',$str);
+        if (function_exists('iconv')) {
+            $str = @iconv($charset,'UTF-8//IGNORE',$str);
+        }
         $str = preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]+|\xC2[\x80-\x9F]/','',$str);
         return $str;
     }
