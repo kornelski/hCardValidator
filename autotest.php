@@ -113,7 +113,7 @@ class AutoTest
             $files = glob("tests/uf/*");
             foreach($files as $file)
             {        
-                $this->testFile($file,array('no_head_profile'=>1));
+                $this->testFile($file);
                 $filesnum++; 
             }
 

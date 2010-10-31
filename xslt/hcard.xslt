@@ -45,9 +45,9 @@
     	    </x:when>
     
     	    <x:when test="not(/h:html/h:head[string(@profile)])">
-    	      <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]">
+    	      <!-- <x:if test="//h:*[contains(concat(' ',normalize-space(@class),' '),' vcard ')]">
     	        <v:warn id="no_head_profile" href="http://microformats.org/wiki/hcard-profile#Usage">&lt;head&gt; doesn't have profile='http://www.w3.org/2006/03/hcard'</v:warn>
-    	      </x:if>  
+    	      </x:if>   -->
     	    </x:when>
 
           <x:otherwise>
