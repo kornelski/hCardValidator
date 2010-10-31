@@ -6,9 +6,9 @@ require_once "class/validationresult.php";
 require_once "class/vcard.php";
 require_once "class/hcardvalidator.php";
 require_once "class/controller.php";
-require_once "phptal/PHPTAL.php";
-require_once "phptal/PHPTAL/GetTextTranslator.php";
 
+require_once "PHPTAL.php";
+require_once "PHPTAL/GetTextTranslator.php";
 $c = new Controller();
 $c->init(true);
 

@@ -8,8 +8,8 @@ require_once "class/controller.php";
 
 require_once "sblamtest.php";
 
-require_once "phptal/PHPTAL.php";
-require_once "phptal/PHPTAL/GetTextTranslator.php";
+require_once "PHPTAL.php";
+require_once "PHPTAL/GetTextTranslator.php";
 
 try
 {
