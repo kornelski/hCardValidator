@@ -60,6 +60,7 @@ class Controller
 
     private function getLanguage()
     {
+        // subdomains have fixed language
         if (substr($_SERVER['HTTP_HOST'],0,3)=='pl.')
         {
             return 'pl';
@@ -68,6 +69,7 @@ class Controller
         {
             return 'en';
         }
+        // otherwise Accept is used
         else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && preg_match('/\bpl(\b|_)/',$_SERVER['HTTP_ACCEPT_LANGUAGE']))
         {
             return 'pl';
@@ -192,10 +194,19 @@ class Controller
         return $txt;
     }
 
+    /**
+     * Validator's hostname without language prefix
+     */
+    private function getBaseHostname()
+    {
+        return preg_replace('/^[a-z]{2}\.|:\+/','',$_SERVER['HTTP_HOST']);
+    }
 
     private function phptalOutput(array $out)
     {
-        $template=new PHPTAL('tpl/main.html');
+        $template = new PHPTAL('tpl/main.html');
+
+        $template->set('basehostname', $this->getBaseHostname());
 
         foreach($out as $k => $v)
         {

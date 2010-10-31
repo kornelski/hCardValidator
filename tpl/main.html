@@ -1,18 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+<!--!
+
+This is PHPTAL template file.
+
+Be careful when chaning contents of elements with i18n attributes — their text is read from .po files.
+
+--><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="${lang | 'en'}">
   <head profile='http://www.w3.org/2006/03/hcard'>
     <title i18n:translate="'title'">hCard Validator</title>
     <link rel="stylesheet" href="/i/style.css" />
     <link rel="icon" href="/i/favicon.png" />
+	<link rel="alternate" hreflang="en" href="http://en.${basehostname}/"/>
+	<link rel="alternate" hreflang="pl" href="http://pl.${basehostname}/"/>
   </head>
   <body>
     <h1 i18n:translate="structure 'h1'">hCard micro<b>format</b> Validator <small>(beta, of course)</small></h1>
     <p i18n:translate="structure 'intro'">This is an unofficial validator<a href="#footnotes">¹</a>/conformance checker of the <a href="http://microformats.org/wiki/hcard">hCard microformat</a>.</p>
 
 	<p class="langs">
-		<a tal:condition="php:lang=='pl'" hreflang="en" href="http://en.hcard.geekhood.net/">In English</a>
-		<a tal:condition="php:lang=='en'" hreflang="pl" href="http://pl.hcard.geekhood.net/">Po polsku</a>
+		<a tal:condition="php:lang=='pl'" hreflang="en" href="http://en.${basehostname}/">In English</a>
+		<a tal:condition="php:lang=='en'" hreflang="pl" href="http://pl.${basehostname}/">Po polsku</a>
 		<br/><tal:block i18n:translate="">(translations welcome!)</tal:block>
 	</p>
 
@@ -56,7 +64,7 @@
           <h4 i18n:translate="structure 'byreferrer'">Any page by <code>Referer</code></h4>
           <p><code>&lt;a href=&quot;http://${host}/refe<strong>rr</strong>er/&quot;&gt;<tal:block i18n:translate="">Validate hCards</tal:block>&lt;/a&gt;</code></p>
           <h4 i18n:translate="">Bookmarklet</h4>
-		  <p><a class="button" href="javascript:window.location='http://hcard.geekhood.net/?url='+escape(window.location)" onclick="alert('Please drag it to your bookmarks bar');return false;" rel="bookmark">hCard?</a></p>
+		  <p><a class="button" href="javascript:window.location='http://${basehostname}/?url='+escape(window.location)" onclick="alert('Please drag it to your bookmarks bar');return false;" rel="bookmark">hCard?</a></p>
           <h4 i18n:translate="structure 'restful'"><abbr>REST</abbr>ful <abbr>JSON</abbr> <abbr>API</abbr></h4>
 		  <tal:block i18n:translate="structure 'apidescription'">
           <p>Send <code>GET</code> request to <code i18n:name="url">http://${host}/?url=<var i18n:translate="">URL to validate</var>&amp;output=json</code>.</p>
@@ -219,6 +227,7 @@
       </table>
   </tal:block>
 
+  <!--! Obfuscated e-mail address. Needs PHP block, because PHPTAL parser deobfuscates it  -->
   <span metal:define-macro="emailcard" class="vcard"><?php
     echo <<<HTML
 <a
