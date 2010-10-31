@@ -306,12 +306,11 @@ class Controller
             "\nMsg:\n\n".$out['feedback'];
 
             $isspam = sblamtestpost(array('feedback','feedbackname'),'W4RBXxrfhASlRgs19K') >= 1;
-
             if (!$isspam && mail("hcard@geekhood.net","hCard Validator feedback from ".
             substr(preg_replace('/[^a-z0-9_ !?:+-]+/i',' ',$_POST['feedbackname']),0,40), $msg, "Content-Type: text/plain;charset=UTF-8\r\nFrom: \"hCard Validator\" <hcard@geekhood.net>"))
             {
                 unset($out['feedback']); unset($out['feedbackname']);
-                $out['feedback_ok'] = $tr->translate("The message has been sent, thank you!");
+                $out['feedback_ok'] = $this->translator->translate("The message has been sent, thank you!");
             }
             else
             {
