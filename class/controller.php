@@ -183,10 +183,10 @@ class Controller
         {
             foreach($args as &$ar)
             {
-                $ar = self::escapeXML($ar);
+                $ar = str_replace("\n"," ",self::escapeXML($ar));
             }
             array_unshift($args,$txt);
-//            echo print_r($args);
+
             $txt = call_user_func_array('sprintf',$args);
         }
         return $txt;
