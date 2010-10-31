@@ -105,7 +105,10 @@ msgid "send feedback via e-mail"
 msgstr "wysłać komentarz przez e-mail"
 
 msgid "feedbacknote"
-msgstr "Jeśli zgłaszasz błąd lub masz sugestię, nie zapomnij dołączyć przykładowego kodu."
+msgstr "Jeśli ${bug} lub masz sugestię, nie zapomnij dołączyć przykładowego kodu."
+
+msgid "feedbacknote_bug"
+msgstr "zgłaszasz błąd"
 
 msgid "You can ${email} or the form below."
 msgstr "Możesz ${email} lub użyć formularza poniżej."

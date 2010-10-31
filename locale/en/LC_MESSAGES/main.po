@@ -99,7 +99,10 @@ msgid "You can ${email} or the form below."
 msgstr "You can ${email} or the form below."
 
 msgid "feedbacknote"
-msgstr "If you're reporting a bug or have a suggestion, don't forget to include example hCard code."
+msgstr "If you're ${bug} or have a suggestion, don't forget to include example hCard code."
+
+msgid "feedbacknote_bug"
+msgstr "reporting a bug"
 
 msgid "Your name"
 msgstr "Your name"

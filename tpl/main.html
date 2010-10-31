@@ -71,13 +71,11 @@
             <p tal:condition="exists:feedback_error" tal:content="structure feedback_error" class="error" />
             <tal:block tal:condition="php:empty(feedback_ok) and empty(feedback_error)">
                 <p i18n:translate="">You can <tal:block i18n:name="email" metal:use-macro="email"><tal:block metal:fill-slot="label" i18n:translate="">send feedback via e-mail</tal:block></tal:block> or the form below.</p>
-                <p i18n:translate="'feedbacknote'">If you're reporting a bug or have a suggestion, don't forget to include example hCard code.</p>
+                <p i18n:translate="'feedbacknote'">If you're reporting a <a href="http://github.com/pornel/hCardValidator/issues" i18n:name="bug"><tal:block i18n:translate="'feedbacknote_bug'">bug</tal:block></a> or have a suggestion, don't forget to include example hCard code.</p>
             </tal:block>
             <div><label for="feedbackname" i18n:translate="">Your name</label><input type="text" id="feedbackname" name="feedbackname" value="${feedbackname | nothing}" /></div>
             <div><label for="feedback" i18n:translate="">Your comment</label><textarea id="feedback" name="feedback" cols="70" rows="10" tal:content="feedback | nothing" /></div>
             <p><input type="submit" value="Send feedback" i18n:attributes="value" /></p>
-
-
       </form>
     </div>
     <script type="text/javascript"><![CDATA[
@@ -187,7 +185,7 @@
 
     <h2 i18n:translate="">Credits</h2>
     <p i18n:translate="structure 'fullcredits'">Written by <tal:block i18n:name="writtenby" metal:use-macro="emailcard"><tal:block metal:fill-slot="label">Kornel Lesiński</tal:block></tal:block>. Icons are from <a href="http://tango.freedesktop.org/" i18n:name="tango">Tango Icon Library</a>. Test cases include <a href="http://microformats.org/wiki/Acid_Test" i18n:name="acid">hCard Acid test</a> by Dmitry Baranovskiy, examples from <a href="http://microformats.org/" i18n:name="uforg">microformats.org</a> and <a href="http://ufxtract.com/testsuite/hcard/" i18n:name="testsuite">hCard test suite</a>.</p>
-	<p i18n:translate="structure 'sourceavailable'"><a href="http://code.google.com/p/hcardvalidator/">Source code is avail<![CDATA[a]]>ble</a> under the <a href="http://www.opensource.org/licenses/bsd-license.php" rel="license">BSD license</a>.</p>
+	<p i18n:translate="structure 'sourceavailable'"><a href="http://github.com/pornel/hCardValidator">Source code is available</a> under the <a href="http://www.opensource.org/licenses/bsd-license.php" rel="license">BSD license</a>.</p>
     <hr />
     <div id="footnotes">
     <p>¹ <tal:block i18n:translate="structure 'footnote'">It's not a validator in the <abbr>XML</abbr>/<abbr>SGML</abbr> sense.</tal:block></p>
