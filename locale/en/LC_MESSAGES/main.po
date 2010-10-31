@@ -56,7 +56,7 @@ msgid "Example"
 msgstr "Example"
 
 msgid "exampleintro"
-msgstr "If <a href=\"http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard\">searching</a> for <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\">hCards in the wild</a> is tiring, check one of the test-cases:"
+msgstr "If searching for <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\">hCards in the wild</a> is tiring, check one of the test-cases:"
 
 msgid "Example file"
 msgstr "Example file"
