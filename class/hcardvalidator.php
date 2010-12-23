@@ -272,7 +272,7 @@ class hCardValidator
         $doc->formatOutput   = true;
 
 		// show user what actually gets validated
-        $result->parsedSource = $doc->documentElement ? $doc->saveXML($doc->documentElement) : $doc->saveXML();
+        $result->parsedSource = Controller::cleanUTF8($doc->documentElement ? $doc->saveXML($doc->documentElement) : $doc->saveXML());
 
 		// XSLT does bulk of the structural checks and tries to extract hCard for further checks
         $doc = $this->processStylesheet($doc,'hcard.xslt');
