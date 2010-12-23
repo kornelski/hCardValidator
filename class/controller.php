@@ -325,7 +325,7 @@ class Controller
             }
             else
             {
-                $out['feedback_error'] = sprintf($this->translator->translate("Sending failed, sorry! Please <a href='%s'>e-mail your message instead</a>."),self::escapeXML('mailto:hcard@geekhood.net?Subject='.rawurlencode("Feedback from ".$_POST['feedbackname']).'&body='.rawurlencode($_POST['feedback'])));
+                $out['feedback_error'] = sprintf($this->translator->translate("Sending failed, sorry! Please <a href='%s'>e-mail your message instead</a>.", false),self::escapeXML('mailto:hcard@geekhood.net?Subject='.rawurlencode("Feedback from ".$_POST['feedbackname']).'&body='.rawurlencode($_POST['feedback'])));
             }
         }
         return $out;
