@@ -27,13 +27,13 @@ class hCardValidator
     private function makeSureHTMLDeclaresCharset($fileSource,$charset, $xhtml = false)
     {
 		// do nothing if there's existing meta with appropriate charset
-        if (preg_match("/<meta\s[^>]+charset[^>a-z]+".preg_quote($charset,'/')."/uis",$fileSource))
+        if (preg_match("/<meta\s[^>]+charset[^>a-z]+".preg_quote($charset,'/')."/is",$fileSource))
         {
             return $fileSource;
         }
 
 		// remove existing meta
-        $fileSource = preg_replace("/<meta\s[^>]+?charset\s*=\s*[^>]*>/uis",'<!-- meta removed by hCard Validator -->',$fileSource);
+        $fileSource = preg_replace("/<meta\s[^><]+?charset\s*=\s*[^><]*>/is",'<!-- meta removed by hCard Validator -->',$fileSource);
 
 		// try to insert new one in head or at least before body
         $headstart = (int)stripos($fileSource,'<head'); // state of the art parser, isn't it?
