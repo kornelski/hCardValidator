@@ -265,7 +265,7 @@ class hCardValidator
     private function validateDOM(ValidationResult $result, DOMDocument $doc)
     {
 		// first all includes are ...included. This way later steps don't have to care about this at all.
-        $doc = self::processStylesheet($doc,'include.xslt');
+        $doc = $this->processStylesheet($doc,'include.xslt');
         $result->addFromDoc($doc);
 
         $doc->preserveWhiteSpace = false;
@@ -275,7 +275,7 @@ class hCardValidator
         $result->parsedSource = $doc->documentElement ? $doc->saveXML($doc->documentElement) : $doc->saveXML();
 
 		// XSLT does bulk of the structural checks and tries to extract hCard for further checks
-        $doc = self::processStylesheet($doc,'hcard.xslt');
+        $doc = $this->processStylesheet($doc,'hcard.xslt');
 
 //        $doc->preserveWhiteSpace = false;
 //        $doc->formatOutput   = true;
@@ -844,7 +844,7 @@ class hCardValidator
 	 * @param $doc - source DOMDocument
 	 * @return DOMDocument
 	 */
-    private static function processStylesheet(DOMDocument $doc, $fileName)
+    private function processStylesheet(DOMDocument $doc, $fileName)
     {
         if (empty(self::$xsltCache[$fileName]))
         {
