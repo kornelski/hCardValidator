@@ -153,7 +153,7 @@ class hCardValidator
         if (!$charset)
         {
 			// HTML5-like approach
-            if (preg_match('/<meta[^>]+charset\s*=\s*[\'"]?\s*([a-z0-9-]+)/iu',$fileSource,$m))
+            if (preg_match('/<meta[^>]+charset\s*=\s*[\'"]?\s*([a-z0-9-]+)/i',$fileSource,$m))
             {
                 $charset = $m[1];
             }
