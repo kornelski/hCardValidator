@@ -197,7 +197,7 @@ class hCardValidator
             if ($charset != 'UTF-8' && $charset != 'ISO-8859-1')
             {
                 $fileSource = iconv($charset,'UTF-8//IGNORE',$fileSource);
-                $this->makeSureHTMLDeclaresCharset($fileSource,$charset,true);
+                $fileSource = $this->makeSureHTMLDeclaresCharset($fileSource,$charset,true);
                 $charset = 'UTF-8';
             }
 
