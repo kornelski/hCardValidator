@@ -331,12 +331,19 @@ class Controller
         return $out;
     }
 
+    private function getValidator()
+    {
+        $h = new hCardValidator();
+        $h->allowTagsoup(isset($_GET['im_a']) && $_GET['im_a']==='bozo');
+        return $h;
+    }
+
     private function fragment($source)
     {
         $out = array();
         $out['cache_control'] = "max-age=600";
 
-        $validator = new hCardValidator();
+        $validator = $this->getValidator();
         $out['fragment'] = self::cleanUTF8($source);
         $out['result'] = $validator->validateXHTMLFragment($out['fragment']);
         return $out;
@@ -345,7 +352,7 @@ class Controller
     private function file(array $FILE)
     {
         $out = array();
-        $validator = new hCardValidator();
+        $validator = $this->getValidator();
         $out['result'] = $validator->validateUpload($FILE);
         $out['source'] = file_get_contents($FILE['tmp_name']);
         return $out;
@@ -356,7 +363,7 @@ class Controller
         $out = array();
         $out['cache_control'] = "max-age=5";
 
-        $validator = new hCardValidator();
+        $validator = $this->getValidator();
         $result = $validator->validateURL(self::cleanUTF8($url));
         $out['url'] = isset($result->url) ? $result->url : NULL;
         $out['result'] = $result;
@@ -369,7 +376,7 @@ class Controller
         $out = array();
         $out['cache_control'] = "max-age=".(3600*24*31);
 
-        $validator = new hCardValidator();
+        $validator = $this->getValidator();
         foreach(glob('examples/*.htm*') as $file)
         {
             if ($file === $examplefile)

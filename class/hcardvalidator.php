@@ -43,6 +43,12 @@ class hCardValidator
         return substr($fileSource,0,$headend).'<meta http-equiv="Content-Type" content="text/html;charset='.Controller::escapeXML($charset).'"'.($xhtml?'/':'').'><!-- meta inserted by hCard Validator -->'.substr($fileSource,$headend);
     }
 
+    private $bozo_mode;
+    public function allowTagsoup($bool)
+    {
+        $this->bozo_mode = $bool;
+    }
+
 	/**
 	 * handle validation of an URL from start to finish
 	 * network errors are reported via ValidationResult object
@@ -174,7 +180,7 @@ class hCardValidator
 
 		// in bozo mode validator fixes ill-formed "XML"
         $bozo = false;
-        if (!empty($_GET['im_a']) && $_GET['im_a']=='bozo' && ($sent_as_xhtml || $looks_like_xhtml))
+        if ($this->bozo_mode && ($sent_as_xhtml || $looks_like_xhtml))
         {
             $bozo = true;
         }
