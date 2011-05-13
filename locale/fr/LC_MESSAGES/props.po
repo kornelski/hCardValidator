@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: fdf <dffà@df.Com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "n"
+msgstr "Nom"
+
+msgid "name"
+msgstr "Nom de la Carte"
+
+msgid "fn"
+msgstr "Nom formaté"
+
+msgid "email"
+msgstr "e-mail"
+
+msgid "url"
+msgstr "URL"
+
+msgid "nickname"
+msgstr "Surnom"
+
+msgid "agent"
+msgstr "Agent"
+
+msgid "geo"
+msgstr "GEO"
+
+msgid "honorific-prefix"
+msgstr "Civilité"
+
+msgid "honorific-suffix"
+msgstr "Suffixe honorifique"
+
+msgid "given-name"
+msgstr "Prénom"
+
+msgid "additional-name"
+msgstr "Noms supplémentaires"
+
+msgid "title"
+msgstr "Titre"
+
+msgid "family-name"
+msgstr "Nom de Famille"
+
+msgid "adr"
+msgstr "Adresse"
+
+msgid "street-address"
+msgstr "Rue"
+
+msgid "region"
+msgstr "Etat ou Province"
+
+msgid "locality"
+msgstr "Ville"
+
+msgid "postal-code"
+msgstr "Code Postal"
+
+msgid "country-name"
+msgstr "Pays"
+
+msgid "org"
+msgstr "Entreprise"
+
+msgid "organization-name"
+msgstr "Nom Entreprise"
+
+msgid "organization-unit"
+msgstr "Enterprise service"
+
+msgid "tel"
+msgstr "Téléphone"
+
+msgid "fax"
+msgstr "Fax"
+
+msgid "source"
+msgstr "Card source"
+
+msgid "photo"
+msgstr "Photo URL"
+
+msgid "bday"
+msgstr "Anniversaire"
+
+msgid "extended-address"
+msgstr "Complément d'adresse"
+
+msgid "class"
+msgstr "Classification"
+
+msgid "note"
+msgstr "Note"
+
+msgid "tz"
+msgstr "Fuseau horaire"
+
+msgid "sort-string"
+msgstr "Trier"
+
+msgid "uid"
+msgstr "UID"
+
+msgid "category"
+msgstr "Catégorie"
+
+msgid "rev"
+msgstr "Card Revision"
+
+msgid "role"
+msgstr "Role"
+
+msgid "label"
+msgstr "Address Label"
+
+msgid "logo"
+msgstr "Logo URL"
+
+msgid "sound"
+msgstr "Musique URL"
+
+msgid "mailer"
+msgstr "e-mail Client"
