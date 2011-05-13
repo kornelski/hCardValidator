@@ -35,12 +35,13 @@ class Controller
     {
         $this->translator = new PHPTAL_GetTextTranslator();
 
-        if ($lang == 'pl')
-        {
-            $this->translator->setLanguage('pl_PL.utf8','pl_PL.UTF-8','pl_PL','pl','en_US.utf8','en_US.UTF-8','en_US','en');
+        if ($lang == 'pl') {
+            $this->translator->setLanguage('pl_PL.utf8','pl_PL.UTF-8','pl_PL','pl','en');
         }
-        else
-        {
+        else if ($lang == 'fr') {
+            $this->translator->setLanguage('fr_FR.utf8','fr_FR.UTF-8','fr_FR','fr');
+        }
+        else {
             $this->translator->setLanguage('en_US.utf8','en_US.UTF-8','en_US','en');
         }
 
@@ -60,19 +61,14 @@ class Controller
 
     private function getLanguage()
     {
-        // subdomains have fixed language
-        if (substr($_SERVER['HTTP_HOST'],0,3)=='pl.')
+        if (preg_match('/^(en|pl|fr)\./', $_SERVER['HTTP_HOST'], $m))
         {
-            return 'pl';
-        }
-        else if (substr($_SERVER['HTTP_HOST'],0,3)=='en.')
-        {
-            return 'en';
+            return $m[1];
         }
         // otherwise Accept is used
-        else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && preg_match('/\bpl(\b|_)/',$_SERVER['HTTP_ACCEPT_LANGUAGE']))
+        else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && preg_match('/\b(fr|pl)(?:\b|[_-])/',$_SERVER['HTTP_ACCEPT_LANGUAGE'],$m))
         {
-            return 'pl';
+            return $m[1];
         }
         return 'en';
     }

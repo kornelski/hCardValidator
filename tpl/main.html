@@ -13,14 +13,16 @@ Be careful when chaning contents of elements with i18n attributes — their text
     <link rel="icon" href="/i/favicon.png" />
 	<link rel="alternate" hreflang="en" href="http://en.${basehostname}/"/>
 	<link rel="alternate" hreflang="pl" href="http://pl.${basehostname}/"/>
+	<link rel="alternate" hreflang="fr" href="http://fr.${basehostname}/"/>
   </head>
   <body>
     <h1 i18n:translate="structure 'h1'">hCard micro<b>format</b> Validator <small>(beta, of course)</small></h1>
     <p i18n:translate="structure 'intro'">This is an unofficial validator<a href="#footnotes">¹</a>/conformance checker of the <a href="http://microformats.org/wiki/hcard">hCard microformat</a>.</p>
 
 	<p class="langs">
-		<a tal:condition="php:lang=='pl'" hreflang="en" href="http://en.${basehostname}/">In English</a>
+		<a tal:condition="php:lang!='en'" hreflang="en" href="http://en.${basehostname}/">In English</a>
 		<a tal:condition="php:lang=='en'" hreflang="pl" href="http://pl.${basehostname}/">Po polsku</a>
+		<a tal:condition="php:lang=='en'" hreflang="fr" href="http://fr.${basehostname}/">En français</a>
 		<br/><tal:block i18n:translate="">(translations welcome!)</tal:block>
 	</p>
 
