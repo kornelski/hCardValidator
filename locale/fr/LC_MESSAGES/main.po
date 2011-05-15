@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"PO-Revision-Date: 2011-04-09 22:22+0100\n"
+"PO-Revision-Date: 2011-07-17 16:44+0100\n"
 "Last-Translator: fdf <dffà@df.Com>\n"
 "Language-Team: English\n"
 "MIME-Version: 1.0\n"
@@ -15,16 +15,16 @@ msgid "title"
 msgstr "Validation hCard"
 
 msgid "h1"
-msgstr "Validation hCard micro<b>format</b> <small>(beta, bien sûr)</small>"
+msgstr "Validation hCard micro<b>format</b> <small>(beta)</small>"
 
 msgid "intro"
-msgstr "Il s'agit d'un validateur non officielle<a href=\"#footnotes\">¹</a>/Conformité de la <a href=\"http://microformats.org/wiki/hcard\">hCard microformat</a>."
+msgstr "Outil de validation non officiel<a href=\"#footnotes\">¹</a>/ Conforme avec <a href=\"http://microformats.org/wiki/hcard\">hCard microformat</a>."
 
 msgid "Input"
 msgstr "Valeur"
 
 msgid "urlintro"
-msgstr "Vérifiez le fragment <abbr>XHTML</abbr> ou la page <abbr>HTML</abbr> en indiquant son <abbr>HTTP</abbr> <abbr>URL</abbr>."
+msgstr "Indiquer le code <abbr>XHTML</abbr> ou la page <abbr>HTML</abbr> en indiquant son <abbr>URL</abbr>."
 
 msgid "Address:"
 msgstr "Adresse :"
@@ -36,16 +36,16 @@ msgid "Fragment"
 msgstr "Fragment"
 
 msgid "fragmentintro"
-msgstr "Coller <strong>bien-formaté</strong>, le fragment <abbr>XHTML</abbr> ou le document qui contient la hCard."
+msgstr "Coller, le code <abbr>XHTML</abbr> ou l'ensemble du document qui contient la hCard."
 
 msgid "Validate fragment"
-msgstr "Fragment Valide"
+msgstr "Valider le code"
 
 msgid "Upload"
 msgstr "Importer"
 
 msgid "uploadintro"
-msgstr "Importer le fichier <abbr>HTML</abbr> ou <abbr>XHTML</abbr> à valider. For this to work <strong>your browser must be setting <abbr>MIME</abbr> types properly</strong>."
+msgstr "Importer le fichier <abbr>HTML</abbr> ou <abbr>XHTML</abbr> à valider. Pour fonctionner <strong>votre navigateur doit utiliser le bon type <abbr>MIME</abbr> </strong>."
 
 msgid "Upload file"
 msgstr "Importer un fichier"
@@ -54,10 +54,10 @@ msgid "Validate file"
 msgstr "Valider le fichier"
 
 msgid "Example"
-msgstr "Exemple"
+msgstr "Exemples"
 
 msgid "exampleintro"
-msgstr "Si vous <a href=\"http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard\">recherchez</a> <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\"> des hCards dans la nature</a>, c'est fatigant, consultez les cas de tests."
+msgstr "<a href=\"http://search.yahoo.com/search?p=searchmonkeyid%3Acom.yahoo.uf.hcard\">Rechercher</a> <a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\"> des exemples de hCards sur Internet</a>, c'est fatiguant, consultez les cas de tests."
 
 msgid "Example file"
 msgstr "Fichier exemple"
@@ -69,7 +69,7 @@ msgid "View"
 msgstr "Voir"
 
 msgid "Validate example"
-msgstr "Exemple valide"
+msgstr "Valider l'exemple"
 
 msgid "XHTML fragment"
 msgstr "Fragment <abbr>XHTML</abbr>"
@@ -78,25 +78,28 @@ msgid "api_and_other"
 msgstr "API et autres"
 
 msgid "byreferrer"
-msgstr "Pages par <code>Referer</code>"
+msgstr "Ajouter un lien à votre page"
 
 msgid "Bookmarklet"
-msgstr "Bookmarklet"
+msgstr "Ajouter aux favoris"
 
 msgid "restful"
 msgstr "<abbr>REST</abbr>ful <abbr>JSON</abbr> <abbr>API</abbr>"
 
 msgid "apidescription"
-msgstr "<p>Envoyer la requête <code>GET</code> à ${url}.</p><p>La sortie sera à peu près compatible avec la ${validatornu}. Susceptibles de changer dans le futur.</p>"
+msgstr "<p>Envoyer la requête <code>GET</code> à ${url}.</p><p>La sortie sera à peu près compatible avec la ${validatornu}. Susceptible de changer dans le futur.</p>"
 
 msgid "pleaseuseforvalidation"
 msgstr "S'il vous plaît utiliser l'<abbr>API</abbr> pour la validation, mais aussi comme un convertisseur/outil d'extraction."
 
 msgid "Send Feedback"
-msgstr "Envoyer un commentaire"
+msgstr "Envoyer un feedback"
 
 msgid "You can ${email} or the form below."
-msgstr "You can ${email} or the form below."
+msgstr "Vous pouvez ${email} ou utiliser le formulaire de contact."
+
+msgid "send feedback via e-mail"
+msgstr "envoyer un e-mail"
 
 msgid "feedbacknote"
 msgstr "Si vous rencontrez un ${bug} ou vous avez une suggestion, n'oubliez pas d'inclure le code de votre hCard."
@@ -138,10 +141,11 @@ msgid "Credits"
 msgstr "Crédits"
 
 msgid "fullcredits"
-msgstr "Rédigé par ${writtenby}. Les icônes sont de ${tango}. Les tests inclus ${acid} par Dmitry Baranovskiy, exemples à partir de ${uforg} et ${testsuite}."
+msgstr "Rédigé par ${writtenby}. Les icônes sont de ${tango}. Les tests inclus ${acid} par Dmitry Baranovskiy, exemples à partir de ${uforg} et ${testsuite}. Traduction par <a href=\"http://aquelito.fr\">Axel Roche</a>"
 
 msgid "footnote"
-msgstr "Ce n'est pas un validateur pour <abbr>XML</abbr> / <abbr>SGML</abbr>."
+msgstr "Ce n'est pas un validateur pour <abbr>XML</abbr>/<abbr>SGML</abbr>."
 
 msgid "sourceavailable"
-msgstr "<a href=\"http://code.google.com/p/hcardvalidator/\">Le code source est disponible</a>, en vertu de la <a href=\"http://www.opensource.org/licenses/bsd-license.php\" rel=\"license\">Licence BSD</a>."
+msgstr "<a href=\"http://code.google.com/p/hcardvalidator/\">Le code source est disponible</a>, sous <a href=\"http://www.opensource.org/licenses/bsd-license.php\" rel=\"license\">Licence BSD</a>."
+

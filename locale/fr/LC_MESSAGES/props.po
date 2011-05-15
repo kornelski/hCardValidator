@@ -88,7 +88,7 @@ msgid "source"
 msgstr "Card source"
 
 msgid "photo"
-msgstr "Photo URL"
+msgstr "URL Photo"
 
 msgid "bday"
 msgstr "Anniversaire"
@@ -124,10 +124,11 @@ msgid "label"
 msgstr "Address Label"
 
 msgid "logo"
-msgstr "Logo URL"
+msgstr "URL Logo"
 
 msgid "sound"
-msgstr "Musique URL"
+msgstr "URL Musique"
 
 msgid "mailer"
 msgstr "e-mail Client"
+
