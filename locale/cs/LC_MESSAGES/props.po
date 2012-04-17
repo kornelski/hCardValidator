@@ -1,0 +1,133 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: porneL <pornel@pornel.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "n"
+msgstr "Jméno"
+
+msgid "name"
+msgstr "Název karty kontaktu"
+
+msgid "fn"
+msgstr "Jméno/a a příjmení"
+
+msgid "email"
+msgstr "E-mail"
+
+msgid "url"
+msgstr "URL"
+
+msgid "nickname"
+msgstr "Přezdívka"
+
+msgid "agent"
+msgstr "Agent"
+
+msgid "geo"
+msgstr "GEO"
+
+msgid "honorific-prefix"
+msgstr "Titul před jménem"
+
+msgid "honorific-suffix"
+msgstr "Titul za jménem"
+
+msgid "given-name"
+msgstr "Křestní jméno"
+
+msgid "additional-name"
+msgstr "Druhé jméno"
+
+msgid "title"
+msgstr "Titul"
+
+msgid "family-name"
+msgstr "Příjmení"
+
+msgid "adr"
+msgstr "Adresa"
+
+msgid "street-address"
+msgstr "Ulice"
+
+msgid "region"
+msgstr "Stát nebo provincie"
+
+msgid "locality"
+msgstr "Město"
+
+msgid "postal-code"
+msgstr "PSČ"
+
+msgid "country-name"
+msgstr "Zěmě"
+
+msgid "org"
+msgstr "Organizace"
+
+msgid "organization-name"
+msgstr "Název organizace"
+
+msgid "organization-unit"
+msgstr "Složka organizace"
+
+msgid "tel"
+msgstr "Telefon"
+
+msgid "fax"
+msgstr "Fax"
+
+msgid "source"
+msgstr "Zdroj karty kontaktu"
+
+msgid "photo"
+msgstr "URL fotografie"
+
+msgid "bday"
+msgstr "Narozeniny"
+
+msgid "extended-address"
+msgstr "Rozšířená adresa"
+
+msgid "class"
+msgstr "Klasifikace"
+
+msgid "note"
+msgstr "Poznámka"
+
+msgid "tz"
+msgstr "Časová zóna"
+
+msgid "sort-string"
+msgstr "Řetězec řazení"
+
+msgid "uid"
+msgstr "UID"
+
+msgid "category"
+msgstr "Kategorie"
+
+msgid "rev"
+msgstr "Revize karty kontaktu"
+
+msgid "role"
+msgstr "Pozice"
+
+msgid "label"
+msgstr "Address Label"
+
+msgid "logo"
+msgstr "URL logotypu"
+
+msgid "sound"
+msgstr "URL zvukové stopy"
+
+msgid "mailer"
+msgstr "E-mailový klient"

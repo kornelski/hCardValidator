@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2008-06-18 23:33+0100\n"
+"Last-Translator: porneL <>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# :file: /www/hcard/tpl/main.html
+msgid "title"
+msgstr "hCard Validátor"
+
+msgid "h1"
+msgstr "hCard micro<b>format</b> Validátor <small>(beta, samozřejmě)</small>"
+
+msgid "intro"
+msgstr "Toto je neoficiální validátor<a href=\"#footnotes\">¹</a>/kontrolor shody se specifikací <a href=\"http://microformats.org/wiki/hcard\">hCard microformat</a>."
+
+msgid "Input"
+msgstr "Vstup"
+
+msgid "urlintro"
+msgstr "Zkontroluje celou <abbr>XHTML</abbr> nebo <abbr>HTML</abbr> stránku zadáním <abbr>HTTP</abbr> <abbr>URL</abbr>."
+
+msgid "Address:"
+msgstr "Adresa:"
+
+msgid "Validate URL"
+msgstr "Validovat URL"
+
+msgid "Fragment"
+msgstr "Fragment"
+
+msgid "fragmentintro"
+msgstr "Vložte <strong>správně formátovaný <abbr>XHTML</abbr></strong> fragment nebo celý dokument obsahující hCard."
+
+msgid "Validate fragment"
+msgstr "Validovat fragment"
+
+msgid "Upload"
+msgstr "Nahrát"
+
+msgid "uploadintro"
+msgstr "Pro validaci nahrajte <abbr>HTML</abbr> nebo <abbr>XHTML</abbr> soubor. Aby to fungovalo, <strong>Váš prohlížeč musí mít správně nataveny <abbr>MIME</abbr> typy</strong>."
+
+msgid "Upload file"
+msgstr "Nahrát soubor"
+
+msgid "Validate file"
+msgstr "Validovat soubor"
+
+msgid "Example"
+msgstr "Příklad"
+
+msgid "exampleintro"
+msgstr "Hledáte-li „<a href=\"http://microformats.org/wiki/hcard-examples-in-wild-reviewed\">hCards in the wild</a>“, je to únavné. Zkuste testovací příklady:"
+
+msgid "Example file"
+msgstr "Soubor s příkladem"
+
+msgid "Browse examples"
+msgstr "Procházet příklady"
+
+msgid "View"
+msgstr "Zobraz"
+
+msgid "Validate example"
+msgstr "Validovat příklad"
+
+msgid "XHTML fragment"
+msgstr "<abbr>XHTML</abbr> fragment"
+
+msgid "api_and_other"
+msgstr "API & Další"
+
+msgid "byreferrer"
+msgstr "Na jakoukoliv stránku odkazem"
+
+msgid "Bookmarklet"
+msgstr "Bookmarklet"
+
+msgid "restful"
+msgstr "Pohodové <abbr>JSON</abbr> <abbr>API</abbr>"
+
+msgid "apidescription"
+msgstr "<p>Odešlete <code>GET</code> požadavek na ${url}.</p>"
+"<p>Výsledek bude přibližně kompatibilní s ${validatornu}. V budoucnu pravděpodobně dojde ke změnám.</p>"
+
+msgid "pleaseuseforvalidation"
+msgstr "Prosím použijte toto <abbr>API</abbr> pro validaci, a nejen jako nástroj pro konverzi/extrakci."
+
+msgid "Send Feedback"
+msgstr "Poslat zpětnou vazbu"
+
+msgid "You can ${email} or the form below."
+msgstr "Můžete ${email} nebo pomocí formuláře níže."
+
+msgid "feedbacknote"
+msgstr "Pokud ${bug} nebo máte návrh, nezapomeňte zahrnout vzorek kódu hCard."
+
+msgid "feedbacknote_bug"
+msgstr "hlásíte chybu"
+
+msgid "Your name"
+msgstr "Vaše jméno"
+
+msgid "Your comment"
+msgstr "Váš komentář"
+
+msgid "Send feedback"
+msgstr "Odeslat zpětnou vazbu"
+
+msgid "Result"
+msgstr "Výsledek"
+
+msgid "valid"
+msgstr "Gratulujeme! Nebyly nalezeny žádné chyby."
+
+msgid "invalid"
+msgstr "Tento dokument obsahuje chyby."
+
+msgid "vcardnoerrors"
+msgstr "No issues found."
+
+msgid "More info"
+msgstr "Více informací"
+
+msgid "File source"
+msgstr "Zdrojový soubor"
+
+msgid "Parsed source"
+msgstr "Parsrovaný zdroj"
+
+msgid "Credits"
+msgstr "Zásluhy"
+
+msgid "fullcredits"
+msgstr "Napsal ${writtenby}. Ikony jsou z ${tango}. Testovací případy zahrnují ${acid} od Dmitry Baranovskiy, příklady z ${uforg} a ${testsuite}."
+
+msgid "footnote"
+msgstr "Nejedná se o validátor ve smyslu  <abbr>XML</abbr>/<abbr>SGML</abbr>."
+
+msgid "sourceavailable"
+msgstr "<a href=\"http://code.google.com/p/hcardvalidator/\">Zdrojový kód je dostupný</a> pod <a href=\"http://www.opensource.org/licenses/bsd-license.php\" rel=\"license\">BSD licencí</a>."

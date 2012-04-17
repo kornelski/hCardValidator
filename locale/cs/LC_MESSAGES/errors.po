@@ -1,0 +1,589 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: porneL <pornel@pornel.net>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+
+msgid "x_tagsoup"
+msgstr ""
+"Sending <abbr>XHTML</abbr> as <abbr>HTML</abbr> Considered Harmful\n"
+"Received document with <code>text/<strong>html</strong></code> <abbr>MIME</abbr> type containing what was probably intended to be <abbr>XHTML</abbr>."
+
+msgid "bozo_mode"
+msgstr "Parsing in tagsoup mode\n"
+"Misinterpreting everything as <abbr>HTML</abbr> tagsoup to deal with unparseable “<abbr>XHTML</abbr>”."
+
+msgid "agent_not_vcard"
+msgstr ""
+"<code>agent</code> property does not contain hCard\n"
+"vCard's <code>agent</code> property is supposed to contain another complete vCard. Use nested hCard or a link to vCard file."
+
+msgid "mailto_no_class"
+msgstr ""
+"hCard contains <code>mailto:</code> links without <code>email</code> class\n"
+"These links will be ignored."
+
+msgid "no_n"
+msgstr ""
+"hCard must have <code>n</code> property\n"
+"It can be either set explicitly or implied from <code>fn</code>, when <code>fn</code> contains one or two <a href=\"http://microformats.org/wiki/hcard-faq#What_is_a_word_in_implied_optimizations\">words</a> or is identical to <code>organization-name</code>."
+
+msgid "honorific_name"
+msgstr ""
+"Honorific prefix/suffix “<samp>%s</samp>” found in the <code>%s</code> property\n"
+"You should use <code>honorific-prefix</code> or <code>honorific-suffix</code> property instead.\n"
+"Try the <a href=\"%s\">hCard <code>n</code> best-guess</a> tool."
+
+msgid "implied_nickname"
+msgstr ""
+"Implied <code>nickname</code> from <code>fn</code>\n"
+"You can add <code>n</code> property to prevent it, or use <code>fn</code> and <code>nickname</code> on the same element to make it explicit."
+
+msgid "email_non_mailto"
+msgstr ""
+"<code>email</code> property doesn't use <code>mailto:</code> scheme\n"
+"Use <code>email</code> property only for real e-mail addresses (e.g. joe@example.com). Other links, including <abbr>IM</abbr>s, must use <code>url</code> property."
+
+msgid "jabber_protocol"
+msgstr ""
+"<code>%s:</code> is not valid scheme for Jabber\n"
+"You should use standard <code>xmpp:</code> scheme instead."
+
+msgid "email_http"
+msgstr ""
+"<code>email</code> property uses <code>http://</code> scheme\n"
+"Use <code>email</code> property only for real e-mail addresses (e.g. joe@example.com). Other links, including links to contact forms, must use <code>url</code> property."
+
+msgid "email_domain"
+msgstr ""
+"Lookup of e-mail's domain “<samp>%s</samp>” failed\n"
+"Verify that e-mail address is correct."
+
+msgid "email_no_protocol"
+msgstr ""
+"Value of <code>email</code> does not include scheme\n"
+"You must add <code>mailto:</code> to the address."
+
+msgid "email_value"
+msgstr ""
+"Value of <code>email</code> property doesn't look like an e-mail\n"
+"Found “<samp>%s</samp>”, but expected simple syntax in form <code>mailto:joe@example.com?subject=is%%20optional</code>. "
+"If you're using anti-spambot riddles in the e-mail address, use the <code>notes</code> property or <a href=\"/encode/\">a tricky, but valid encoding</a> instead."
+
+msgid "org_has_n"
+msgstr ""
+"Company/organization hCard has <code>n</code> property\n"
+"<code>n</code> is only for people's names."
+
+msgid "org_fn_ignored"
+msgstr ""
+"<code>org+fn</code> used, but names differ\n"
+"Although hCard uses <code>org</code> and <code>fn</code> together, the <code>organization-name</code> is not identical to <code>fn</code> and card may not be interpreted as company's card."
+
+msgid "no_fn"
+msgstr ""
+"hCard must have <code>fn</code> property\n"
+"<code>fn</code> should contain preferred human-readable formatting of name. You can use <code>fn</code> and <code>n</code> on the same element."
+
+msgid "include_used"
+msgstr ""
+"Include pattern used\n"
+"This is non-trivial feature that may not be supported by all parsers."
+
+msgid "include_empty_a"
+msgstr ""
+"Hyperlink used for include must contain text\n"
+"This is required for accessiblity by screen reader and keyboard users."
+
+msgid "del_value"
+msgstr "Parsers may not honor the <code>&lt;del&gt;</code> element"
+
+msgid "include_not_found"
+msgstr ""
+"Include not found\n"
+"Could not find in document element referenced by include."
+
+msgid "vevent_class"
+msgstr ""
+"hCalendar is not supported\n"
+"Validator found calendar, but haven't checked it."
+
+msgid "include_self"
+msgstr ""
+"Include causes infinite loop\n"
+"Included element cannot include itself (cannot refer to an ancestor in the <abbr>DOM</abbr> tree)."
+
+msgid "include_frag"
+msgstr ""
+"Include doesn't contain fragment identifier\n"
+"Include must refer to an element within the same document using <a href='http://www.w3.org/TR/html401/intro/intro.html#h-2.1.2'>fragment identifier</a>."
+
+msgid "include_xdoc"
+msgstr ""
+"Include must use same-document fragments only\n"
+"Cross-document references are not allowed. Use only <a href='http://www.w3.org/TR/html401/intro/intro.html#h-2.1.2'>fragment identifier</a> without filename in the <abbr>URL</abbr>."
+
+msgid "include_deep"
+msgstr ""
+"Deeply nested includes\n"
+"There may be an infinite loop caused by includes referencing each other."
+
+msgid "multiple_head_profiles"
+msgstr ""
+"<code>&lt;head profile=\"…\"&gt;</code> has multiple profile <abbr>URL</abbr>s\n"
+"<abbr>HTML</abbr> specification and <abbr>DTD</abbr> are contradicting each other about this case. Use a single <code>http://purl.org/uF/2008/03/</code> profile instead."
+
+msgid "multiple_idless_vcards"
+msgstr ""
+"There are multiple vCards and not all have <code>id</code> attribute\n"
+"Adding unique <code>id</code> to each will allow to point to any vCard in the document, which is useful for vCard extractors."
+
+msgid "no_vcards"
+msgstr ""
+"No hCards found\n"
+"There must be at least one element with <code>class=\"vcard\"</code>."
+
+msgid "hcard_class"
+msgstr ""
+"<code>hcard</code> class found\n"
+"hCard microformat recognizes only <code>vcard</code> class name."
+
+msgid "root_xmlns"
+msgstr ""
+"Document root is not in the <abbr>XHTML</abbr> namespace\n"
+"You must add <code>xmlns='http://www.w3.org/1999/xhtml'</code> to the <code>&lt;html&gt;</code> element."
+
+msgid "not_xhtml"
+msgstr ""
+"Document root is not in the <abbr>XHTML</abbr> namespace\n"
+"Validator only looks for hCards in the <code>http://www.w3.org/1999/xhtml</code> namespace. Support for non-<abbr>XHTML</abbr> documents is limited to standalone <abbr>XML</abbr>."
+
+msgid "no_head"
+msgstr ""
+"Can't find <code>&lt;head></code>\n"
+"Make sure <abbr>XHTML</abbr> is valid."
+
+msgid "no_head_profile"
+msgstr ""
+"<code>&lt;head></code> doesn't have <code>profile</code> attribute\n"
+"It is recommended to mark that document uses hCards by adding <code>profile='http://www.w3.org/2006/03/hcard'</code> attribute."
+
+msgid "unknown_head_profile"
+msgstr ""
+"<code>&lt;head></code> uses unknown profile\n"
+"hCard Valdiator does not parse <abbr>XMDP</abbr> profiles and is unable to check if “<samp>%s</samp>” defines hCard microformat."
+
+msgid "wrong_head_profile"
+msgstr ""
+"<code>&lt;head></code> uses profile “<samp>%s</samp>” which is unrelated to <code>'http://www.w3.org/2006/03/hcard'</code>\n"
+"This may suggest that document does <strong>not</strong> use hCard microformat."
+
+msgid "no_body"
+msgstr ""
+"Can't find <code>&lt;body></code>\n"
+"Make sure <abbr>XHTML</abbr> is valid."
+
+msgid "block_in_inline"
+msgstr ""
+"Found <code>&lt;div></code> inside <code>&lt;%s></code>\n"
+"<abbr>XHTML</abbr>/<abbr>HTML</abbr> forbids of nesting of block elements inside in-line elements. Use <a href=\"http://validator.w3.org\">W3C Validator</a> to check the document."
+
+msgid "type_value"
+msgstr ""
+"Element contains both <code>type</code> and <code>value</code> classes\n"
+"This is tricky for parsers. Use only <code>type</code> or put element with <code>value</code> class <em>inside</em> it."
+
+msgid "br_value"
+msgstr ""
+"Empty element used for value\n"
+"Elements such as <code>&lt;br&gt;</code> and <code>&lt;hr&gt;</code> cannot hold values. Use a different element (e.g. <code>&lt;span&gt;</code>) and put <code>&lt;br&gt;</code> inside it. To preserve line breaks you can also use <code>&lt;pre&gt;</code>."
+
+msgid "abbr_no_title"
+msgstr ""
+"Missing <code>title</code> attribute on <code>&lt;abbr></code>\n"
+"To avoid confusing parsers, put value in <code>&lt;abbr title=\"…\"></code> or use a different element."
+
+msgid "title_and_value"
+msgstr ""
+"<code>&lt;abbr&gt;</code> has <code>title</code> attribute and contains elements with <code>value</code> class\n"
+"<code>title</code> takes precedence."
+
+msgid "acronym"
+msgstr ""
+"<code>&lt;acronym&gt;</code> doesn't have special handling like <code>&lt;abbr></code>\n"
+"<code>title</code> will be ignored and value will be taken from content."
+
+msgid "split_value"
+msgstr ""
+"Value is split in parts\n"
+"All parts will be joined together as <em>one</em> value. If you want multiple different values, use multiple elements with same property class name."
+
+msgid "abbr_in_value"
+msgstr ""
+"<code>&lt;abbr></code> inside value\n"
+"<code>title</code> attribute will be ignored."
+
+msgid "img_in_value"
+msgstr ""
+"Image with <code>alt</code> attribute inside value\n"
+"The <code>alt</code> attribute may be ignored unless you put class directly on <code>&lt;img&gt;</code>."
+
+msgid "pre_elements"
+msgstr ""
+"Elements inside <code>&lt;pre></code>\n"
+"This may be tricky for parsers."
+
+msgid "vcard_address"
+msgstr ""
+"hCard microformat in <code>&lt;address></code>\n"
+"This will be interpreted as vCard of the contact point for the page (e.g. page owner, webmaster)."
+
+msgid "agent_nested_vcard"
+msgstr ""
+"hCard inside <code>agent</code> property\n"
+"hCard will be ignored. You must use <code>class=\"agent vcard\"</code> on the same element."
+
+msgid "nested_vcard"
+msgstr ""
+"Nested hCards are poorly supported\n"
+"Proper support of nested hCards requires masters degree in advanced <abbr>XSLT</abbr> hackery. Validator may give confuse these cards in some cases."
+
+msgid "adr_address"
+msgstr ""
+"<code>adr</code> property on <code>&lt;address></code>\n"
+"<abbr>HTML</abbr> specification defines <code>&lt;address></code> as contact details of page owner. This is not compatible with <code>adr</code> microformat."
+
+msgid "place_address"
+msgstr ""
+"This hCard describes place, not person (experimental)\n"
+"<code>extended-address</code> in <code>fn</code> implies this."
+
+msgid "nested_rel"
+msgstr ""
+"<code>&lt;a rel=\"tag\"></code> inside category\n"
+"Use <code>category</code> class directly on <code>&lt;a></code> instead."
+
+msgid "multiple_emails"
+msgstr ""
+"Multiple e-mail links in a single <code>email</code> property\n"
+"Use <code>email</code> class on each <code>&lt;a></code>."
+
+msgid "a_in_email"
+msgstr ""
+"e-mail link nested inside <code>email</code> property\n"
+"Use <code>&lt;a class=\"email\"></code> instead"
+
+msgid "geo_value"
+msgstr ""
+"Value of <code>%s</code> property has invalid syntax\n"
+"“<samp>%s</samp>” is not a floating-point number."
+
+msgid "geo_value_range"
+msgstr ""
+"Value of <code>%s</code> property is out of range\n"
+"<code>latitude</code> must be be between -90 and 90. <code>longitude</code> must be between -180 and 360."
+
+msgid "geo_precision"
+msgstr ""
+"<code>%s</code> should be specified to 6 decimal places\n"
+"This will allow for granularity within a meter of the geographical position."
+
+msgid "ill_formed_bozo"
+msgstr ""
+"Document is not well-formed <abbr>XML</abbr>\n"
+"Failed to load XML. <a href='%s'>Re-parse as <abbr>HTML</abbr></a>."
+
+msgid "ill_formed"
+msgstr ""
+"Document is not well-formed <abbr>XML</abbr>\n"
+"Failed to load XML. Can't validate the document."
+
+msgid "multi_n"
+msgstr ""
+"Multiple <code>n</code> properties found\n"
+"hCard must have <em>only one</em> <code>n</code> property."
+
+msgid "multi_fn"
+msgstr ""
+"Multiple <code>fn</code> properties found\n"
+"hCard must have <em>only one</em> <code>fn</code> property."
+
+msgid "geo_abbr_syntax"
+msgstr ""
+"Syntax error in <code>title</code> attribute of <code>geo</code> property\n"
+"<code>title</code> “<samp>%s</samp>” must contain longitude and latitude separated by a semicolon (<code>;</code>)."
+
+msgid "latitude_missing"
+msgstr ""
+"Latitude is missing\n"
+"<code>geo</code> property requires both latitude and longitude (check spelling)."
+
+msgid "longitude_missing"
+msgstr ""
+"Longitude is missing\n"
+"<code>geo</code> property requires both latitude and longitude (check spelling)."
+
+msgid "company"
+msgstr ""
+"This hCard describes organization or company\n"
+"<code>org</code> and <code>fn</code> used together imply that it is not a person."
+
+msgid "unit_class"
+msgstr ""
+"<code>org</code> property contains element with <code>unit</code> class\n"
+"It will be ignored. hCard uses <code>organization-unit</code> class."
+
+msgid "org_unit_extended_adr"
+msgstr ""
+"Department address without <code>extended-address</code>\n"
+"Adding <code>extended-address</code> to <code>organization-unit</code> will make it clear that it's department's address."
+
+msgid "nested_photo"
+msgstr ""
+"Image inside <code>photo</code> property\n"
+"<code>src</code> attribute of this image will be ignored. You should add class to the <code>&lt;img&gt;</code> instead."
+
+msgid "photo_as_value"
+msgstr ""
+"<code>photo</code> doesn't use <code>&lt;img></code>, <code>&lt;a></code> or <code>&lt;object></code>\n"
+"For best interoperability use one of the recommended elements."
+
+msgid "uniqid_class"
+msgstr ""
+"hCard contains <code>uniqid</code> class\n"
+"Only <code>uid</code> is recognized."
+
+msgid "nick_class"
+msgstr ""
+"hCard contains “<samp>%s</samp>” class\n"
+"Only <code>nickname</code> is recognized for nicknames."
+
+msgid "honorific_class"
+msgstr ""
+"hCard contains “<samp>%s</samp>” class\n"
+"Only <code>honorific-prefix</code> and <code>honorific-suffix</code> are recognized."
+
+msgid "lastname_class"
+msgstr ""
+"hCard contains “<samp>%s</samp>” class\n"
+"Only <code>family-name</code> is recognized for last name."
+
+msgid "birthday_class"
+msgstr ""
+"hCard contains “<samp>%s</samp>” class\n"
+"Only <code>bday</code> is recognized for birthday date."
+
+msgid "uri_class"
+msgstr ""
+"hCard contains <code>uri</code> class\n"
+"Only <code>url</code> class (with lowercase “L”) is recognized."
+
+
+msgid "nested_uid"
+msgstr ""
+"<code>&lt;a></code> inside <code>uid</code> element\n"
+"Add class to the <code>&lt;a></code> instead."
+
+msgid "openid"
+msgstr "This <abbr>URL</abbr> has <code>uid</code> class and may be used as OpenID"
+
+msgid "empty_subprop"
+msgstr ""
+"<code>%s</code> of <code>%s</code> property is empty\n"
+"Check syntax. Remove property from document if it doesn't have (non-empty) value."
+
+msgid "empty_prop"
+msgstr ""
+"<code>%s</code> property is empty\n"
+"Check syntax. Remove property from document if it doesn't have (non-empty) value."
+
+msgid "no_href"
+msgstr ""
+"No <code>href</code> attribute on <code>&lt;a></code>\n"
+"Use <code>&lt;a></code> only for links. You can create named anchors by adding <code>id</code> attribute to any element."
+
+msgid "email_as_url"
+msgstr ""
+"Class <code>url</code> used for <code>mailto:</code> <abbr>URL</abbr>s\n"
+"Change <code>url</code> class to <code>email</code>."
+
+msgid "multiple_urls"
+msgstr ""
+"Multiple links in a single <code>url</code> class\n"
+"Add <code>url</code> class to each individual link instead."
+
+msgid "a_in_url"
+msgstr ""
+"<code>&lt;a></code> nested inside <code>url</code> property\n"
+"Use <code>&lt;a class=\"url\"></code> instead."
+
+msgid "url_as_value"
+msgstr ""
+"<abbr>URL</abbr> is not in a link\n"
+"Use <code>&lt;a class=\"url\" href=\"…\"></code> for marking up <abbr>URL</abbr>s."
+
+msgid "relative_url"
+msgstr ""
+"<code>url</code> property uses relative <abbr>URL</abbr>\n"
+"You could make parsers' life easier by using absolute <abbr>URL</abbr>."
+
+msgid "organization_class"
+msgstr "<code>organization</code> class found\n"
+"hCard recognizes <code>org</code>, <code>organization-name</code> and <code>organization-unit</code> classes."
+
+msgid "organisation_spelling"
+msgstr ""
+"<code>organi<strong>s</strong>ation</code> class found\n"
+"hCard spells organization classes with “z”."
+
+msgid "tel_letters"
+msgstr ""
+"Telephone “<samp>%s</samp>” contains letters.\n"
+"Don't add any labels. Letters in the number <em>must</em> be converted to digits. You can use <code>&lt;abbr></code> to have human-friendly version visible."
+
+msgid "email_type"
+msgstr ""
+"Invalid e-mail type “<samp>%s</samp>”\n"
+"Allowed types: <code>pref</code>, <code>internet</code> (or <code>x400</code>, if you're insane)."
+
+msgid "tel_type"
+msgstr ""
+"Invalid telephone type “<samp>%s</samp>”\n"
+"Must be one of: <code>home</code>, <code>work</code>, <code>pref</code>, <code>fax</code>, <code>cell</code>, <code>voice</code>, <code>video</code>, <code>pager</code>, <code>car</code>, <code>msg</code>, <code>modem</code>, <code>bbs</code>, <code>isdn</code>, <code>pcs</code>."
+
+msgid "future_date"
+msgstr ""
+"<code>%s</code> date is in the future\n "
+
+msgid "date_syntax"
+msgstr ""
+"Invalid syntax of <code>%s</code> date\n"
+"“<samp>%s</samp>” isn't a valid <abbr>ISO 8601</abbr> date. Use <code><var>yyyy</var>-<var>mm</var>-<var>dd</var></code> or <code><var>yyyy</var>-<var>mm</var>-<var>dd</var>T<var>hh</var>:<var>mm</var>:<var>ss</var>Z</code> format."
+
+msgid "tz_value"
+msgstr ""
+"Value of <code>tz</code> property is not an <abbr>ISO 8601 UTC</abbr> offset\n"
+"Found “<samp>%s</samp>”, but expected <code>+00:00</code> format."
+
+msgid "include_pattern"
+msgstr ""
+"Include Pattern is not supported\n"
+"It is allowed by the specification, but not supported by the validator."
+
+msgid "name_class"
+msgstr ""
+"hCard contains <code>name</code> class\n"
+"vCard's <code>name</code> is taken from page's <code>&lt;title&gt;</code>. People's names are described with <code>fn</code> or <code>n</code>/<code>given-name</code>."
+
+msgid "profile_class"
+msgstr ""
+"hCard contains <code>profile</code> class\n"
+"It's ignored in hCard."
+
+msgid "source_class"
+msgstr ""
+"hCard contains <code>source</code> class\n"
+"It's ignored in hCard. <code>source</code> is taken from page's <abbr>URL</abbr>."
+
+msgid "prodid_class"
+msgstr ""
+"hCard contains <code>prodid</code> class\n"
+"It's ignored in hCard."
+
+msgid "version_class"
+msgstr ""
+"hCard contains <code>version</code> class\n"
+"It's ignored in hCard. Use <code>rev</code> for versioning."
+
+msgid "too_many_errors"
+msgstr ""
+"Too many errors\n"
+"%s duplicate <code>XML</code> errors not shown."
+
+msgid "illegal_url"
+msgstr ""
+"<abbr>URL</abbr> not allowed\n"
+"Pardon me being paranoid about security, but this <abbr>URL</abbr> doesn't look innocent enough (<abbr>HTTP</abbr> with hostname and without authentication or ports please)."
+
+msgid "dns_error"
+msgstr ""
+"Can't find <code>%s</code>\n<abbr>DNS</abbr> error."
+
+msgid "request_failed"
+msgstr ""
+"<abbr>HTTP</abbr> request to <code>%s</code> failed\n"
+"Server may be down."
+
+msgid "file_not_found"
+msgstr ""
+"File <code>%s</code> not found at <code>%s</code>\n"
+"Check if <abbr>URL</abbr> is correct and page still exists."
+
+msgid "invalid_redirect"
+msgstr "Invalid <abbr>HTTP</abbr> redirect"
+
+msgid "http_error"
+msgstr ""
+"<abbr>HTTP</abbr> error <code>%s</code>\n"
+"Can't load the page."
+
+msgid "maximum_file_size"
+msgstr "File larger than maximum size of %sKB"
+
+msgid "invalid_url"
+msgstr ""
+"<abbr>URL</abbr> not allowed\n"
+"Sorry, this <abbr>URL</abbr> doesn't look innocent enough."
+
+msgid "orphan_adr_subprop"
+msgstr ""
+"Property <code>%s</code> found outside <code>adr</code>\n"
+"It will be ignored. You must put all address-related fields inside <code>adr</code>."
+
+msgid "adr_type"
+msgstr ""
+"Invalid address type “<samp>%s</samp>”\n"
+"Allowed types: <code>home</code>, <code>work</code>, <code>pref</code>, <code>dom</code>, <code>intl</code>, <code>parcel</code>, <code>postal</code>."
+
+msgid "single_line_label"
+msgstr ""
+"Address <code>label</code> has only one line\n"
+"You must use <code>&lt;pre></code> to preserve line breaks or insert them explicitly using <code>&lt;br/></code>."
+
+msgid "libxml_68"
+msgstr "Found “<samp>&amp;</samp>” character which does not start an entity\n"
+"Every <code>&amp;</code> must be escaped as <code>&amp;amp;</code>."
+
+msgid "libxml_23"
+msgstr "Found “<samp>&amp;</samp>” character which starts entity not ended with “<code>;</code>”\n"
+"You must add “<code>;</code>” at the end of entity name. If it wasn't supposed to be an entity, escape <code>&amp;</code> as <code>&amp;amp;</code>."
+
+msgid "entity_not_defined"
+msgstr "There is no entity “<samp>&amp;%s;</samp>”\n"
+"If it wasn't supposed to be an entity, escape <code>&amp;</code> as <code>&amp;amp;</code>. Validator reads only <abbr>XHTML</abbr>/1.<var>x</var> <abbr>DTD</abbr>s, so named entities in other types of documents will not be available."
+
+msgid "ending_mismatch"
+msgstr "Expected end of <code>&lt;%s&gt;</code> (started in line %s), but found “<samp>&lt;/%s&gt;</samp>” instead"
+
+msgid "libxml_65"
+msgstr "Invalid syntax of attribute"
+
+msgid "no_end_of_start_tag"
+msgstr "Could not find end of start tag opening element „<samp>&lt;%s …&gt;</samp>” (in line %s)\n"
+"Invalid syntax of attributes may have caused this."
+
+msgid "expected_character"
+msgstr "Expected character „<code>%s</code>”"
+
+msgid "not_valid_utf8"
+msgstr "Dokument is not using valid UTF-8 encoding\n"
+"Invalid byte sequence: „<samp>%s</samp>”"
+
+msgid "libxml_39"
+msgstr "Value of the attribute should be in quotes"
