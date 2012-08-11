@@ -41,6 +41,9 @@ class Controller
         else if ($lang == 'fr') {
             $this->translator->setLanguage('fr_FR.utf8','fr_FR.UTF-8','fr_FR','fr');
         }
+        else if ($lang == 'cs') {
+            $this->translator->setLanguage('cs.utf8','cs_CZ.UTF-8','cs_CZ','cs');
+        }
         else {
             $this->translator->setLanguage('en_US.utf8','en_US.UTF-8','en_US','en');
         }
@@ -61,12 +64,12 @@ class Controller
 
     private function getLanguage()
     {
-        if (preg_match('/^(en|pl|fr)\./', $_SERVER['HTTP_HOST'], $m))
+        if (preg_match('/^(en|pl|fr|cs)\./', $_SERVER['HTTP_HOST'], $m))
         {
             return $m[1];
         }
         // otherwise Accept is used
-        else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && preg_match('/\b(fr|pl)(?:\b|[_-])/',$_SERVER['HTTP_ACCEPT_LANGUAGE'],$m))
+        else if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) && preg_match('/\b(fr|pl|cs)(?:\b|[_-])/',$_SERVER['HTTP_ACCEPT_LANGUAGE'],$m))
         {
             return $m[1];
         }
