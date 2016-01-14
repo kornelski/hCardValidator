@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/ "This project is not actively maintained")
+
 #hCard Validator
 
 Conformance checker for the [hCard microformat](http://microformats.org/wiki/hcard).
