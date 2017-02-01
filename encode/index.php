@@ -26,7 +26,7 @@ function html_encode_email_address($m,$in_attribute=true)
             // apply url-encoding at random just to be more confusing
             $o .= (mt_rand(0,100) > 60 || !ctype_alnum($m[$i]))?sprintf('%%%02x',ord($m[$i])):$m[$i];
         }
-        $m = 'mailto: '.$o.'?'; $o=''; // query string is allowed in mailto:, even if empty
+        $m = 'mailto:%20'.$o.'?'; $o=''; // query string is allowed in mailto:, even if empty
     }
 
     for($i=0;$i<strlen($m);$i++)
