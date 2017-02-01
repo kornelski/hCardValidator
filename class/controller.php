@@ -78,13 +78,13 @@ class Controller
 
     function run()
     {
-        $out = array(
+        $out = [
             'filename' => '',
             'host' => $_SERVER['HTTP_HOST'],
             'post' => $_POST,
             'get' => $_GET,
             'lang' => $this->getLanguage(),
-        );
+        ];
 
         if (isset($_POST['feedback']))
         {
@@ -167,7 +167,7 @@ class Controller
 	 * @param $args - parameters to be substituted for %s in localized strings
 	 * @return string
 	 */
-    private function localizedMessage($error_class, $default_message, array $args = array())
+    private function localizedMessage($error_class, $default_message, array $args = [])
     {
         if (false !== strpos($default_message,'%d'))
         {
@@ -225,7 +225,7 @@ class Controller
 
     private function jsonOutput(array $out)
     {
-        $api = array();
+        $api = [];
         $api['message'] = $out['result']->isValid ? 'No errors found!' : 'Document contains errors';
         $api['type'] = $out['result']->isValid ? 'success' : 'failure';
 
@@ -233,8 +233,8 @@ class Controller
 
         if (!empty($out['result']))
         {
-            $api['messages'] = array();
-            $api['hcards'] = array();
+            $api['messages'] = [];
+            $api['hcards'] = [];
             foreach($out['result']->errors as $err)
             {
                 $api['messages'][] = $this->errorToAPIMessage($err);
@@ -250,8 +250,8 @@ class Controller
             }
         }
 
-        if (!empty($out['source'])) $api['source'] = array('code'=>$out['source']);
-        if (!empty($out['result']) && !empty($out['result']->parsedSource)) $api['parseTree'] = array('code'=>$out['result']->parsedSource);
+        if (!empty($out['source'])) $api['source'] = ['code'=>$out['source']];
+        if (!empty($out['result']) && !empty($out['result']->parsedSource)) $api['parseTree'] = ['code'=>$out['result']->parsedSource];
 
         header("Content-Type:application/json;charset=UTF-8");
         header("Content-Disposition:inline; filename=\"hcardvalidator.json\"");
@@ -261,11 +261,11 @@ class Controller
     private function errorToAPIMessage(array $err, $cardnum = NULL)
     {
         $msg = html_entity_decode(strip_tags($err['message']),ENT_QUOTES,'UTF-8');
-        $message = array(
+        $message = [
             'id'=>$err['class'],
             'type'=>$err['type'] == 'error' ? 'error' : 'info',
             'message'=>$msg,
-        );
+        ];
 
         if ($msg !== $err['message']) $message['message_html']=$err['message'];
 
@@ -298,7 +298,7 @@ class Controller
 
     function feedback()
     {
-        $out = array();
+        $out = [];
 
         $out['feedbackname'] = isset($_POST['feedbackname']) ? self::cleanUTF8($_POST['feedbackname']) : NULL;
         $out['feedback'] = isset($_POST['feedback']) ? self::cleanUTF8($_POST['feedback']) : NULL;
@@ -315,7 +315,7 @@ class Controller
             "Path: ".self::cleanUTF8($_SERVER['REQUEST_URI']).(!empty($_SERVER['HTTP_REFERER'])? '; '.self::cleanUTF8($_SERVER['HTTP_REFERER']):'')."\n".
             "\nMsg:\n\n".$out['feedback'];
 
-            $isspam = sblamtestpost(array('feedback','feedbackname'),'W4RBXxrfhASlRgs19K') >= 1;
+            $isspam = sblamtestpost(['feedback','feedbackname'],'W4RBXxrfhASlRgs19K') >= 1;
             if (!$isspam && mail("hcard@geekhood.net","hCard Validator feedback from ".
             substr(preg_replace('/[^a-z0-9_ !?:+-]+/i',' ',$_POST['feedbackname']),0,40), $msg, "Content-Type: text/plain;charset=UTF-8\r\nFrom: \"hCard Validator\" <hcard@geekhood.net>"))
             {
@@ -339,7 +339,7 @@ class Controller
 
     private function fragment($source)
     {
-        $out = array();
+        $out = [];
         $out['cache_control'] = "max-age=600";
 
         $validator = $this->getValidator();
@@ -350,7 +350,7 @@ class Controller
 
     private function file(array $FILE)
     {
-        $out = array();
+        $out = [];
         $validator = $this->getValidator();
         $out['result'] = $validator->validateUpload($FILE);
         $out['source'] = file_get_contents($FILE['tmp_name']);
@@ -359,7 +359,7 @@ class Controller
 
     private function url($url)
     {
-        $out = array();
+        $out = [];
         $out['cache_control'] = "max-age=5";
 
         $validator = $this->getValidator();
@@ -372,7 +372,7 @@ class Controller
 
     private function example($examplefile)
     {
-        $out = array();
+        $out = [];
         $out['cache_control'] = "max-age=".(3600*24*31);
 
         $validator = $this->getValidator();
@@ -391,7 +391,7 @@ class Controller
 
     private function main()
     {
-        $out = array();
+        $out = [];
         $out['cache_control'] = "max-age=".(3600*24*1);
         return $out;
     }

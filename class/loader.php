@@ -10,9 +10,9 @@ class LoaderException extends Exception
 	 * i18nable messages must pass variable bits separately
 	 * @return array(i18n key, array(vars))
 	 */
-    function getMessageArgs(){return array($this->msg_class,$this->args);}
+    function getMessageArgs(){return [$this->msg_class,$this->args];}
 
-    function __construct($default_msg, $msg_class, array $args = array(),$url = NULL)
+    function __construct($default_msg, $msg_class, array $args = [],$url = NULL)
     {
         parent::__construct($default_msg);
         $this->url = $url;
@@ -74,7 +74,7 @@ class LoaderURL
 
         if (!preg_match('/^https?:\/\/((?:[a-z0-9][a-z0-9-]*\.)+[a-z]{2,6})\.?(\/[^#]*)?(?:#.*)?$/i',$url,$m))
         {
-            throw new LoaderException($standard_excuse,"invalid_url",array(),$url);
+            throw new LoaderException($standard_excuse,"invalid_url",[],$url);
         }
 
         $hostname = strtolower($m[1]);
@@ -82,21 +82,21 @@ class LoaderURL
 
         if (preg_match('/\.sblam\.com$|api\.geekhood.net$|\.local$/',$hostname))
         {
-            throw new LoaderException($standard_excuse,"invalid_url",array(),$url);
+            throw new LoaderException($standard_excuse,"invalid_url",[],$url);
         }
 
         $ip = gethostbyname($hostname);
         if (!$ip || $ip == $m[1])
         {
-            throw new LoaderException("Can't find hostname.","dns_error",array($hostname),'http://'.$hostname.$path);
+            throw new LoaderException("Can't find hostname.","dns_error",[$hostname],'http://'.$hostname.$path);
         }
 
         if (!($ip = filter_var($ip,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4|FILTER_FLAG_NO_PRIV_RANGE|FILTER_FLAG_NO_RES_RANGE)))
         {
-            throw new LoaderException($standard_excuse,"invalid_url",array(),'http://'.$hostname.$path);
+            throw new LoaderException($standard_excuse,"invalid_url",[],'http://'.$hostname.$path);
         }
 
-        return array($hostname,$ip,$path);
+        return [$hostname,$ip,$path];
     }
 }
 
@@ -120,12 +120,12 @@ class Loader
             $xff .= ', '.trim($_SERVER['HTTP_X_FORWARDED_FOR']);
         }
 
-        $headers = array(
+        $headers = [
             'Accept' => 'application/xhtml+xml, application/xml;q=0.9, text/html;q=0.1', // Apache with Multiviews doesn't seem to like it. Poor baby.
             'User-Agent' => 'hCardValidator/1 PHP/5 (http://hcard.geekhood.net)',
             'Referer' => 'http://'.$_SERVER['HTTP_HOST'].'/',
             'X-Forwarded-For' => $xff,
-        );
+        ];
 
         return $this->performURLFetch($lurl,$headers);
     }
@@ -135,7 +135,7 @@ class Loader
      */
     private function getHeaders($wrapper_data)
     {
-        $response_headers = array();
+        $response_headers = [];
 
         if ($wrapper_data && is_array($wrapper_data)) foreach($wrapper_data as $h)
         {
@@ -156,20 +156,20 @@ class Loader
     {
         if (empty($response_headers['status']))
         {
-            throw new LoaderException("Server may be down.","request_failed",array($lurl->getHost()),$lurl->getURL());
+            throw new LoaderException("Server may be down.","request_failed",[$lurl->getHost()],$lurl->getURL());
         }
 
         if ($response_headers['status'] == 404 || $response_headers['status'] == 410)
         {
-            throw new LoaderException("File not found","file_not_found",array($lurl->getPath(),$lurl->getHost()),$lurl->getURL());
+            throw new LoaderException("File not found","file_not_found",[$lurl->getPath(),$lurl->getHost()],$lurl->getURL());
         }
 
         if ($response_headers['status'] >= 300 && $response_headers['status'] < 400)
         {
-            throw new LoaderException("Invalid redirect","invalid_redirect",array(),$lurl->getURL());
+            throw new LoaderException("Invalid redirect","invalid_redirect",[],$lurl->getURL());
         }
 
-        throw new LoaderException("HTTP error","http_error",array($response_headers['status']),$lurl->getURL());
+        throw new LoaderException("HTTP error","http_error",[$response_headers['status']],$lurl->getURL());
     }
 
     private function performURLFetch(LoaderURL $lurl,array $request_headers, $redirects_allowed = 5)
@@ -183,13 +183,13 @@ class Loader
             $headers_string .= "$k: ".preg_replace('/\s+/',' ',$v)."\r\n";
         }
 
-        $ctx = stream_context_create(array(
-            'http'=>array(
+        $ctx = stream_context_create([
+            'http'=>[
                 'method'=>'GET',
                 'max_redirects'=>0, // I want to handle redirects myself
                 'timeout'=>10,
                 'header'=>$headers_string,
-        )));
+        ]]);
 
         $http_response_header = NULL; // PHP is crap²
         $fp = @fopen($lurl->getIPURL(),"rb",false,$ctx);
@@ -223,9 +223,9 @@ class Loader
             $file = stream_get_contents($fp,$maxlen);
             if (strlen($file) >= $maxlen)
             {
-                throw new LoaderException("File larger than maximum size","maximum_file_size",array(round($maxlen/1000)),$url);
+                throw new LoaderException("File larger than maximum size","maximum_file_size",[round($maxlen/1000)],$url);
             }
-            return array($file,$response_headers,$lurl->getURL());
+            return [$file,$response_headers,$lurl->getURL()];
         }
     }
 

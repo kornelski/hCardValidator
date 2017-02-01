@@ -91,7 +91,7 @@ class hCardValidator
 
         if ($upload['error'])
         {
-            $result->add("error","upload_failed","Upload failed",array());
+            $result->add("error","upload_failed","Upload failed",[]);
             return $result;
         }
 
@@ -134,7 +134,7 @@ class hCardValidator
     {
         if (!strlen($fileSource))
         {
-            $result->add("error","empty_file","The file is empty!",array());
+            $result->add("error","empty_file","The file is empty!",[]);
             return $result;
         }
 
@@ -174,7 +174,7 @@ class hCardValidator
 
         if (!$sent_as_xhtml && !$looks_like_xhtml && $subtype !== 'html')
         {
-            $result->add("error","wrong_mime","Unsupported type\nFile was sent as: <code>%s</code> which doesn't look like a supported type.",array("$type/$subtype"));
+            $result->add("error","wrong_mime","Unsupported type\nFile was sent as: <code>%s</code> which doesn't look like a supported type.",["$type/$subtype"]);
             return $result;
         }
 
@@ -215,11 +215,11 @@ class hCardValidator
                 {
                     if ($url)
                     {
-                        $result->add("error","ill_formed_bozo","Document is not well-formed <abbr>XML</abbr>\nFailed to load XML. Can't validate tagsoup. <a href='%s'>Re-parse as tag soup</a>.",array("?im_a=bozo&url=".rawurlencode($doc->documentURI)."#result"),"http://hsivonen.iki.fi/producing-xml/");
+                        $result->add("error","ill_formed_bozo","Document is not well-formed <abbr>XML</abbr>\nFailed to load XML. Can't validate tagsoup. <a href='%s'>Re-parse as tag soup</a>.",["?im_a=bozo&url=".rawurlencode($doc->documentURI)."#result"],"http://hsivonen.iki.fi/producing-xml/");
                     }
                     else
                     {
-                        $result->add("error","ill_formed","Document is not well-formed <abbr>XML</abbr>\nFailed to load XML.",array(),"http://hsivonen.iki.fi/producing-xml/");
+                        $result->add("error","ill_formed","Document is not well-formed <abbr>XML</abbr>\nFailed to load XML.",[],"http://hsivonen.iki.fi/producing-xml/");
                     }
                     $this->addLibxmlErrors($result,$doc);
                     return $result;
@@ -231,9 +231,9 @@ class hCardValidator
 		// discover that XHTML on the net is a total failure
         if ($looks_like_xhtml && !$sent_as_xhtml && ($bozo || ($doc && !$doc->documentElement)))
         {
-            if ($bozo) $result->add("error","bozo_mode","Parsing in tagsoup mode\nMisinterpreting everything as <abbr>HTML</abbr> tagsoup to deal with unparseable “<abbr>XHTML</abbr>”.",array(),"http://hsivonen.iki.fi/producing-xml/");
+            if ($bozo) $result->add("error","bozo_mode","Parsing in tagsoup mode\nMisinterpreting everything as <abbr>HTML</abbr> tagsoup to deal with unparseable “<abbr>XHTML</abbr>”.",[],"http://hsivonen.iki.fi/producing-xml/");
 
-            $result->add("warn","x_tagsoup","Sending <abbr>XHTML</abbr> as <abbr>HTML</abbr> Considered Harmful\nReceived broken <abbr>XHTML</abbr> sent as <code>text/<strong>html</strong></code>.",array(),"http://hixie.ch/advocacy/xhtml");
+            $result->add("warn","x_tagsoup","Sending <abbr>XHTML</abbr> as <abbr>HTML</abbr> Considered Harmful\nReceived broken <abbr>XHTML</abbr> sent as <code>text/<strong>html</strong></code>.",[],"http://hixie.ch/advocacy/xhtml");
         }
 
 		// and brute-force everything using HTML parser (this is used for nice HTML-as-HTML documents too)
@@ -282,7 +282,7 @@ class hCardValidator
 //        echo '<pre>'.htmlspecialchars($doc->saveXML($doc->documentElement)).'</pre>';
         $result->addFromDoc($doc);
 
-        $uids = array();
+        $uids = [];
 
 		// $result->vcards were created based on doc generated from hcard.xslt
         foreach($result->vcards as $vcard)
@@ -295,7 +295,7 @@ class hCardValidator
 
                 if (isset($uids[$uid]))
                 {
-                    if ($uids[$uid] != $fn) $vcard->result->add("warn","repeated_uid","Uid <samp>%s</samp> used more than once\nIt's supposed to be <em>globally unique</em> identifier corresponding to the individual or resource",array($uid));
+                    if ($uids[$uid] != $fn) $vcard->result->add("warn","repeated_uid","Uid <samp>%s</samp> used more than once\nIt's supposed to be <em>globally unique</em> identifier corresponding to the individual or resource",[$uid]);
                 }
 
                 $uids[$uid] = $fn;
@@ -319,23 +319,23 @@ class hCardValidator
 
         if (!count($vcard->fn))
         {
-            $vcard->result->add("error","no_fn","hCard must have <code>fn</code> property",array(),"http://microformats.org/wiki/hcard-authoring#The_Importance_of_Names");
+            $vcard->result->add("error","no_fn","hCard must have <code>fn</code> property",[],"http://microformats.org/wiki/hcard-authoring#The_Importance_of_Names");
         }
         else if (in_array($vcard->fn[0],$vcard->allOrgNames()))
         {
-            $vcard->result->add("info","company","This hCard describes organization or company",array(),"http://microformats.org/wiki/hcard#Organization_Contact_Info");
+            $vcard->result->add("info","company","This hCard describes organization or company",[],"http://microformats.org/wiki/hcard#Organization_Contact_Info");
 
             $needs_n = false;
             if (count($vcard->n)) // ignore had_n, because empty n is allowed
             {
-                $vcard->result->add("error","org_has_n","Company/organization hCard has <code>n</code> property",array(),"http://microformats.org/wiki/hcard#Organization_Contact_Info");
+                $vcard->result->add("error","org_has_n","Company/organization hCard has <code>n</code> property",[],"http://microformats.org/wiki/hcard#Organization_Contact_Info");
             }
         }
         else
         {
             if ($vcard->flag('org_in_fn')) // flag set by XSLT, because structure inside $vcard is flattened
             {
-                $vcard->result->add("warn","org_fn_ignored","<code>org+fn</code> used, but names differ\nAlthough card has <code>org</code> property nested in <code>fn</code>, the <code>organization-name</code> is not identical to <code>fn</code> and card may not be interpreted as company's card.",array(),"http://microformats.org/wiki/hcard#Organization_Contact_Info");
+                $vcard->result->add("warn","org_fn_ignored","<code>org+fn</code> used, but names differ\nAlthough card has <code>org</code> property nested in <code>fn</code>, the <code>organization-name</code> is not identical to <code>fn</code> and card may not be interpreted as company's card.",[],"http://microformats.org/wiki/hcard#Organization_Contact_Info");
             }
 
             if (!count($vcard->n) && !$vcard->flag('had_n'))
@@ -354,17 +354,17 @@ class hCardValidator
                         $gname = $m[1];
                     }
 
-                    $vcard->append('n',array(
-                            'given-name'=> array($gname),
-                            'family-name'=> array($fname),
-                        ));
+                    $vcard->append('n',[
+                            'given-name'=> [$gname],
+                            'family-name'=> [$fname],
+                        ]);
                 }
                 elseif (preg_match('/^\S+$/u',$vcard->fn[0]))
                 {
                     $needs_n = false;
                     if (!in_array($vcard->fn[0], $vcard->nickname))
                     {
-                        $vcard->result->add("info","implied_nickname","Implied nickname from <code>fn</code>",array(),"http://microformats.org/wiki/hcard#Implied_.22nickname.22_Optimization");
+                        $vcard->result->add("info","implied_nickname","Implied nickname from <code>fn</code>",[],"http://microformats.org/wiki/hcard#Implied_.22nickname.22_Optimization");
                         $vcard->append('nickname',$vcard->fn[0]);
                     }
                 }
@@ -374,17 +374,17 @@ class hCardValidator
 
         if (!count($vcard->n) && $needs_n)
         {
-            $vcard->result->add("error","no_n","hCard must have <code>n</code> property\nIt can be either set explicitly or implied from one- or two-word <code>fn</code>",array(),"http://microformats.org/wiki/hcard#Implied_.22n.22_Optimization");
+            $vcard->result->add("error","no_n","hCard must have <code>n</code> property\nIt can be either set explicitly or implied from one- or two-word <code>fn</code>",[],"http://microformats.org/wiki/hcard#Implied_.22n.22_Optimization");
         }
 
         if (count($vcard->fn) > 1)
         {
-            $vcard->result->add("error","multi_fn","hCard must have <em>only one</em> <code>fn</code> property",array(),"http://microformats.org/wiki/hcard-singular-properties#fn");
+            $vcard->result->add("error","multi_fn","hCard must have <em>only one</em> <code>fn</code> property",[],"http://microformats.org/wiki/hcard-singular-properties#fn");
         }
 
         if (count($vcard->n) > 1)
         {
-            $vcard->result->add("error","multi_n","hCard must have <em>only one</em> <code>n</code> property",array(),"http://microformats.org/wiki/hcard-singular-properties#n");
+            $vcard->result->add("error","multi_n","hCard must have <em>only one</em> <code>n</code> property",[],"http://microformats.org/wiki/hcard-singular-properties#n");
         }
 
         foreach($vcard->query('n/given-name') as $name) $this->lookForHonorifics($vcard,'given-name',$name);
@@ -397,7 +397,7 @@ class hCardValidator
 	 */
     private function validateVCardGEO(vCard $vcard)
     {
-        if (count($vcard->geo) > 1) $vcard->result->add("error","multi_geo","Multiple geo values",array(),"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
+        if (count($vcard->geo) > 1) $vcard->result->add("error","multi_geo","Multiple geo values",[],"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
 
         if (isset($vcard->data['geo'])) foreach($vcard->data['geo'] as &$geo) // by reference!
         {
@@ -409,15 +409,15 @@ class hCardValidator
 
                 if (count($latlon) == 2)
                 {
-                    if (!isset($geo['latitude'])) $geo['latitude'] = array();
-                    if (!isset($geo['longitude'])) $geo['longitude'] = array();
+                    if (!isset($geo['latitude'])) $geo['latitude'] = [];
+                    if (!isset($geo['longitude'])) $geo['longitude'] = [];
 
                     $geo['latitude'][] = $latlon[0]; // this does modify vcard
                     $geo['longitude'][] = $latlon[1];
                 }
                 else
                 {
-                    $vcard->result->add("error","geo_abbr_syntax","Value \"%s\" of geo element contains value that is not separated by semicolon",array($latlon[0]),"http://microformats.org/wiki/hcard-faq#How_does_GEO_work_with_ABBR");
+                    $vcard->result->add("error","geo_abbr_syntax","Value \"%s\" of geo element contains value that is not separated by semicolon",[$latlon[0]],"http://microformats.org/wiki/hcard-faq#How_does_GEO_work_with_ABBR");
                 }
             }
         }
@@ -443,17 +443,17 @@ class hCardValidator
             $angle = (float)$value;
             if (($propname == 'latitude' && ($angle < -90 || $angle > 90)) || ($propname == 'longitude' && ($angle < -180 || $angle > 360)))
             {
-                $vcard->result->add("error","geo_value_range","Value %s of %s out of range",array($propname,$value));
+                $vcard->result->add("error","geo_value_range","Value %s of %s out of range",[$propname,$value]);
             }
             else if (empty($m[1]) || strlen($m[1])<6) // this is 5 digits. allow less, to avoid bitching unneccessarily.
             {
                 $vcard->result->add("warn","geo_precision","<code>%s</code> should be specified to 6 decimal places\nThis will allow for granularity
-                   within a meter of the geographical position.",array($propname));
+                   within a meter of the geographical position.",[$propname]);
             }
         }
         else
         {
-            $vcard->result->add("error","geo_value","Syntax error %s in %s",array($propname,$value));
+            $vcard->result->add("error","geo_value","Syntax error %s in %s",[$propname,$value]);
         }
 
     }
@@ -494,11 +494,11 @@ class hCardValidator
                 {
                     if ($m[1]=='http' || $m[1]=='https')
                     {
-                        $vcard->result->add("error","email_http","e-mail property uses <abbr>HTTP</abbr> protocol",array(), "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
+                        $vcard->result->add("error","email_http","e-mail property uses <abbr>HTTP</abbr> protocol",[], "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
                     }
                     else if ($m[1] != 'mailto' || !preg_match('/^mailto:\s*([^\?]*)/i',$val,$emailvalonly)) // emailvalonly captures address for later use
                     {
-                        $vcard->result->add("error","email_non_mailto","e-mail property uses non-mail '%s' protocol",array($m[1]), "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
+                        $vcard->result->add("error","email_non_mailto","e-mail property uses non-mail '%s' protocol",[$m[1]], "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
                     }
                     else
                     {
@@ -508,18 +508,18 @@ class hCardValidator
                         {
                             if (!$this->checkemaildomain($m[1]))
                             {
-                                $vcard->result->add("error","email_domain","e-mail's domain %s lookup failed",array($m[1]));
+                                $vcard->result->add("error","email_domain","e-mail's domain %s lookup failed",[$m[1]]);
                             }
                         }
                         else
                         {
-                            $vcard->result->add("error","email_value","Syntax error in e-mail",array($val),"http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
+                            $vcard->result->add("error","email_value","Syntax error in e-mail",[$val],"http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
                         }
                     }
                 }
                 else
                 {
-                    $vcard->result->add("error","email_no_protocol","e-mail lacks protocol\nUse mailto:.",array(), "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
+                    $vcard->result->add("error","email_no_protocol","e-mail lacks protocol\nUse mailto:.",[], "http://microformats.org/wiki/hcard-faq#X2V_does_not_convert_email_with_name_as_plain_text");
                 }
             }
         }
@@ -533,13 +533,13 @@ class hCardValidator
                 switch($m[1]) // FIXME: add more?
                 {
                     case 'gtalk':
-                    case 'jabber': $vcard->result->add("error","jabber_protocol","You should use <code>xmpp:</code> protocol rather than <code>%s:</code>",array($m[1]));
+                    case 'jabber': $vcard->result->add("error","jabber_protocol","You should use <code>xmpp:</code> protocol rather than <code>%s:</code>",[$m[1]]);
                     break;
                 }
             }
             elseif (preg_match('/\.\.(\/|$)/',$url))
             {
-                $vcard->result->add("warn","relative_url","Relative URL %s",array($url));
+                $vcard->result->add("warn","relative_url","Relative URL %s",[$url]);
             }
 
 			// FIXME: would be nice to resolve relative path names
@@ -577,20 +577,20 @@ class hCardValidator
 
                             if (!$info || $info[0] < 3 || $info[1] < 3)
                             {
-                                $vcard->result->add("error","photo_data_invalid","Content of <code>%s</code> property's <code>data:</code> <abbr>URI</abbr> does not appear to be an image",array($propname));
+                                $vcard->result->add("error","photo_data_invalid","Content of <code>%s</code> property's <code>data:</code> <abbr>URI</abbr> does not appear to be an image",[$propname]);
                                // echo base64_encode($data);
                             }
                         }
                         else
                         {
-                            $vcard->result->add("error","photo_data_not_image","<code>data:</code> <abbr>URI</abbr> of <code>%s</code> does not declare <code>image/*</code> <abbr>MIME</abbr> type\nFound type <samp>%s</samp>.",array($propname,$mime));
+                            $vcard->result->add("error","photo_data_not_image","<code>data:</code> <abbr>URI</abbr> of <code>%s</code> does not declare <code>image/*</code> <abbr>MIME</abbr> type\nFound type <samp>%s</samp>.",[$propname,$mime]);
                         }
                     }
                     else $vcard->result->add("error","data_uri_syntax","Syntax of <code>data:</code> <abbr>URI</abbr> is invalid");
                 }
                 else if ($m[1] != 'http' && $m[1] != 'https')
                 {
-                    $vcard->result->add("warn","photo_protocol","Unusual protocol used for <code>%s</code> property",array($propname));
+                    $vcard->result->add("warn","photo_protocol","Unusual protocol used for <code>%s</code> property",[$propname]);
                 }
             }
         }
@@ -607,7 +607,7 @@ class hCardValidator
                 $val = preg_replace('/\sx\s|;\s*ext\s*=.*|ext\./u',' ',$val); // remove phone extension
                 if (preg_match('/\pL/u',$val))
                 {
-                    $vcard->result->add("error","tel_letters","Telephone <samp>%s</samp> contains letters.\nDon't add any prefixes. Letters in the number <em>must</em> be converted to digits.",array($val),"http://microformats.org/wiki/hcard#Property_Notes");
+                    $vcard->result->add("error","tel_letters","Telephone <samp>%s</samp> contains letters.\nDon't add any prefixes. Letters in the number <em>must</em> be converted to digits.",[$val],"http://microformats.org/wiki/hcard#Property_Notes");
                 }
             }
         }
@@ -622,7 +622,7 @@ class hCardValidator
         {
             if ($vcard->fn) $fn = $vcard->fn[0]; else $fn = $value;
 
-            $vcard->result->add("error","honorific_name","Honorific prefix/suffix <samp>%s</samp> found in <code>%s</code> property",array($m[1],$propname,'http://tools.microformatic.com/query/xhtml/best-guess/'.rawurlencode($fn)));
+            $vcard->result->add("error","honorific_name","Honorific prefix/suffix <samp>%s</samp> found in <code>%s</code> property",[$m[1],$propname,'http://tools.microformatic.com/query/xhtml/best-guess/'.rawurlencode($fn)]);
         }
     }
 
@@ -638,32 +638,32 @@ class hCardValidator
         {
             if ((int)substr($m[1],0,4) > (int)date("Y"))
             {
-                $vcard->result->add("error","future_date","<code>%s</code> date in future",array($propname));
+                $vcard->result->add("error","future_date","<code>%s</code> date in future",[$propname]);
             }
         }
         else
         {
-            $vcard->result->add("error","date_syntax","Invalid syntax of <code>%s</code> date\n'<samp>%s</samp>' is invalid <abbr>ISO 8601</abbr> format. Use <code><var>yyyy</var>-<var>mm</var>-<var>dd</var></code> or <code><var>yyyy</var>-<var>mm</var>-<var>dd</var>T<var>hh</var>:<var>mm</var>:<var>ss</var>Z</code>.",array($propname,$value),"http://microformats.org/wiki/datetime-design-pattern");
+            $vcard->result->add("error","date_syntax","Invalid syntax of <code>%s</code> date\n'<samp>%s</samp>' is invalid <abbr>ISO 8601</abbr> format. Use <code><var>yyyy</var>-<var>mm</var>-<var>dd</var></code> or <code><var>yyyy</var>-<var>mm</var>-<var>dd</var>T<var>hh</var>:<var>mm</var>:<var>ss</var>Z</code>.",[$propname,$value],"http://microformats.org/wiki/datetime-design-pattern");
         }
     }
 
     private function validateVCardDateTime(vCard $vcard)
     {
-        if (count($vcard->tz) > 1) $vcard->result->add("error","multi_tz","Multiple time zones",array(),"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
+        if (count($vcard->tz) > 1) $vcard->result->add("error","multi_tz","Multiple time zones",[],"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
 
         foreach($vcard->tz as $tz) if (!preg_match('/^[+-]([01][0-9]|2[0-3]):?([0-5][0-9])(?:$|;)/u',$tz)) // ignore everything after ; (examples I've got include semicolon)
         {
-            $vcard->result->add("error","tz_value","Value of <code>tz</code> property is not an <abbr>ISO 8601 UTC</abbr> offset\nFound <samp>%s</samp>, but expected <code>+00:00</code> format.",array($tz));
+            $vcard->result->add("error","tz_value","Value of <code>tz</code> property is not an <abbr>ISO 8601 UTC</abbr> offset\nFound <samp>%s</samp>, but expected <code>+00:00</code> format.",[$tz]);
         }
 
-        if (count($vcard->bday) > 1) $vcard->result->add("error","multi_bday","Multiple birth dates",array(),"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
+        if (count($vcard->bday) > 1) $vcard->result->add("error","multi_bday","Multiple birth dates",[],"http://microformats.org/wiki/hcard-singular-properties#Physical_Properties");
         foreach($vcard->bday as $bday)
         {
 			// (discriminate against time travellers and unborn children)
             $this->checkPastISODate($vcard,'bday',$bday);
         }
 
-        if (count($vcard->rev) > 1) $vcard->result->add("error","multi_rev","Multiple rev values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->rev) > 1) $vcard->result->add("error","multi_rev","Multiple rev values",[],"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
         foreach($vcard->rev as $rev)
         {
             $this->checkPastISODate($vcard,'rev',$rev);
@@ -674,9 +674,9 @@ class hCardValidator
     {
         foreach($types as $type)
         {
-            if (!in_array(strtolower($type),array('dom','intl','parcel','postal','home','work','pref')))
+            if (!in_array(strtolower($type),['dom','intl','parcel','postal','home','work','pref']))
             {
-                $vcard->result->add("error","adr_type","Invalid address type %s\nMust be one of: <code>dom</code>, <code>intl</code>, <code>parcel</code>, <code>postal</code>, <code>home</code>, <code>work</code>, <code>pref</code>",array($type),"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
+                $vcard->result->add("error","adr_type","Invalid address type %s\nMust be one of: <code>dom</code>, <code>intl</code>, <code>parcel</code>, <code>postal</code>, <code>home</code>, <code>work</code>, <code>pref</code>",[$type],"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
             }
         }
     }
@@ -685,9 +685,9 @@ class hCardValidator
     {
         foreach($types as $type)
         {
-            if (!in_array(strtolower($type),array('home','work','msg','pref','voice','fax','cell','video','pager','bbs','modem','car','isdn','pcs')))
+            if (!in_array(strtolower($type),['home','work','msg','pref','voice','fax','cell','video','pager','bbs','modem','car','isdn','pcs']))
             {
-                $vcard->result->add("error","tel_type","Invalid telephone type %s\nMust be one of: <code>home</code>, <code>work</code>, <code>msg</code>, <code>pref</code>, <code>voice</code>, <code>fax</code>, <code>cell</code>, <code>video</code>, <code>pager</code>, <code>bbs</code>, <code>modem</code>, <code>car</code>, <code>isdn</code>, <code>pcs'</code>.",array($type),"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
+                $vcard->result->add("error","tel_type","Invalid telephone type %s\nMust be one of: <code>home</code>, <code>work</code>, <code>msg</code>, <code>pref</code>, <code>voice</code>, <code>fax</code>, <code>cell</code>, <code>video</code>, <code>pager</code>, <code>bbs</code>, <code>modem</code>, <code>car</code>, <code>isdn</code>, <code>pcs'</code>.",[$type],"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
             }
         }
     }
@@ -696,9 +696,9 @@ class hCardValidator
     {
         foreach($types as $type)
         {
-            if (!in_array(strtolower($type),array('internet','pref','x400')))
+            if (!in_array(strtolower($type),['internet','pref','x400']))
             {
-                $vcard->result->add("error","email_type","Invalid e-mail type %s\nMust be one of: <code>internet</code>, <code>pref</code>, <code>x400</code>.",array($type),"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
+                $vcard->result->add("error","email_type","Invalid e-mail type %s\nMust be one of: <code>internet</code>, <code>pref</code>, <code>x400</code>.",[$type],"http://microformats.org/wiki/adr-cheatsheet#Properties_.28Class_Names.29");
             }
         }
     }
@@ -747,8 +747,8 @@ class hCardValidator
         $this->validateVCardDateTime($vcard);
 
 
-        if (count($vcard->class) > 1) $vcard->result->add("error","multi_class","Multiple class values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
-        if (count($vcard->uid) > 1) $vcard->result->add("error","multi_uid","Multiple uid values",array(),"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->class) > 1) $vcard->result->add("error","multi_class","Multiple class values",[],"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
+        if (count($vcard->uid) > 1) $vcard->result->add("error","multi_uid","Multiple uid values",[],"http://microformats.org/wiki/hcard-singular-properties#Entire_vCard_Properties");
     }
 
 	/**
@@ -759,8 +759,8 @@ class hCardValidator
 	 */
     private function addLibxmlErrors(ValidationResult $result, $doc, $skipLines=0)
     {
-        $dontrepeat = array();
-        $dontrepeat_codes = array();
+        $dontrepeat = [];
+        $dontrepeat_codes = [];
         $skipped = 0;
 
         foreach(libxml_get_errors() as $err)
@@ -778,7 +778,7 @@ class hCardValidator
 
         if ($skipped > 1) // one error informing that another was skipped looks to silly
         {
-            $result->add("error","too_many_errors","%d duplicate <code>XML</code> errors not shown",array($skipped));
+            $result->add("error","too_many_errors","%d duplicate <code>XML</code> errors not shown",[$skipped]);
         }
     }
 
@@ -791,13 +791,13 @@ class hCardValidator
         libxml_clear_errors();
     }
 
-    static $libxmlmessages = array(
+    static $libxmlmessages = [
         'Entity \'([^\']*)\' not defined' => 'entity_not_defined',
         'Opening and ending tag mismatch: ([^\s]+) line ([^\s]+) and ([^\s]+)' => 'ending_mismatch',
         'Couldn\'t find end of Start Tag ([^\s]+) line ([^\s]+)' => 'no_end_of_start_tag',
         'expected \'([^\']*)\'' => 'expected_character',
         'Input is not proper UTF-8, indicate encoding\s*!\s*Bytes:\s*(.*)'=>'not_valid_utf8',
-    );
+    ];
     private function extractLibxmlMessageArgs($err)
     {
         $msg = $err->message;
@@ -806,10 +806,10 @@ class hCardValidator
         {
             if (preg_match('/^'.$pattern.'/',$msg,$m))
             {
-                return array($class, preg_replace('/\([^)]*\)/','%s',$msg), array_slice($m,1));
+                return [$class, preg_replace('/\([^)]*\)/','%s',$msg), array_slice($m,1)];
             }
         }
-        return array('libxml_'.$err->code, "%s", array($msg));
+        return ['libxml_'.$err->code, "%s", [$msg]];
     }
 
 	/**
@@ -835,7 +835,7 @@ class hCardValidator
     }
 
 	// cache is awesome for unit tests
-    static $xsltCache = array();
+    static $xsltCache = [];
 
 	/**
 	 * transform one DOM to another using given XSLT file

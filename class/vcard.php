@@ -14,12 +14,12 @@ class vCard
     {
         $this->result = $result;
         $this->node = $node;
-        $this->flags = array();
+        $this->flags = [];
 
         $this->data = $this->nodeToArray($node);
         if (!is_array($this->data))
         {
-            $this->data = array(); // nodeToArray may return string if there are no elements!
+            $this->data = []; // nodeToArray may return string if there are no elements!
         }
     }
 
@@ -33,19 +33,19 @@ class vCard
     function __get($name)
     {
         if (isset($this->data[$name])) return $this->data[$name];
-        return array();
+        return [];
     }
 
     function append($name,$value)
     {
-        if (!isset($this->data[$name])) $this->data[$name] = array();
+        if (!isset($this->data[$name])) $this->data[$name] = [];
         $this->data[$name][] = $value;
     }
 
     function query($path)
     {
         $parts = explode('/',$path);
-        $result = array();
+        $result = [];
         $this->queryPart($parts,$this->data,$result);
         return $result;
     }
@@ -83,7 +83,7 @@ class vCard
 
     function allOrgNames()
     {
-        $org_names = array();
+        $org_names = [];
         foreach($this->org as $org)
         {
             if (!empty($org['organization-name'])) foreach($org['organization-name'] as $name)
@@ -96,7 +96,7 @@ class vCard
 
     private function nodeToArray(DOMNode $node)
     {
-        $data = array();
+        $data = [];
 
         $hasElements = false;
         foreach($node->childNodes as $element)
@@ -108,7 +108,7 @@ class vCard
                 $hasElements = true;
 
                 $name = $element->localName;
-                if (!isset($data[$name])) $data[$name] = array();
+                if (!isset($data[$name])) $data[$name] = [];
 
                 $data[$name][] = $this->nodeToArray($element);
             }
@@ -163,8 +163,8 @@ class vCard
                             $warn_or_err = "error";
                         }
 
-                        if ($parent) $this->result->add($warn_or_err,"empty_subprop","<code>%s</code> property of <code>%s</code> is empty",array($prop,$parent));
-                        else $this->result->add($warn_or_err,"empty_prop","<code>%s</code> property is empty",array($prop));
+                        if ($parent) $this->result->add($warn_or_err,"empty_subprop","<code>%s</code> property of <code>%s</code> is empty",[$prop,$parent]);
+                        else $this->result->add($warn_or_err,"empty_prop","<code>%s</code> property is empty",[$prop]);
 
                         unset($values[$idx]);
                     }

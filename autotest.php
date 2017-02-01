@@ -21,7 +21,7 @@ class AutoTest
 
     private $unexpected_errors = 0;
 
-    function testFile($file, array $expected = array())
+    function testFile($file, array $expected = [])
     {
         if (!is_file($file)) return;
 
@@ -136,7 +136,7 @@ class AutoTest
                 // tests use filename same as error ID,
                 // so I don't need to put @expected comment in every one
                 $expected_error_name = basename($file, '.html');
-                $this->testFile($file, array($expected_error_name =>1));
+                $this->testFile($file, [$expected_error_name =>1]);
                 $filesnum++;
             }
 

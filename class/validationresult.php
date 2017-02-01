@@ -10,13 +10,13 @@ class ValidationResult
 	/**
 	 * @see add() for structure
 	 */
-    public $errors = array();
+    public $errors = [];
     public $isValid;
 
 	/**
 	 * array of VCard objects extracted from validated document
 	 */
-    public $vcards = array();
+    public $vcards = [];
 
     function __construct($fileName)
     {
@@ -39,7 +39,7 @@ class ValidationResult
 		// first get all errors that don't belong to any particular vcard
         foreach($xp->query('(//v:error|//v:warn|//v:info)[not(ancestor::c:vcard)]') as $node)
         {
-            $args = array();
+            $args = [];
             foreach($xp->query('v:arg',$node) as $arg)
             {
               $args[] = $arg->textContent;
@@ -63,7 +63,7 @@ class ValidationResult
                 }
 
 				// args for i18n strings
-                $args = array();
+                $args = [];
                 foreach($xp->query('v:arg',$node) as $arg)
                 {
                   	$args[] = $arg->textContent;
@@ -87,17 +87,17 @@ class ValidationResult
 	 * @param $href - link to more detailed explanation of the error
 	 * @param $location - (string) where the error has occured
 	 */
-    function add($type, $error_class, $default_message, array $args = array(), $href = NULL, $location = NULL)
+    function add($type, $error_class, $default_message, array $args = [], $href = NULL, $location = NULL)
     {
         if ($type == 'error') $this->isValid = false;
 
-        $this->errors[] = array(
+        $this->errors[] = [
             'type'=>$type,
             'class'=>$error_class,
             'message'=>$default_message,
             'args'=>$args,
             'href'=>$href,
             'location'=>$location,
-        );
+        ];
     }
 }
