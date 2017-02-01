@@ -64,7 +64,7 @@ class LoaderURL
         $standard_excuse = "URL not allowed\nPardon me being paranoid about security, but this URL doesn't look innocent enough (HTTP with hostname and without authentication or ports please).";
 
         $url = trim($url);
-        $url = preg_replace('/([\x00-\x20\x7f-\xff])/e','rawurlencode("\1")',$url);
+        $url = preg_replace_callback('/([\x00-\x20\x7f-\xff]+)/',function($m){return rawurlencode($m[0]);},$url);
 
         if (!preg_match('/https?:\/\//',$url)) $url = 'http://'.$url;
 
